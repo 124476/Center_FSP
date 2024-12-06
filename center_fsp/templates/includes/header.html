@@ -11,16 +11,6 @@
     <nav class="my-auto nav-item dropdown">
       <a href="{% url 'homepage:main' %}" class="{% if view_name == 'homepage:main' %}active{% endif %}">{% trans "Главная" %}</a>
       <a href="{% url 'calendar:main' %}" class="{% if view_name == 'calendar:main' %}active{% endif %}">{% trans "Календарь мероприятий" %}</a>
-      {% if user.is_authenticated %}
-        <a href="{% url 'users:profile' %}" class="{% if view_name == 'users:profile' %}active{% endif %}">{% trans "Профиль" %}</a>
-        <a href="{% url 'users:logout' %}" class="{% if view_name == 'users:logout' %}active{% endif %}">{% trans "Выйти" %}</a>
-      {% else %}
-        <a href="{% url 'users:login' %}" class="{% if view_name == 'users:login' %}active{% endif %}">{% trans "Войти" %}</a>
-      {% endif %}
-      {% if request.user.is_staff %}
-        <a href="{% url 'admin:index' %}" class="{% if view_name == 'admin:index' %}active{% endif %}">{% trans "Админ панель" %}</a>
-        <a href="{% url 'homepage:update_db' %}" class="{% if view_name == 'homepage:update_db' %}active{% endif %}">{% trans "Обновить базу мероприятий" %}</a>
-      {% endif %}
     </nav>
     <nav class="d-flex">
       <nav class="my-auto nav-item dropdown me-2">
@@ -57,6 +47,38 @@
             <button class="dropdown-item" data-bs-theme-value="dark">{% trans "dark" %}</button>
           </li>
         </ul>
+      {% if request.resolver_match.view_name == 'users:profile' or request.resolver_match.app_name != 'users' %}
+        {% if request.user.is_authenticated %}
+          {% trans "no_user" as no_user %}
+          <div class="dropdown ms-2">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% if request.user.has_avatar %}{{ request.user.get_small_avatar }}{% else %}{% static 'img/default_user_avatar.jpg' %}{% endif %}" alt="{{ request.user.username }}" class="rounded-circle" width="48" height="48">
+              <strong>{{ request.user.username|default:no_user }}</strong>
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li><a class="dropdown-item" {% if view_name != "users:profile" %}href="{% url 'users:profile' %}"{% endif %}>{% trans "my_profile" %}</a></li>
+              {% if request.user.is_staff %}
+                <li><hr class="dropdown-divider"></li>
+                  <li><a {% if view_name != "dashboard:all_links" %}href="{% url 'dashboard:all_links' %}"{% endif %} class="dropdown-item">
+                    {% trans "dashboard" %}
+                  </a></li>
+                <li><a href="{% url 'admin:index' %}" class="dropdown-item">
+                  {% trans "admin_panel" %}
+                </a></li>
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'users:logout' %}">{% trans "exit" %}</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <a href="{% url 'users:login' %}" class="btn btn-outline my-auto me-2">
+            {% trans "sign_in" %}
+          </a>
+          <a href="{% url 'users:signup' %}" class="btn btn-outline my-auto">
+            {% trans "registration" %}
+          </a>
+        {% endif %}
+      {% endif %}
       </nav>
     </nav>
   </div>
