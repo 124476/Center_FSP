@@ -245,7 +245,7 @@ msgstr "Войти"
 
 #: .\templates\users\login.html:14
 msgid "sign_in"
-msgstr "Регистрация"
+msgstr "Авторизация"
 
 #: .\templates\users\logout.html:4
 msgid "logout"

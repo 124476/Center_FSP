@@ -57,15 +57,6 @@
             </a>
             <ul class="dropdown-menu text-small">
               <li><a class="dropdown-item" {% if view_name != "users:profile" %}href="{% url 'users:profile' %}"{% endif %}>{% trans "my_profile" %}</a></li>
-              {% if request.user.is_staff %}
-                <li><hr class="dropdown-divider"></li>
-                  <li><a {% if view_name != "dashboard:all_links" %}href="{% url 'dashboard:all_links' %}"{% endif %} class="dropdown-item">
-                    {% trans "dashboard" %}
-                  </a></li>
-                <li><a href="{% url 'admin:index' %}" class="dropdown-item">
-                  {% trans "admin_panel" %}
-                </a></li>
-              {% endif %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'users:logout' %}">{% trans "exit" %}</a></li>
             </ul>
@@ -73,9 +64,6 @@
         {% else %}
           <a href="{% url 'users:login' %}" class="btn btn-outline my-auto me-2">
             {% trans "sign_in" %}
-          </a>
-          <a href="{% url 'users:signup' %}" class="btn btn-outline my-auto">
-            {% trans "registration" %}
           </a>
         {% endif %}
       {% endif %}
