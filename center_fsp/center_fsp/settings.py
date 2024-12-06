@@ -129,9 +129,28 @@ LOCALE_PATHS = (BASE_DIR / "locale/",)
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "<[Center FSP]> "
+SITE_ID = 1
+
+EMAIL_HOST = os.getenv("MAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = os.getenv("MAIL_PORT", default=2525)
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = os.getenv("MAIL_USER", default="webmaster@localhost")
+EMAIL_HOST_USER = os.getenv("MAIL_USER", default="webmaster@localhost")
+EMAIL_HOST_PASSWORD = os.getenv(
+    "MAIL_PASSWORD",
+    default="this_very_secret_password_for_smtp_mail",
+)
+MAIL_PASSWORD = os.getenv(
+    "MAIL_PASSWORD",
+    default="this_very_secret_password_for_smtp_mail",
+)

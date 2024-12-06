@@ -57,31 +57,25 @@ class UserForm(BootstrapFormMixin, UserChangeForm):
         ]
 
 
-class DFEmailForm(forms.Form):
-    email = forms.EmailField(label="New Email", max_length=254)
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("This email is already taken.")
-        return email
-
-
-class DFLoginForm(BootstrapFormMixin, LoginForm):
+class DatanarEmailForm(BootstrapFormMixin, AddEmailForm):
     pass
 
 
-class DFSignupForm(BootstrapFormMixin, SignupForm):
+class DatanarLoginForm(BootstrapFormMixin, LoginForm):
     pass
 
 
-class DFChangePasswordForm(BootstrapFormMixin, ChangePasswordForm):
+class DatanarSignupForm(BootstrapFormMixin, SignupForm):
     pass
 
 
-class DFResetPasswordForm(BootstrapFormMixin, ResetPasswordForm):
+class DatanarChangePasswordForm(BootstrapFormMixin, ChangePasswordForm):
     pass
 
 
-class DFResetPasswordKeyForm(BootstrapFormMixin, ResetPasswordKeyForm):
+class DatanarResetPasswordForm(BootstrapFormMixin, ResetPasswordForm):
+    pass
+
+
+class DatanarResetPasswordKeyForm(BootstrapFormMixin, ResetPasswordKeyForm):
     pass

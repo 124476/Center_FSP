@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _
 
 
 class Structure(django.db.models.Model):
@@ -231,3 +232,33 @@ def notify_users_on_new_event(sender, instance, created, **kwargs):
             recipients,
             fail_silently=False,
         )
+
+
+class Statement(django.db.models.Model):
+    class Status(django.db.models.TextChoices):
+        CONSIDERATION = _("consideration")
+        ACCEPT = _("acceptance")
+
+    user = django.db.models.ForeignKey(
+        django.conf.settings.AUTH_USER_MODEL,
+        verbose_name="пользователь",
+        on_delete=django.db.models.CASCADE,
+    )
+    meropriations = django.db.models.ManyToManyField(
+        Meropriation,
+        verbose_name="мероприятия",
+    )
+    status = django.db.models.CharField(
+        verbose_name="статус заявки",
+        choices=Status.choices,
+        default=Status.CONSIDERATION,
+        max_length=30,
+    )
+
+    class Meta:
+        ordering = ("id",)
+        verbose_name = "заявка"
+        verbose_name_plural = "заявки"
+
+    def __str__(self):
+        return self.user

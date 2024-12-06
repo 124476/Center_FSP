@@ -4,12 +4,35 @@ from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import delete, get_thumbnail
 
 
+class Region(models.Model):
+    name = models.CharField(
+        max_length=150,
+        null=True,
+    )
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = "регион"
+        verbose_name_plural = "регионы"
+
+    def __str__(self):
+        return self.name
+
+
 class User(AbstractUser):
     avatar = models.ImageField(
         _("avatar"),
         upload_to="avatars/",
         null=True,
         blank=True,
+    )
+    region = models.ForeignKey(
+        Region,
+        verbose_name="регион",
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="regions",
     )
 
     def has_avatar(self):

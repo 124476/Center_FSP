@@ -3,9 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import FormView
-import django.views
 
-from users.forms import UserForm, DFEmailForm
+from users.forms import UserForm
 from users.models import User
 
 
@@ -40,25 +39,8 @@ class AccountView(LoginRequiredMixin, FormView):
         return render(request, "users/profile.html", {"form": user_form})
 
 
-class EmailChangeView(LoginRequiredMixin, django.views.View):
-    template_name = "users/email_change.html"
-    form_class = DFEmailForm
-
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial={'email': request.user.email})
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            new_email = form.cleaned_data['email']
-            if request.user.email != new_email:
-                request.user.email = new_email
-                request.user.save()
-                return redirect('users:profile')
-        return render(request, self.template_name, {'form': form})
-
-
 class PasswordChangeDoneView(views.PasswordChangeDoneView):
     pass
+
+
+__all__ = [AccountView, PasswordChangeDoneView]
