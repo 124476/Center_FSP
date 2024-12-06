@@ -32,7 +32,6 @@ class User(AbstractUser):
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        related_name="regions",
     )
 
     def has_avatar(self):

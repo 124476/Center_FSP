@@ -1,5 +1,5 @@
-# Django example
-## Пример
+# Center FSP
+## Gлатформы, которая улучшит координацию между ФСП и регионами, упростит процессы подачи и обработки заявок, а также повысит качество общения и управления данными.
 ### Инструкция по запуску проекта
 Все команды вводятся в терминале</br>
 ***Необходимо иметь установленные pip и python для терминала***
@@ -7,13 +7,13 @@
 #### Клонируем проект
 
 ```commandline
-git clone https://github.com/124476/DjangoExmple
+git clone https://github.com/hackathonsrus/pp_final_20299_pfo_ta_litseisti_kfu_102
 ```
 
-#### Переходим в папку DjangoExmple
+#### Переходим в папку pp_final_20299_pfo_ta_litseisti_kfu_102
 
 ```commandline
-cd DjangoExmple
+cd pp_final_20299_pfo_ta_litseisti_kfu_102
 ```
 
 #### Создаём и активируем виртуальное окружение
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 #### Переходим в папку с manage.py
 
 ```commandline
-cd djexample
+cd center_fsp
 ```
 
 #### Настраиваем миграции
