@@ -1,11 +1,16 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 
 from users.forms import UserForm
 from users.models import User
+
+from users.forms import RegionalRepresentativeSignupForm
 
 
 class AccountView(LoginRequiredMixin, FormView):
@@ -41,6 +46,23 @@ class AccountView(LoginRequiredMixin, FormView):
 
 class PasswordChangeDoneView(views.PasswordChangeDoneView):
     pass
+
+
+@method_decorator(staff_member_required, name="dispatch")
+class RegionalRepresentativeSignupView(CreateView):
+    model = User
+    form_class = RegionalRepresentativeSignupForm
+    template_name = "users/signup.html"
+    success_url = reverse_lazy("homepage:main")
+
+    def form_valid(self, form):
+        user = form.save(request=self.request)
+        user.first_name = form.cleaned_data["first_name"]
+        user.last_name = form.cleaned_data["last_name"]
+        user.region = form.cleaned_data["region"]
+        user.is_staff = False
+        user.save()
+        return redirect("homepage:main")
 
 
 __all__ = ()

@@ -59,6 +59,9 @@
               <li><a class="dropdown-item" {% if view_name != "users:profile" %}href="{% url 'users:profile' %}"{% endif %}>{% trans "my_profile" %}</a></li>
               <li><hr class="dropdown-divider"></li>
               {% if request.user.is_staff %}
+                <li><a href="{% url 'users:signup' %}" class="dropdown-item">
+                  {% trans "Регистрация региональных представителей" %}
+                </a></li>
                 <li><a href="{% url 'admin:index' %}" class="dropdown-item">
                   {% trans "admin_panel" %}
                 </a></li>

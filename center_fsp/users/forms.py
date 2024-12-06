@@ -1,14 +1,11 @@
-from allauth.account.forms import AddEmailForm
-from allauth.account.forms import ChangePasswordForm
-from allauth.account.forms import LoginForm
-from allauth.account.forms import ResetPasswordForm
-from allauth.account.forms import ResetPasswordKeyForm
-from allauth.account.forms import SignupForm
+from allauth.account.forms import AddEmailForm, LoginForm, SignupForm, \
+    ChangePasswordForm, ResetPasswordForm, ResetPasswordKeyForm
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
-from django import forms
+from django.utils.translation import gettext as _
 
-from users.models import User
+from users.models import User, Region
 
 
 class BootstrapFormMixin:
@@ -57,25 +54,52 @@ class UserForm(BootstrapFormMixin, UserChangeForm):
         ]
 
 
-class DatanarEmailForm(BootstrapFormMixin, AddEmailForm):
+class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
+    region = forms.ModelChoiceField(
+        queryset=Region.objects.all(),
+        required=True,
+        label=_("Region"),
+        widget=forms.Select(attrs={"class": "form-select"}),
+    )
+    first_name = forms.CharField(
+        required=True,
+        label=_("First Name"),
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your first name")}),
+    )
+    last_name = forms.CharField(
+        required=True,
+        label=_("Last Name"),
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your last name")}),
+    )
+
+    def __init__(self, *args, **kwargs):
+        kwargs.pop("instance", None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.region = self.cleaned_data["region"]
+        user.save()
+        return user
+
+
+class EmailForm(BootstrapFormMixin, AddEmailForm):
     pass
 
 
-class DatanarLoginForm(BootstrapFormMixin, LoginForm):
+class LoginForm(BootstrapFormMixin, LoginForm):
     pass
 
 
-class DatanarSignupForm(BootstrapFormMixin, SignupForm):
+class ChangePasswordForm(BootstrapFormMixin, ChangePasswordForm):
     pass
 
 
-class DatanarChangePasswordForm(BootstrapFormMixin, ChangePasswordForm):
+class ResetPasswordForm(BootstrapFormMixin, ResetPasswordForm):
     pass
 
 
-class DatanarResetPasswordForm(BootstrapFormMixin, ResetPasswordForm):
-    pass
-
-
-class DatanarResetPasswordKeyForm(BootstrapFormMixin, ResetPasswordKeyForm):
+class ResetPasswordKeyForm(BootstrapFormMixin, ResetPasswordKeyForm):
     pass

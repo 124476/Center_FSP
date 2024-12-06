@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "registration" %}{% endblock %}
+{% block title %}{% trans "Register Regional Representative" %}{% endblock %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/users/user-auth.css' %}">
@@ -10,16 +10,6 @@
 
 {% block content %}
   <div class="container">
-    <h2>{% trans "greeting" as greeting %}</h2>
-    <p class="text-center">{% trans "register" as register %}</p>
-    {% include "includes/user_form.html" with title=greeting submit_text=register %}
-    <div class="text-center mt-3">
-      <p>
-        {% trans "already_have_account" %} 
-        <a href="{% url 'users:login' %}" class="text-decoration-none text-primary fw-semibold">
-          {% trans "log_in" %}
-        </a>
-      </p>
-    </div>
+    {% include "includes/user_form.html" with title="Register Regional Representative" submit_text="Register" %}
   </div>
 {% endblock %}

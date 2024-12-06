@@ -55,16 +55,6 @@
     <!-- Кнопка отправки и дополнительные ссылки -->
     <div class="d-flex flex-column text-center mt-4">
       <button class="btn btn-primary btn-lg w-100 py-2" type="submit">{{ submit_text }}</button>
-      {% if view_name == "users:login" %}
-        <div class="mt-4">
-          <p class="mb-2">
-            {% trans "dont_have_account_yet" %}
-            <a href="{% url 'users:signup' %}" class="text-decoration-none text-primary fw-semibold">
-              {% trans "create_it" %}
-            </a>
-          </p>
-        </div>
-      {% endif %}
     </div>
 
     <!-- Скрытые элементы -->

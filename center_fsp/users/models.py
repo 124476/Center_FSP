@@ -6,6 +6,7 @@ from sorl.thumbnail import delete, get_thumbnail
 
 class Region(models.Model):
     name = models.CharField(
+        verbose_name="регион",
         max_length=150,
         null=True,
     )

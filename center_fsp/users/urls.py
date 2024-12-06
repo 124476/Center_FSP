@@ -8,12 +8,10 @@ from allauth.account.views import PasswordResetDoneView
 from allauth.account.views import PasswordResetFromKeyDoneView
 from allauth.account.views import PasswordResetFromKeyView
 from allauth.account.views import PasswordResetView
-from allauth.account.views import SignupView
 from django.urls import path, re_path, reverse_lazy
 
 from users import forms
 from users import views
-
 
 app_name = "users"
 
@@ -24,17 +22,14 @@ urlpatterns = [
         name="profile",
     ),
     path(
-        "singup/",
-        SignupView.as_view(
-            form_class=forms.DatanarSignupForm,
-            template_name="users/signup.html",
-        ),
+        "signup/",
+        views.RegionalRepresentativeSignupView.as_view(),
         name="signup",
     ),
     path(
         "login/",
         LoginView.as_view(
-            form_class=forms.DatanarLoginForm,
+            form_class=forms.LoginForm,
             template_name="users/login.html",
         ),
         name="login",
@@ -61,7 +56,7 @@ urlpatterns = [
     path(
         "email/",
         EmailView.as_view(
-            form_class=forms.DatanarEmailForm,
+            form_class=forms.EmailForm,
             template_name="users/email_change.html",
         ),
         name="email_change",
@@ -69,7 +64,7 @@ urlpatterns = [
     path(
         "password/change/",
         PasswordChangeView.as_view(
-            form_class=forms.DatanarChangePasswordForm,
+            form_class=forms.ChangePasswordForm,
             template_name="users/password_change.html",
             success_url=reverse_lazy("users:password_change_done"),
         ),
@@ -85,7 +80,7 @@ urlpatterns = [
     path(
         "password/reset/",
         PasswordResetView.as_view(
-            form_class=forms.DatanarResetPasswordForm,
+            form_class=forms.ResetPasswordForm,
             template_name="users/password_reset.html",
         ),
         name="password_reset",
@@ -100,7 +95,7 @@ urlpatterns = [
     re_path(
         r"^password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+)/$",
         PasswordResetFromKeyView.as_view(
-            form_class=forms.DatanarResetPasswordKeyForm,
+            form_class=forms.ResetPasswordKeyForm,
             template_name="users/password_reset_confirm.html",
         ),
         name="password_reset_confirm",

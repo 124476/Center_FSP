@@ -74,11 +74,6 @@ class Meropriation(django.db.models.Model):
         default=Status.CONSIDERATION,
         max_length=30,
     )
-    slug = django.db.models.SlugField(
-        verbose_name="слаг",
-        max_length=200,
-        null=True,
-    )
     name = django.db.models.CharField(
         verbose_name="название",
         max_length=150,
@@ -87,7 +82,7 @@ class Meropriation(django.db.models.Model):
     )
     text = django.db.models.TextField(
         null=True,
-        verbose_name="текст",
+        verbose_name="описание мероприятия",
     )
     count = django.db.models.PositiveIntegerField(
         null=True,
