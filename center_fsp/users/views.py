@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import FormView, CreateView
+import django.views.generic
 
 from users.forms import UserForm
 from users.models import User
@@ -63,6 +64,17 @@ class RegionalRepresentativeSignupView(CreateView):
         user.is_staff = False
         user.save()
         return redirect("homepage:main")
+
+@method_decorator(staff_member_required, name="dispatch")
+class UsersView(django.views.generic.ListView):
+    template_name = "users/list_users.html"
+    context_object_name = "users"
+    queryset = User.objects.exclude(region=None)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Представители"
+        return context
 
 
 __all__ = ()

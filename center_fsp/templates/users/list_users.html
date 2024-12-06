@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h2>Список товаров</h2>
+  <div class="card-group">
+    {% for personal in users %}
+      {% ifchanged personal.region.name %}
+        <h3>{{ personal.region.name }}</h3>
+      {% endifchanged %}
+      <h4>{{ personal.username }}</h4>
+      <a href="{% url 'users:user_detail' personal.pk %}">Подробнее</a>
+    {% empty %}
+      <p>Список пуст</p>
+    {% endfor %}
+    <a href="{% url 'users:signup' %}">Новый представитель</a>
+  </div>
+</div>
+
+{% endblock %}

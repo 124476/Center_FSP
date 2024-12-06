@@ -107,4 +107,14 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    path(
+        "users/",
+        views.UsersView.as_view(),
+        name="users",
+    ),
+    path(
+        "users/<int:pk>",
+        views.UsersView.as_view(),
+        name="user_detail",
+    ),
 ]
