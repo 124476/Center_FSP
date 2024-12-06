@@ -1,0 +1,322 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-06 13:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\center_fsp\settings.py:124
+msgid "English"
+msgstr "English"
+
+#: .\center_fsp\settings.py:125
+msgid "Russian"
+msgstr "Russian"
+
+#: .\templates\homepage\main.html:5 .\templates\includes\header.html:12
+msgid "Главная"
+msgstr "Home"
+
+#: .\templates\homepage\main.html:9
+#, fuzzy
+#| msgid "Главная"
+msgid "Главная страница"
+msgstr "Home"
+
+#: .\templates\includes\footer.html:7
+msgid "О нас"
+msgstr "About us"
+
+#: .\templates\includes\footer.html:8
+msgid "Краткая информация о проекте или компании."
+msgstr "Brief information about the project or company."
+
+#: .\templates\includes\footer.html:11
+msgid "Контакты"
+msgstr "Contacts"
+
+#: .\templates\includes\footer.html:12
+#, fuzzy
+#| msgid "New Email"
+msgid "Email"
+msgstr "New Email"
+
+#: .\templates\includes\footer.html:13
+msgid "Телефон"
+msgstr "Phone number"
+
+#: .\templates\includes\header.html:9
+msgid "MyWebsite"
+msgstr "MyWebsite"
+
+#: .\templates\includes\header.html:13
+msgid "Календарь мероприятий"
+msgstr "Events calendar"
+
+#: .\templates\includes\header.html:15
+msgid "Профиль"
+msgstr "Profile"
+
+#: .\templates\includes\header.html:16
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\templates\includes\header.html:18
+msgid "Войти"
+msgstr "Login"
+
+#: .\templates\includes\header.html:21
+msgid "Админ панель"
+msgstr "Admin panel"
+
+#: .\templates\includes\header.html:22
+msgid "Обновить базу мероприятий"
+msgstr "Update the events database"
+
+#: .\templates\includes\header.html:50
+msgid "theme"
+msgstr "Theme"
+
+#: .\templates\includes\header.html:54
+msgid "light"
+msgstr "Light theme"
+
+#: .\templates\includes\header.html:57
+msgid "dark"
+msgstr "Dark theme"
+
+#: .\templates\includes\user_form.html:61
+msgid "dont_have_account_yet"
+msgstr "Don't have an account?"
+
+#: .\templates\includes\user_form.html:63
+msgid "create_it"
+msgstr "Register"
+
+#: .\templates\meropriations_calendar\main.html:4
+msgid "Calendar"
+msgstr "Calendar"
+
+#: .\templates\meropriations_calendar\main.html:8
+msgid "Список спортивных мероприятий"
+msgstr "List of sporting events"
+
+#: .\templates\meropriations_calendar\main.html:13
+msgid "Тип"
+msgstr "Type of event"
+
+#: .\templates\meropriations_calendar\main.html:15
+#: .\templates\meropriations_calendar\main.html:25
+#: .\templates\meropriations_calendar\main.html:35
+#: .\templates\meropriations_calendar\main.html:45
+#: .\templates\meropriations_calendar\main.html:79
+msgid "Все"
+msgstr "All"
+
+#: .\templates\meropriations_calendar\main.html:23
+msgid "Пол"
+msgstr "Gender"
+
+#: .\templates\meropriations_calendar\main.html:33
+#: .\templates\meropriations_calendar\main.html:130
+msgid "Вид спорта"
+msgstr "Sport"
+
+#: .\templates\meropriations_calendar\main.html:43
+msgid "Возрастная группа"
+msgstr "Age group"
+
+#: .\templates\meropriations_calendar\main.html:53
+msgid "Место"
+msgstr "Location"
+
+#: .\templates\meropriations_calendar\main.html:54
+msgid "Введите место проведения"
+msgstr "Enter the location"
+
+#: .\templates\meropriations_calendar\main.html:58
+msgid "Количество участников"
+msgstr "Number of participants"
+
+#: .\templates\meropriations_calendar\main.html:59
+msgid "Введите количество участников"
+msgstr "Enter the number of participants"
+
+#: .\templates\meropriations_calendar\main.html:63
+msgid "Дисциплина"
+msgstr "Discipline"
+
+#: .\templates\meropriations_calendar\main.html:64
+msgid "Введите дисциплину"
+msgstr "Introduce discipline"
+
+#: .\templates\meropriations_calendar\main.html:68
+msgid "Количество рядов на одной странице:"
+msgstr "Number of rows on one page:"
+
+#: .\templates\meropriations_calendar\main.html:77
+msgid "Выберите период:"
+msgstr "Select period:"
+
+#: .\templates\meropriations_calendar\main.html:80
+msgid "Ближайшие мероприятия"
+msgstr "Upcoming events"
+
+#: .\templates\meropriations_calendar\main.html:81
+msgid "Мероприятия текущей недели"
+msgstr "Events of the current week"
+
+#: .\templates\meropriations_calendar\main.html:82
+msgid "Мероприятия следующего месяца"
+msgstr "Next month's events"
+
+#: .\templates\meropriations_calendar\main.html:83
+msgid "Мероприятия квартала"
+msgstr "Quarter events"
+
+#: .\templates\meropriations_calendar\main.html:84
+msgid "Мероприятия полугодия"
+msgstr "Half-year events"
+
+#: .\templates\meropriations_calendar\main.html:129
+msgid "СМ в ЕКП"
+msgstr "SM in EKP"
+
+#: .\templates\meropriations_calendar\main.html:131
+msgid "Состав"
+msgstr "Compound"
+
+#: .\templates\meropriations_calendar\main.html:132
+msgid ""
+"Наименование спортивного мероприятия<br>(пол, возрастная "
+"группа)<br>(дисциплина, программа)"
+msgstr ""
+"Name of sporting event<br>(gender, age group)<br>(discipline, program)"
+
+#: .\templates\meropriations_calendar\main.html:133
+msgid "Сроки проведения"
+msgstr "Dates of the event"
+
+#: .\templates\meropriations_calendar\main.html:134
+msgid ""
+"Место проведения<br>(страна (-ы), субъект РФ, город)<br>(спортивная база, "
+"центр)"
+msgstr ""
+"Venue<br>(country(s), subject of the Russian Federation, city)<br>(sports base, "
+"center)"
+
+#: .\templates\meropriations_calendar\main.html:135
+msgid "Количество участников<br>(чел.)"
+msgstr "Number of participants<br>(persons)"
+
+#: .\templates\users\email_change.html:5 .\templates\users\email_change.html:13
+msgid "Change Email"
+msgstr "Change Email"
+
+#: .\templates\users\email_change.html:19
+msgid "New Email"
+msgstr "New Email"
+
+#: .\templates\users\email_change.html:28
+msgid "Save"
+msgstr "Save"
+
+#: .\templates\users\login.html:5
+msgid "authorization"
+msgstr "Authorization"
+
+#: .\templates\users\login.html:13
+msgid "log_in_to"
+msgstr "Authorization"
+
+#: .\templates\users\login.html:14
+msgid "sign_in"
+msgstr "Authorization"
+
+#: .\templates\users\logout.html:4
+msgid "logout"
+msgstr "Logout"
+
+#: .\templates\users\password_change.html:5
+#: .\templates\users\password_change.html:12
+msgid "password_change"
+msgstr "Password change"
+
+#: .\templates\users\password_change.html:13 .\templates\users\profile.html:79
+msgid "change_password"
+msgstr "Change password"
+
+#: .\templates\users\password_change_done.html:5
+msgid "password_changed"
+msgstr "Password changed"
+
+#: .\templates\users\password_change_done.html:14
+msgid "your_password_be_success_changed"
+msgstr "Your password be success changed"
+
+#: .\templates\users\password_change_done.html:15
+msgid "to_main"
+msgstr "Home"
+
+#: .\templates\users\profile.html:5 .\templates\users\profile.html:9
+msgid "my_profile"
+msgstr "Profile"
+
+#: .\templates\users\profile.html:33
+msgid "delete_avatar"
+msgstr "Delete avatar"
+
+#: .\templates\users\profile.html:64
+msgid "save"
+msgstr "Save"
+
+#: .\templates\users\profile.html:73
+msgid "change_email"
+msgstr "Change email"
+
+#: .\templates\users\signup.html:5
+msgid "registration"
+msgstr "Registration"
+
+#: .\templates\users\signup.html:13
+msgid "greeting"
+msgstr "Registration"
+
+#: .\templates\users\signup.html:14
+msgid "register"
+msgstr "Register"
+
+#: .\templates\users\signup.html:18
+msgid "already_have_account"
+msgstr "Already have an account?"
+
+#: .\templates\users\signup.html:20
+#, fuzzy
+#| msgid "log_in_to"
+msgid "log_in"
+msgstr "Authorization"
+
+#: .\users\apps.py:8
+msgid "users"
+msgstr "Users"
+
+#: .\users\models.py:9
+msgid "avatar"
+msgstr "Avatar"
+
+#: .\users\views.py:34
+msgid "username_is_already_taken"
+msgstr "This username is already taken"

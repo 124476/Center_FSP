@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Calendar" %}{% endblock %}
+
+{% block content %}
+  <div class="container my-5">
+    <h1 class="text-center mb-4 text-primary">{% trans "Список спортивных мероприятий" %}</h1>
+
+    <div class="row mt-3 mb-3">
+      <form method="GET" action="" class="d-flex flex-wrap justify-content-between">
+        <div class="form-group">
+          <label for="tip">{% trans "Тип" %}</label>
+          <select name="tip" id="tip" class="form-control" onchange="this.form.submit()">
+            <option value="">{% trans "Все" %}</option>
+            {% for option in tips %}
+              <option value="{{ option }}" {% if option == request.GET.tip %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">{% trans "Пол" %}</label>
+          <select name="gender" id="gender" class="form-control" onchange="this.form.submit()">
+            <option value="">{% trans "Все" %}</option>
+            {% for option in genders %}
+              <option value="{{ option }}" {% if option == request.GET.gender %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="group">{% trans "Вид спорта" %}</label>
+          <select name="group" id="group" class="form-control" onchange="this.form.submit()">
+            <option value="">{% trans "Все" %}</option>
+            {% for option in groups %}
+              <option value="{{ option }}" {% if option == request.GET.group %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="structure">{% trans "Возрастная группа" %}</label>
+          <select name="structure" id="structure" class="form-control" onchange="this.form.submit()">
+            <option value="">{% trans "Все" %}</option>
+            {% for option in structures %}
+              <option value="{{ option }}" {% if option == request.GET.structure %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="place">{% trans "Место" %}</label>
+          <input type="text" name="place" id="place" value="{{ request.GET.place }}" class="form-control" placeholder="{% trans 'Введите место проведения' %}" onchange="this.form.submit()"/>
+        </div>
+
+        <div class="form-group">
+          <label for="participants_count">{% trans "Количество участников" %}</label>
+          <input type="number" name="participants_count" id="participants_count" value="{{ request.GET.participants_count }}" class="form-control" min="1" placeholder="{% trans 'Введите количество участников' %}" onchange="this.form.submit()"/>
+        </div>
+
+        <div class="form-group">
+          <label for="disciple">{% trans "Дисциплина" %}</label>
+          <input type="text" name="disciple" id="disciple" value="{{ request.GET.disciple }}" class="form-control" placeholder="{% trans 'Введите дисциплину' %}" onchange="this.form.submit()"/>
+        </div>
+
+        <div class="form-group">
+          <label for="rows_per_page">{% trans "Количество рядов на одной странице:" %}</label>
+          <select name="rows_per_page" id="rows_per_page" class="form-control" onchange="this.form.submit()">
+            {% for option in rows_per_page_options %}
+              <option value="{{ option }}" {% if option == request.GET.rows_per_page %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group w-100 mt-3">
+          <label>{% trans "Выберите период:" %}</label>
+          <div class="btn-group w-100" role="group">
+            <button type="submit" name="event_period" value="" class="btn btn-outline-primary {% if request.GET.event_period == '' %}active{% endif %}">{% trans "Все" %}</button>
+            <button type="submit" name="event_period" value="upcoming" class="btn btn-outline-primary {% if request.GET.event_period == 'upcoming' %}active{% endif %}">{% trans "Ближайшие мероприятия" %}</button>
+            <button type="submit" name="event_period" value="this_week" class="btn btn-outline-primary {% if request.GET.event_period == 'this_week' %}active{% endif %}">{% trans "Мероприятия текущей недели" %}</button>
+            <button type="submit" name="event_period" value="next_month" class="btn btn-outline-primary {% if request.GET.event_period == 'next_month' %}active{% endif %}">{% trans "Мероприятия следующего месяца" %}</button>
+            <button type="submit" name="event_period" value="next_quarter" class="btn btn-outline-primary {% if request.GET.event_period == 'next_quarter' %}active{% endif %}">{% trans "Мероприятия квартала" %}</button>
+            <button type="submit" name="event_period" value="next_half_year" class="btn btn-outline-primary {% if request.GET.event_period == 'next_half_year' %}active{% endif %}">{% trans "Мероприятия полугодия" %}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if page_obj.paginator.num_pages > 1 %}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item {% if page_obj.number == 1 %}disabled{% endif %}">
+            <a class="page-link" href="?page=1&rows_per_page={{ request.GET.rows_per_page }}&tip={{ request.GET.tip }}&group={{ request.GET.group }}&structure={{ request.GET.structure }}&participants_count={{ request.GET.participants_count }}&event_period={{ request.GET.event_period }}&place={{ request.GET.place }}&gender={{ request.GET.gender }}&disciple={{ request.GET.disciple }}"><<</a>
+          </li>
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}&rows_per_page={{ request.GET.rows_per_page }}&tip={{ request.GET.tip }}&group={{ request.GET.group }}&structure={{ request.GET.structure }}&participants_count={{ request.GET.participants_count }}&event_period={{ request.GET.event_period }}&place={{ request.GET.place }}&gender={{ request.GET.gender }}&disciple={{ request.GET.disciple }}"><</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link"><</span>
+            </li>
+          {% endif %}
+          <form method="GET" style="display: inline-block;" class="mx-2">
+            <input type="hidden" name="rows_per_page" value="{{ request.GET.rows_per_page }}" />
+            <input type="number" min="1" max="{{ page_obj.paginator.num_pages }}" step="1" name="page" value="{{ page_obj.number }}" size="3" style="width: 60px;" onchange="this.form.submit();" readonly />
+          </form>
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}&rows_per_page={{ request.GET.rows_per_page }}&tip={{ request.GET.tip }}&group={{ request.GET.group }}&structure={{ request.GET.structure }}&participants_count={{ request.GET.participants_count }}&event_period={{ request.GET.event_period }}&place={{ request.GET.place }}&gender={{ request.GET.gender }}&disciple={{ request.GET.disciple }}">></a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">></span>
+            </li>
+          {% endif %}
+          <li class="page-item {% if page_obj.paginator.num_pages == page_obj.number %}disabled{% endif %}">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&rows_per_page={{ request.GET.rows_per_page }}&tip={{ request.GET.tip }}&group={{ request.GET.group }}&structure={{ request.GET.structure }}&participants_count={{ request.GET.participants_count }}&event_period={{ request.GET.event_period }}&place={{ request.GET.place }}&gender={{ request.GET.gender }}&disciple={{ request.GET.disciple }}">>></a>
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
+
+  <table class="table table-striped table-hover table-bordered align-middle text-center mt-4">
+    <thead class="table-dark">
+      <tr>
+        <th>№</th>
+        <th>{% trans "СМ в ЕКП" %}</th>
+        <th>{% trans "Вид спорта" %}</th>
+        <th>{% trans "Состав" %}</th>
+        <th>{% trans "Наименование спортивного мероприятия<br>(пол, возрастная группа)<br>(дисциплина, программа)" %}</th>
+        <th>{% trans "Сроки проведения" %}</th>
+        <th>{% trans "Место проведения<br>(страна (-ы), субъект РФ, город)<br>(спортивная база, центр)" %}</th>
+        <th>{% trans "Количество участников<br>(чел.)" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in page_obj.object_list %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ item.slug }}</td>
+        <td>{{ item.group.name }}</td>
+        <td>{{ item.structure.name }}</td>
+        <td>
+          <strong>{{ item.name }}</strong><br>
+          {{ item.text }}
+        </td>
+        <td>
+          {{ item.date_start|date:"d.m.Y" }}<br>
+          {{ item.date_end|date:"d.m.Y" }}
+        </td>
+        <td>{{ item.place }}</td>
+        <td>{{ item.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
