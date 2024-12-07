@@ -94,10 +94,7 @@ class ResultCreateView(CreateView):
     def form_valid(self, form):
         uploaded_files = self.request.FILES.getlist("files")
         for file in uploaded_files:
-            Result.objects.create(
-                file=file,
-                meropriation=form.cleaned_data.get("meropriation")
-            )
+            print(file)
         return redirect("meropriations:results")
 
     def form_invalid(self, form):
