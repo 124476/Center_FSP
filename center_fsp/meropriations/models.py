@@ -170,7 +170,7 @@ class Participant(django.db.models.Model):
     team = django.db.models.ForeignKey(
         Team,
         verbose_name="команда",
-        on_delete=django.db.models.SET_NULL,
+        on_delete=django.db.models.CASCADE,
         null=True,
         blank=True,
     )
@@ -205,7 +205,7 @@ class Result(django.db.models.Model):
     team = django.db.models.ForeignKey(
         Team,
         verbose_name="команда",
-        on_delete=django.db.models.SET_NULL,
+        on_delete=django.db.models.CASCADE,
         null=True,
         blank=True,
     )
