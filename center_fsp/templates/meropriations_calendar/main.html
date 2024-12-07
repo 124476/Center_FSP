@@ -113,6 +113,7 @@
         <th>{% trans "Сроки проведения" %}</th>
         <th>{% trans "Место проведения<br>(спортивная база, центр)" %}</th>
         <th>{% trans "Количество участников<br>(чел.)" %}</th>
+        <th>{% trans "Результаты" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -131,6 +132,11 @@
         </td>
         <td>{{ item.place }}</td>
         <td>{{ item.count }}</td>
+        <td>
+        {% if item.result_set.exists %}
+          <a href="{% url 'calendar:event_results' event_id=item.id %}">{% trans "Посмотреть результаты" %}</a>
+        {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>

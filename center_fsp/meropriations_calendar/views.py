@@ -1,6 +1,8 @@
 from datetime import timedelta
 
 from django.core.paginator import Paginator
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 from django.utils import timezone
 
@@ -143,3 +145,18 @@ class Home(ListView):
         )
         context["request"] = self.request
         return context
+
+
+def event_results(request, event_id):
+    meropriation = get_object_or_404(meropriations.models.Meropriation, id=event_id)
+
+    results = meropriations.models.Result.objects.filter(meropriation=meropriation)
+
+    if not results:
+        raise Http404("Результаты для данного мероприятия не найдены.")
+
+    return render(
+        request,
+        "meropriations_calendar/event_results.html",
+        {"meropriation": meropriation, "results": results},
+    )

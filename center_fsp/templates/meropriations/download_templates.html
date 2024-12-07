@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Скачать шаблоны" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">{% trans "Скачать шаблоны файлов" %}</h2>
+  <p class="text-muted text-center mb-4">{% trans "Выберите подходящий формат для загрузки шаблона." %}</p>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center">
+          <i class="bi bi-file-earmark-excel-fill text-success me-3" style="font-size: 1.5rem;"></i>
+          <a href="{% static 'templates/results_template.xlsx' %}" class="text-decoration-none" download>
+            {% trans "Шаблон Excel (.xlsx)" %}
+          </a>
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <i class="bi bi-file-earmark-text-fill text-primary me-3" style="font-size: 1.5rem;"></i>
+          <a href="{% static 'templates/results_template.txt' %}" class="text-decoration-none" download>
+            {% trans "Шаблон текстовый (.txt)" %}
+          </a>
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <i class="bi bi-file-earmark-spreadsheet-fill text-info me-3" style="font-size: 1.5rem;"></i>
+          <a href="{% static 'templates/results_template.csv' %}" class="text-decoration-none" download>
+            {% trans "Шаблон CSV (.csv)" %}
+          </a>
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <i class="bi bi-file-earmark-excel-fill text-success me-3" style="font-size: 1.5rem;"></i>
+          <a href="{% static 'templates/results_template.xls' %}" class="text-decoration-none" download>
+            {% trans "Шаблон Excel старый (.xls)" %}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

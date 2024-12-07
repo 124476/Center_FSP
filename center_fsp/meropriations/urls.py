@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import TemplateView
 
 from meropriations import views
 
@@ -29,5 +30,10 @@ urlpatterns = [
         "notifications/",
         views.Notifications.as_view(),
         name="notifications",
-    )
+    ),
+    path(
+        'download-templates/',
+        TemplateView.as_view(template_name="meropriations/download_templates.html"),
+        name='download_templates'
+    ),
 ]
