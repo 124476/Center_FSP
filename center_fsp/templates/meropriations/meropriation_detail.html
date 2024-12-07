@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
+
 {% block title %}{{ meropriation.name }}{% endblock %}
 
 {% block content %}
@@ -10,27 +11,30 @@
       <h2>{{ meropriation.name }}</h2>
     </div>
     <div class="card-body">
-      <p><strong>Описание:</strong></p>
+      <p><strong>{% trans "Описание:" %}</strong></p>
       <p>{{ meropriation.text }}</p>
-      <p><strong>Статус:</strong> <span class="badge bg-info">{{ meropriation.get_status_display }}</span></p>
-      <p><strong>Дата начала:</strong> {{ meropriation.date_start|date:"d.m.Y" }}</p>
-      <p><strong>Дата окончания:</strong> {{ meropriation.date_end|date:"d.m.Y" }}</p>
+      <p><strong>{% trans "Точный адрес:" %}</strong> {{ meropriation.normal_place }}</p>
+      <p><strong>{% trans "Дисциплины:" %}</strong> {{ meropriation.disciplines }}</p>
+      <p><strong>{% trans "Количество участников:" %}</strong> {{ meropriation.count }}</p>
+      <p><strong>{% trans "Статус:" %}</strong> <span class="badge bg-info">{{ meropriation.get_status_display }}</span></p>
+      <p><strong>{% trans "Дата начала:" %}</strong> {{ meropriation.date_start|date:"d.m.Y" }}</p>
+      <p><strong>{% trans "Дата окончания:" %}</strong> {{ meropriation.date_end|date:"d.m.Y" }}</p>
     </div>
     <div class="card-footer text-end">
-      <a href="{% url 'meropriations:meropriations' %}" class="btn btn-outline-secondary">Назад к списку</a>
+      <a href="{% url 'meropriations:meropriations' %}" class="btn btn-outline-secondary">{% trans "Назад к списку" %}</a>
     </div>
   </div>
 
   {% if user.is_superuser %}
     <div class="card mt-4">
       <div class="card-header bg-warning">
-        <h5>Изменить статус мероприятия</h5>
+        <h5>{% trans "Изменить статус мероприятия" %}</h5>
       </div>
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
           {{ status_form.as_p }}
-          <button type="submit" class="btn btn-primary">Сохранить</button>
+          <button type="submit" class="btn btn-primary">{% trans "Сохранить" %}</button>
         </form>
       </div>
     </div>
@@ -39,15 +43,15 @@
   {% if meropriation.result_set.exists %}
     <div class="card mt-5">
       <div class="card-header bg-success text-white">
-        <h5>Результаты мероприятия</h5>
+        <h5>{% trans "Результаты мероприятия" %}</h5>
       </div>
       <div class="card-body">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Название команды</th>
-              <th>Статус</th>
-              <th>Участники</th>
+              <th>{% trans "Название команды" %}</th>
+              <th>{% trans "Статус" %}</th>
+              <th>{% trans "Участники" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +71,7 @@
       </div>
     </div>
   {% else %}
-    <p class="mt-4 text-muted">Результаты пока не добавлены.</p>
+    <p class="mt-4 text-muted">{% trans "Результаты пока не добавлены." %}</p>
   {% endif %}
 </div>
 {% endblock %}

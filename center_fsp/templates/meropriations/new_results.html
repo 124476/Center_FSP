@@ -1,7 +1,7 @@
-
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
+
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
@@ -17,7 +17,13 @@
 {% endif %}
 
 <div class="container mt-5">
-  <h2>Массовая загрузка результатов</h2>
+  <h2>{% trans "Мультизагрузчик результатов соревнований" %}</h2>
+
+  <p style="margin-bottom: 30px; margin-top: 30px;" class="alert alert-warning">
+    {% trans "Подходят только форматы .xlsx .txt .csv .xls.  Шаблон файла результатов: " %}
+    <a href="{% url 'meropriations:download_templates' %}">{% trans "Скачать шаблон" %}</a>
+  </p>
+
   <form method="post" enctype="multipart/form-data" id="dynamic-form">
     {% csrf_token %}
     <div id="form-container">
@@ -30,9 +36,9 @@
         </select>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary mb-2" onclick="addForm()">Добавить ещё</button>
+    <button type="button" class="btn btn-secondary" onclick="addForm()" style="margin-top: 20px;">{% trans "Добавить ещё" %}</button>
     <input type="hidden" name="files_count" value="1" id="files_count">
-    <button type="submit" class="btn btn-success">Загрузить</button>
+    <button type="submit" class="btn btn-success" style="margin-top: 20px;">{% trans "Загрузить" %}</button>
   </form>
 </div>
 

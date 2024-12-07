@@ -14,8 +14,8 @@
             <div class="form-floating">
               {{ field }}
               <label for="{{ field.id_for_label }}">
-                {% if view_name == "users:login" and forloop.first %}
-                  {{ field.field.widget.attrs.placeholder }}
+                {% if view_name == "users:login" and field.name == "login" %}
+                  {% trans "Имя пользователя" %}
                 {% else %}
                   {{ field.label }}
                 {% endif %}
