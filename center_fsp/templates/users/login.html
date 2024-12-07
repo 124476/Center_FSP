@@ -9,9 +9,11 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h2>{% trans 'log_in_to' as log_in_to %}</h2>
-    <p class="text-center">{% trans 'sign_in' as sign_in %}</p>
-    {% include "includes/user_form.html" with title=log_in_to submit_text=sign_in %}
-  </div>
+
+<div class="container">
+  <h2>{% trans 'log_in_to' as log_in_to %}</h2>
+  <p class="text-center">{% trans 'sign_in' as sign_in %}</p>
+  {% include "includes/user_form.html" with title=log_in_to submit_text=sign_in %}
+</div>
+
 {% endblock %}
