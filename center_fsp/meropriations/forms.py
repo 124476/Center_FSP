@@ -58,12 +58,13 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
 class ResultForm(forms.ModelForm):
     file = forms.FileField(
         widget=forms.ClearableFileInput(attrs={"class": "form-control"}),
-        required=True,
+        required=False,
     )
 
     class Meta:
         model = Result
         fields = ['meropriation', 'file']
+
 
 class MeropriationStatusForm(forms.ModelForm):
     class Meta:

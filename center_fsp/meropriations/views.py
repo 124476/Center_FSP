@@ -11,7 +11,8 @@ import django.forms
 from meropriations.models import Meropriation, Result
 from meropriations.forms import MeropriationForm, ResultForm, \
     MeropriationStatusForm
-
+from meropriations.parsers.parser_xaml import parse_excel_file
+from meropriations.parsers.parser_txt import parse_txt_file
 
 class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
     template_name = "meropriations/list_meropriation.html"
@@ -123,7 +124,7 @@ class ResultCreateView(CreateView):
             messages.error(request, "Заполните все поля")
             user_region = self.request.user.region
             meropriations = Meropriation.objects.filter(region=user_region,
-                                                        status='approved')
+                                                        status='Принят')
             return django.shortcuts.render(request,
                                            "meropriations/new_results.html",
                                            {
@@ -137,10 +138,22 @@ class ResultCreateView(CreateView):
                 'meropriation': merops[i]
             })
             if form.is_valid():
-                Result.objects.create(
-                    meropriation_id=form.cleaned_data['meropriation'].id,
-                    file=form.cleaned_data['file']
-                )
+                if files[i].name.endswith('.xlsx') or files[i].name.endswith('.xls'):
+                    parse_excel_file(files[i], form.cleaned_data['meropriation'].id)
+                elif files[i].name.endswith('.txt') or files[i].name.endswith('.csv'):
+                    parse_txt_file(files[i], form.cleaned_data['meropriation'].id)
+                else:
+                    messages.error(request, "Есть не подходящие типы файлов, посмотрите инструкцию!")
+                    user_region = self.request.user.region
+                    meropriations = Meropriation.objects.filter(region=user_region,
+                                                                status='Принят')
+                    return django.shortcuts.render(request,
+                                                   "meropriations/new_results.html",
+                                                   {
+                                                       "meropriations": meropriations,
+                                                       "title": "Загрузка",
+                                                   })
+
         return django.shortcuts.redirect("meropriations:results")
 
     def get_context_data(self, **kwargs):

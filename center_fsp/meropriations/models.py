@@ -186,7 +186,7 @@ class Participant(django.db.models.Model):
 
 class Result(django.db.models.Model):
     def get_upload_file(self, filename):
-        return f"uploads/{self.pk}/{filename}"
+        return f"uploads/{self.meropriation.name}/{filename}"
 
     meropriation = django.db.models.ForeignKey(
         Meropriation,
