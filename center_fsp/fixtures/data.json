@@ -802,30 +802,6 @@
     }
 },
 {
-    "model": "contenttypes.contenttype",
-    "pk": 15,
-    "fields": {
-        "app_label": "thumbnail",
-        "model": "kvstore"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 16,
-    "fields": {
-        "app_label": "account",
-        "model": "emailaddress"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 17,
-    "fields": {
-        "app_label": "account",
-        "model": "emailconfirmation"
-    }
-},
-{
     "model": "sessions.session",
     "pk": "p9yhljzr6nwxcq25zlt0vh47uztjumkr",
     "fields": {

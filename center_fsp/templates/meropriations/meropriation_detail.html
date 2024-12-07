@@ -69,6 +69,7 @@
           </tbody>
         </table>
       </div>
+      <a href="{% url 'meropriations:generate_result_report' meropriation.pk %}">Скачать протокол соревнования</a>
     </div>
   {% else %}
     <p class="mt-4 text-muted">{% trans "Результаты пока не добавлены." %}</p>

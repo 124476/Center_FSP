@@ -33,7 +33,13 @@ urlpatterns = [
     ),
     path(
         'download-templates/',
-        TemplateView.as_view(template_name="meropriations/download_templates.html"),
+        TemplateView.as_view(
+            template_name="meropriations/download_templates.html"),
         name='download_templates'
+    ),
+    path(
+        'generate-result-report/<int:result_id>/',
+        views.GenerateResultReportView.as_view(),
+        name="generate_result_report",
     ),
 ]

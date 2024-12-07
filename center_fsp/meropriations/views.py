@@ -1,14 +1,17 @@
+import csv
+
 from allauth.core.internal.httpkit import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 import django.shortcuts
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 import django.views.generic
 import django.forms
 
-from meropriations.models import Meropriation, Result, Notification
+from meropriations.models import Meropriation, Result, Notification, Team
 from meropriations.forms import MeropriationForm, ResultForm, \
     MeropriationStatusForm
 from meropriations.parsers.parser_xlsx import parse_excel_file
@@ -158,6 +161,53 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
                                                    })
 
         return django.shortcuts.redirect("meropriations:meropriations")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Загрузка"
+        return context
+
+
+class GenerateResultReportView(DetailView):
+    def get(self, request, *args, **kwargs):
+        result_id = kwargs.get("result_id")
+
+        try:
+            result = Result.objects.get(id=result_id)
+
+            if not result:
+                return HttpResponse("Результат не найден", status=404)
+        except Result.DoesNotExist:
+            return HttpResponse("Результат не найден", status=404)
+
+        all_teams = Team.objects.order_by("-status")
+        winners = Team.objects.filter(status="WINNER").count()
+        prizers = Team.objects.filter(status="PRIZER").count()
+        participants = Team.objects.filter(status="PARTICIPANT").count()
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename="result_report_{result.id}.csv"'
+
+        writer = csv.writer(response)
+
+        writer.writerow(["Статистика", "Количество"])
+        writer.writerow(["Победителей", winners])
+        writer.writerow(["Призёров", prizers])
+        writer.writerow(["Участников", participants])
+        writer.writerow(["Общее количество участников", participants + winners + prizers])
+
+        writer.writerow([])
+
+        writer.writerow(["Команда", "Статус"])
+        for team in all_teams:
+            status = "участник"
+            if team.status == "PRIZER":
+                status = "призер"
+            elif team.status == "WINNER":
+                status = "победитель"
+            writer.writerow([team.name, status])
+
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
