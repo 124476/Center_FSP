@@ -10,10 +10,8 @@ from django.views.generic import DetailView
 from django.views.generic.edit import FormView, CreateView
 import django.views.generic
 
-from users.forms import UserForm, RegionForm
+from users.forms import UserForm, RegionForm, RegionalRepresentativeSignupForm
 from users.models import User, Region
-
-from users.forms import RegionalRepresentativeSignupForm
 
 
 class AccountView(LoginRequiredMixin, FormView):

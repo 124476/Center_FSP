@@ -11,7 +11,7 @@ import django.forms
 from meropriations.models import Meropriation, Result
 from meropriations.forms import MeropriationForm, ResultForm, \
     MeropriationStatusForm
-from meropriations.parsers.parser_xaml import parse_excel_file
+from meropriations.parsers.parser_xlsx import parse_excel_file
 from meropriations.parsers.parser_txt import parse_txt_file
 
 class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):

@@ -14,8 +14,7 @@ def parse_excel_file(excel_file, meropriation_id):
             team_name = row[0]
             status = row[1] if row[1] else "PARTICIPANT"
             captain_name = row[2] if row[2] else None
-            members_list = [member for member in row[2:] if member]
-
+            members_list = [member for member in row[3:] if member]
             team = Team.objects.create(
                 name=team_name,
                 status=status,
