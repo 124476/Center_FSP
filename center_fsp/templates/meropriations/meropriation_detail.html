@@ -20,5 +20,21 @@
       <a href="{% url 'meropriations:meropriations' %}" class="btn btn-outline-secondary">Назад к списку</a>
     </div>
   </div>
+
+  {% if user.is_superuser %}
+    <div class="card mt-4">
+      <div class="card-header bg-warning">
+        <h5>Изменить статус мероприятия</h5>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {{ status_form.as_p }}
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  {% endif %}
 </div>
+
 {% endblock %}

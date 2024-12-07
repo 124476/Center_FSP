@@ -132,11 +132,88 @@ class Meropriation(django.db.models.Model):
         return self.name
 
 
+class Team(django.db.models.Model):
+    class Status(django.db.models.TextChoices):
+        WINNER = _("winner")
+        PRIZER = _("prizer")
+        PARTICIPANT = _("participant")
+
+    status = django.db.models.CharField(
+        verbose_name="статус мероприятия",
+        choices=Status.choices,
+        default=Status.PARTICIPANT,
+        max_length=30,
+    )
+    name = django.db.models.CharField(
+        verbose_name="название",
+        max_length=150,
+        unique=False,
+        null=True,
+    )
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = "команда"
+        verbose_name_plural = "команды"
+
+    def __str__(self):
+        return self.name
+
+
+class Participant(django.db.models.Model):
+    name = django.db.models.CharField(
+        verbose_name="фио",
+        max_length=150,
+        unique=False,
+        null=True,
+    )
+    team = django.db.models.ForeignKey(
+        Team,
+        verbose_name="команда",
+        on_delete=django.db.models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = "участник"
+        verbose_name_plural = "участники"
+
+    def __str__(self):
+        return self.name
+
+
 class Result(django.db.models.Model):
+    def get_upload_file(self, filename):
+        return f"uploads/{self.pk}/{filename}"
+
     meropriation = django.db.models.ForeignKey(
         Meropriation,
         verbose_name="мероприятие",
         on_delete=django.db.models.CASCADE,
+        null=True,
+        blank=True,
+    )
+    captain = django.db.models.ForeignKey(
+        Participant,
+        verbose_name="капитан",
+        on_delete=django.db.models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+    team = django.db.models.ForeignKey(
+        Team,
+        verbose_name="команда",
+        on_delete=django.db.models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+    file = django.db.models.FileField(
+        verbose_name="файлы",
+        upload_to=get_upload_file,
+        null=True,
+        blank=True,
     )
 
     class Meta:

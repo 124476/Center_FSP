@@ -10,6 +10,9 @@
 
   <div class="card-group row">
     {% for personal in users %}
+      {% ifchanged personal.region.name %}
+        <h2>{{ personal.region.name }}</h2>
+      {% endifchanged %}
       <div class="col-md-4 mb-4">
         <div class="card shadow-sm">
           <img src="{% if personal.has_avatar %}{{ personal.get_small_avatar }}{% else %}{% static 'img/default_user_avatar.jpg' %}{% endif %}" class="card-img-top" alt="{{ personal.username }}'s Avatar">

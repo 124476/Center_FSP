@@ -52,3 +52,11 @@ class User(AbstractUser):
         except User.DoesNotExist:
             pass
         super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ("region",)
+        verbose_name = "пользователь"
+        verbose_name_plural = "пользователи"
+
+    def __str__(self):
+        return self.username

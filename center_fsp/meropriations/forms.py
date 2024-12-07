@@ -1,6 +1,6 @@
 from django import forms
 
-from meropriations.models import Meropriation
+from meropriations.models import Meropriation, Result
 from users.models import Region
 
 
@@ -66,5 +66,41 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
         label="Место проведения"
     )
 
+
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultiFileUploadForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs["class"] = "form-control"
+
+    class Meta:
+        model = Result
+
+        fields = (Result.file.field.name,)
+        labels = {
+            Result.file.field.name: "Загрузить файлы",
+        }
+        help_texts = {
+            Result.file.field.name: "Загрузка файлы",
+        }
+        widgets = {
+            Result.file.field.name: MultipleFileInput(
+                attrs={
+                    "multiple": True,
+                },
+            ),
+        }
+
+class MeropriationStatusForm(forms.ModelForm):
+    class Meta:
+        model = Meropriation
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-select'})
+        }
 
 __all__ = ()

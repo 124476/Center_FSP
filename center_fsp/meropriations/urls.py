@@ -6,18 +6,28 @@ app_name = "meropriations"
 
 urlpatterns = [
     path(
-        "meropriations/",
+        "",
         views.MeropriationList.as_view(),
         name="meropriations",
     ),
     path(
-        "meropriations/<int:pk>/",
+        "<int:pk>/",
         views.MeropriationDetailView.as_view(),
         name="meropriation_detail",
     ),
     path(
-        "meropriations/new/",
+        "new/",
         views.MeropriationCreateView.as_view(),
         name="meropriation_new",
     ),
+    path(
+        "results/",
+        views.ResultList.as_view(),
+        name="results",
+    ),
+    path(
+        "results/new/",
+        views.ResultCreateView.as_view(),
+        name="results_new",
+    )
 ]

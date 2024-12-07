@@ -1,11 +1,13 @@
-from django.http import Http404
+from allauth.core.internal.httpkit import redirect
+from django.contrib import messages
+from django.http import Http404, JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView, CreateView
 import django.views.generic
 
-from meropriations.models import Meropriation
-from meropriations.forms import MeropriationForm
+from meropriations.models import Meropriation, Result
+from meropriations.forms import MeropriationForm, MultiFileUploadForm, MeropriationStatusForm
 
 
 class MeropriationList(django.views.generic.ListView):
@@ -14,11 +16,9 @@ class MeropriationList(django.views.generic.ListView):
 
     def get_queryset(self):
         region = self.request.user.region
-        if not region:
-            raise Http404("Регион не указан.")
-        queryset = Meropriation.objects.filter(region=region)
-        if not queryset.exists():
-            raise Http404("Мероприятия для указанного региона не найдены.")
+        queryset = Meropriation.objects.all()
+        if region:
+            queryset = queryset.filter(region=region)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -44,5 +44,67 @@ class MeropriationDetailView(DetailView):
     template_name = "meropriations/meropriation_detail.html"
     context_object_name = "meropriation"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_superuser:
+            context['status_form'] = MeropriationStatusForm(instance=self.object)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        meropriation = self.get_object()
+        url = django.urls.reverse('meropriations:meropriation_detail', kwargs={'pk': meropriation.pk})
+
+        if not request.user.is_superuser:
+            messages.error(request, "Вы не имеете прав на выполнение этого действия")
+            return redirect(url)
+
+        form = MeropriationStatusForm(request.POST, instance=meropriation)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Статус успешно обновлен!")
+            return redirect(url)
+        else:
+            messages.error(request, "Ошибка при обновлении статуса.")
+        return redirect(url)
+
+class ResultList(django.views.generic.ListView):
+    template_name = "meropriations/results.html"
+    context_object_name = "results"
+
+    def get_queryset(self):
+        region = self.request.user.region
+        queryset = Result.objects.all()
+        if region:
+            queryset = queryset.filter(meropriation__region=region)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Результаты"
+        return context
+
+
+class ResultCreateView(CreateView):
+    model = Result
+    template_name = "meropriations/new_results.html"
+    form_class = MultiFileUploadForm
+    success_url = reverse_lazy("results_new")
+
+    def form_valid(self, form):
+        uploaded_files = self.request.FILES.getlist("files")
+        for file in uploaded_files:
+            Result.objects.create(
+                file=file,
+                meropriation=form.cleaned_data.get("meropriation")
+            )
+        return redirect("meropriations:results")
+
+    def form_invalid(self, form):
+        return JsonResponse({"errors": form.errors}, status=400)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Загрузка"
+        return context
 
 __all__ = ()

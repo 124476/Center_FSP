@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>{{ title }}</h2>
+
+    <form method="post" enctype="multipart/form-data" class="border p-4 rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_files" class="form-label">Выберите файлы</label>
+            <input
+                type="file"
+                name="files"
+                id="id_files"
+                class="form-control"
+                multiple
+                onchange="displaySelectedFiles()">
+        </div>
+        <div id="file-list" class="mt-3"></div>
+        <button type="submit" class="btn btn-primary mt-4">Загрузить</button>
+    </form>
+</div>
+
+<script>
+    function displaySelectedFiles() {
+        const fileInput = document.getElementById("id_files");
+        const fileList = document.getElementById("file-list");
+        fileList.innerHTML = ""; // Очистить список перед обновлением
+
+        if (fileInput.files.length > 0) {
+            const ul = document.createElement("ul"); // Список для отображения файлов
+            ul.classList.add("list-group");
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const li = document.createElement("li");
+                li.classList.add("list-group-item");
+                li.textContent = fileInput.files[i].name; // Отображаем имя файла
+                ul.appendChild(li);
+            }
+            fileList.appendChild(ul);
+        }
+    }
+</script>
+
+{% endblock %}

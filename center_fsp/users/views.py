@@ -55,7 +55,6 @@ class RegionalRepresentativeSignupView(CreateView):
     model = User
     form_class = RegionalRepresentativeSignupForm
     template_name = "users/signup.html"
-    success_url = reverse_lazy("homepage:main")
 
     def form_valid(self, form):
         user = form.save(request=self.request)
@@ -64,7 +63,7 @@ class RegionalRepresentativeSignupView(CreateView):
         user.region = form.cleaned_data["region"]
         user.is_staff = False
         user.save()
-        return redirect("homepage:main")
+        return redirect("users:users")
 
 
 @method_decorator(staff_member_required, name="dispatch")
