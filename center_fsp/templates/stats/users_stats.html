@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load active_link_tags %}
+{% load i18n %}
+{% block title %}Аналитика по пользователям{% endblock %}
+
+{% block content %}
+
+<header>
+  <div class="container d-flex justify-content-between align-items-center py-3">
+    <nav class="my-auto nav-item dropdown">
+      <a href="{% url 'stats:region_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Регионы" %}</a>
+      <a href="{% url 'stats:team_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Команды" %}</a>
+      <a href="{% url 'stats:user_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Участники" %}</a>
+    </nav>
+  </div>
+</header>
+<h2>Аналитика по участникам</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Пользователь</th>
+    <th>Количество мероприятий</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for stat in user_stats %}
+  <tr>
+    <td>{{ stat.captain__name }}</td>
+    <td>{{ stat.total }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<script src="{% static '/js/chart.js' %}"></script>
+<canvas id="userStatsChart" style="max-width:1000px; max-height:600px;"></canvas>
+<script>
+    const userData = {{ user_stats|safe }};
+
+    const labels = userData.map(item => item.captain__name);
+    const data = userData.map(item => item.total);
+
+    const ctx = document.getElementById('userStatsChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Количество мероприятий',
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1,
+            }]
+        }
+    });
+</script>
+
+{% endblock %}

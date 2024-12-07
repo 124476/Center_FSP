@@ -11,6 +11,7 @@
     <nav class="my-auto nav-item dropdown">
       <a href="{% url 'homepage:main' %}" class="{% if view_name == 'homepage:main' %}active{% endif %}">{% trans "Главная" %}</a>
       <a href="{% url 'calendar:main' %}" class="{% if view_name == 'calendar:main' %}active{% endif %}">{% trans "Календарь мероприятий" %}</a>
+      <a href="{% url 'stats:region_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Аналитика" %}</a>
     </nav>
     <nav class="d-flex collapse" id="main-nav">
       <nav class="my-auto nav-item dropdown me-2">
