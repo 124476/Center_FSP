@@ -12,12 +12,12 @@ urlpatterns = [
     ),
     path(
         "meropriations/<int:pk>/",
-        views.MeropriationList.as_view(),
+        views.MeropriationDetailView.as_view(),
         name="meropriation_detail",
     ),
     path(
         "meropriations/new/",
-        views.MeropriationList.as_view(),
+        views.MeropriationCreateView.as_view(),
         name="meropriation_new",
     ),
 ]

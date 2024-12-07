@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-06 13:10+0300\n"
+"POT-Creation-Date: 2024-12-07 04:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,83 +28,183 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
+#: .\meropriations\apps.py:8 .\templates\includes\header.html:76
+msgid "meropriations"
+msgstr "Мероприятия"
+
+#: .\meropriations\models.py:61
+msgid "consideration"
+msgstr "На рассмотрение"
+
+#: .\meropriations\models.py:62
+msgid "acceptance"
+msgstr "Принят"
+
 #: .\templates\homepage\main.html:5 .\templates\includes\header.html:12
 msgid "Главная"
 msgstr "Главная"
 
-#: .\templates\homepage\main.html:9
-#, fuzzy
-#| msgid "Главная"
-msgid "Главная страница"
-msgstr "Главная"
+#: .\templates\homepage\main.html:28
+msgid ""
+"Платформа для взаимодействия с региональными представителями спортивного "
+"программирования"
+msgstr ""
+"Платформа для взаимодействия с региональными представителями спортивного "
+"программирования"
+
+#: .\templates\homepage\main.html:29
+msgid ""
+"ФСП Центр - это удобный сервис для отслеживания соревнований по спортивному "
+"программированию, а также взаимодействия региональных представителей с ФСП."
+msgstr ""
+"ФСП Центр - это удобный сервис для отслеживания соревнований по спортивному "
+"программированию, а также взаимодействия региональных представителей с ФСП."
+
+#: .\templates\homepage\main.html:36
+msgid "Личный кабинет регионального представителя"
+msgstr "Личный кабинет регионального представителя"
+
+#: .\templates\homepage\main.html:38
+msgid ""
+"Подача и отслеживание заявок на проведение соревнований, управление данными "
+"об успехах региональных участников."
+msgstr ""
+"Подача и отслеживание заявок на проведение соревнований, управление данными "
+"об успехах региональных участников."
+
+#: .\templates\homepage\main.html:40 .\templates\homepage\main.html:52
+#: .\templates\homepage\main.html:64 .\templates\homepage\main.html:76
+msgid "Узнать больше"
+msgstr "Узнать больше"
+
+#: .\templates\homepage\main.html:48
+msgid "Личный кабинет представителя Федерации"
+msgstr "Личный кабинет представителя Федерации"
+
+#: .\templates\homepage\main.html:50
+msgid ""
+"Мониторинг заявок, акцепт и обратная связь с регионами, управление "
+"календарем соревнований."
+msgstr ""
+"Мониторинг заявок, акцепт и обратная связь с регионами, управление "
+"календарем соревнований."
+
+#: .\templates\homepage\main.html:60
+msgid "Загрузка данных победителей"
+msgstr "Загрузка данных победителей"
+
+#: .\templates\homepage\main.html:62
+msgid ""
+"Идентификация победителей и ведение статистики по командам и участникам."
+msgstr ""
+"Идентификация победителей и ведение статистики по командам и участникам."
+
+#: .\templates\homepage\main.html:72
+msgid "Генерация протоколов"
+msgstr "Генерация протоколов"
+
+#: .\templates\homepage\main.html:74
+msgid ""
+"Автоматическая подготовка отчетов и протоколов после завершения соревнований."
+msgstr ""
+"Автоматическая подготовка отчетов и протоколов после завершения соревнований."
 
 #: .\templates\includes\footer.html:7
 msgid "О нас"
 msgstr "О нас"
 
 #: .\templates\includes\footer.html:8
-msgid "Краткая информация о проекте или компании."
-msgstr "Краткая информация о проекте или компании."
+msgid "Центр спортивного программирования - мы определяем будущее"
+msgstr "Центр спортивного программирования - мы определяем будущее"
 
 #: .\templates\includes\footer.html:11
 msgid "Контакты"
 msgstr "Контакты"
 
-#: .\templates\includes\footer.html:12
+#: .\templates\includes\footer.html:12 .\templates\users\email_change.html:16
+#: .\templates\users\email_change.html:19
 msgid "Email"
 msgstr "Электронная почта"
 
-#: .\templates\includes\footer.html:13
-msgid "Телефон"
-msgstr "Телефон"
-
 #: .\templates\includes\header.html:9
-msgid "MyWebsite"
-msgstr "МойСайт"
+msgid "FSP Center"
+msgstr "Центр ФСП"
 
 #: .\templates\includes\header.html:13
 msgid "Календарь мероприятий"
 msgstr "Календарь мероприятий"
 
-#: .\templates\includes\header.html:15
-msgid "Профиль"
-msgstr "Профиль"
-
-#: .\templates\includes\header.html:16
-msgid "Выйти"
-msgstr "Выйти"
-
-#: .\templates\includes\header.html:18
-msgid "Войти"
-msgstr "Войти"
-
-#: .\templates\includes\header.html:21
-msgid "Админ панель"
-msgstr "Админ панель"
-
-#: .\templates\includes\header.html:22
-msgid "Обновить базу мероприятий"
-msgstr "Обновить базу мероприятий"
-
-#: .\templates\includes\header.html:50
+#: .\templates\includes\header.html:40
 msgid "theme"
 msgstr "Тема"
 
-#: .\templates\includes\header.html:54
+#: .\templates\includes\header.html:44
 msgid "light"
 msgstr "Светлая"
 
-#: .\templates\includes\header.html:57
+#: .\templates\includes\header.html:47
 msgid "dark"
 msgstr "Тёмная"
 
-#: .\templates\includes\user_form.html:61
-msgid "dont_have_account_yet"
-msgstr "Нет аккаунта?"
+#: .\templates\includes\header.html:52
+msgid "no_user"
+msgstr "Нет имени пользователя"
 
-#: .\templates\includes\user_form.html:63
-msgid "create_it"
-msgstr "Создать аккаунт"
+#: .\templates\includes\header.html:59 .\templates\users\profile.html:5
+#: .\templates\users\profile.html:9
+msgid "my_profile"
+msgstr "Мой профиль"
+
+#: .\templates\includes\header.html:63
+msgid "Регистрация региональных представителей"
+msgstr "Регистрация региональных представителей"
+
+#: .\templates\includes\header.html:66
+msgid "Регистрация регионов"
+msgstr "Регистрация регионов"
+
+#: .\templates\includes\header.html:69 .\users\apps.py:8
+msgid "users"
+msgstr "Пользователи"
+
+#: .\templates\includes\header.html:72
+msgid "admin_panel"
+msgstr "Панель админа"
+
+#: .\templates\includes\header.html:79
+msgid "exit"
+msgstr "Выход"
+
+#: .\templates\includes\header.html:84 .\templates\users\login.html:14
+msgid "sign_in"
+msgstr "Авторизация"
+
+#: .\templates\meropriations\list_meropriation.html:9
+msgid "Все мероприятия"
+msgstr "Все мероприятия"
+
+#: .\templates\meropriations\list_meropriation.html:23
+#: .\templates\users\list_users.html:21
+msgid "Подробнее"
+msgstr "Подробнее"
+
+#: .\templates\meropriations\list_meropriation.html:31
+#: .\templates\users\list_users.html:27
+msgid "Список пуст"
+msgstr "Список пуст"
+
+#: .\templates\meropriations\list_meropriation.html:36
+msgid "Добавить мероприятие"
+msgstr "Добавить мероприятие"
+
+#: .\templates\meropriations\meropriation_form.html:5
+#: .\templates\meropriations\meropriation_form.html:16
+msgid "Register New Event"
+msgstr "Регистрация нового мероприятия"
+
+#: .\templates\meropriations\meropriation_form.html:42
+msgid "Submit"
+msgstr "Подтвердить"
 
 #: .\templates\meropriations_calendar\main.html:4
 msgid "Calendar"
@@ -223,17 +323,75 @@ msgstr ""
 msgid "Количество участников<br>(чел.)"
 msgstr "Количество участников<br>(чел.)"
 
-#: .\templates\users\email_change.html:5 .\templates\users\email_change.html:13
-msgid "Change Email"
-msgstr "Поменять почту"
+#: .\templates\users\confirm_email.html:5
+#: .\templates\users\confirm_email.html:10
+#: .\templates\users\confirm_email_from_sent.html:7
+#: .\templates\users\confirm_email_from_sent.html:12
+msgid "email_confirmation"
+msgstr "Подтверждение почты"
 
-#: .\templates\users\email_change.html:19
-msgid "New Email"
-msgstr "Новая почта"
+#: .\templates\users\confirm_email.html:11
+msgid "email_confirmation_description"
+msgstr "Здесь вы можете подтвердить свою почту"
+
+#: .\templates\users\confirm_email_from_sent.html:17
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
+msgstr ""
+"Подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> является адресом электронной почты "
+"пользователя %(user_display)s."
+
+#: .\templates\users\confirm_email_from_sent.html:25
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: .\templates\users\confirm_email_from_sent.html:32
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different "
+"account."
+msgstr ""
+"Невозможно подтвердить %(email)s, так как он уже подтвержден другим "
+"аккаунтом."
+
+#: .\templates\users\confirm_email_from_sent.html:38
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+"Эта ссылка для подтверждения по электронной почте устарела или недействительна. Пожалуйста, <a "
+"href=\"%(email_url)s\">отправьте новый запрос на подтверждение по электронной почте</a>."
+
+#: .\templates\users\email_change.html:7
+msgid "email_change"
+msgstr "Смена почты"
+
+#: .\templates\users\email_change.html:27
+msgid "Re-send Verification"
+msgstr "Повторно отправить подтверждение"
 
 #: .\templates\users\email_change.html:28
-msgid "Save"
-msgstr "Сохранить"
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\templates\users\email_change.html:30 .\templates\users\profile.html:73
+msgid "change_email"
+msgstr "Изменить почту"
+
+#: .\templates\users\list_users.html:9
+msgid "Все представители по регионам"
+msgstr "Все представители по регионам"
+
+#: .\templates\users\list_users.html:18 .\templates\users\user_detail.html:31
+msgid "Username:"
+msgstr "Имя пользователя:"
+
+#: .\templates\users\list_users.html:33
+msgid "Новый представитель"
+msgstr "Новый представитель"
 
 #: .\templates\users\login.html:5
 msgid "authorization"
@@ -243,13 +401,17 @@ msgstr "Авторизоваться"
 msgid "log_in_to"
 msgstr "Войти"
 
-#: .\templates\users\login.html:14
-msgid "sign_in"
-msgstr "Авторизация"
-
 #: .\templates\users\logout.html:4
 msgid "logout"
 msgstr "Выйти"
+
+#: .\templates\users\new_region.html:6
+msgid "Зарегистрировать новый регион"
+msgstr "Зарегистрировать новый регион"
+
+#: .\templates\users\new_region.html:16
+msgid "Сохранить"
+msgstr "Сохранить"
 
 #: .\templates\users\password_change.html:5
 #: .\templates\users\password_change.html:12
@@ -264,17 +426,43 @@ msgstr "Изменить пароль"
 msgid "password_changed"
 msgstr "Пароль изменён"
 
-#: .\templates\users\password_change_done.html:14
+#: .\templates\users\password_change_done.html:10
 msgid "your_password_be_success_changed"
 msgstr "Пароль успешно изменён!"
 
-#: .\templates\users\password_change_done.html:15
+#: .\templates\users\password_change_done.html:11
+#: .\templates\users\password_reset_complete.html:11
+#: .\templates\users\password_reset_done.html:11
 msgid "to_main"
 msgstr "На главную"
 
-#: .\templates\users\profile.html:5 .\templates\users\profile.html:9
-msgid "my_profile"
-msgstr "Мой профиль"
+#: .\templates\users\password_reset.html:5
+#: .\templates\users\password_reset.html:12
+#: .\templates\users\password_reset_confirm.html:5
+#: .\templates\users\password_reset_confirm.html:12
+#: .\templates\users\password_reset_done.html:5
+msgid "password_recovery"
+msgstr "Восстановить пароль"
+
+#: .\templates\users\password_reset.html:13
+msgid "recover"
+msgstr "Восстановление"
+
+#: .\templates\users\password_reset_complete.html:5
+msgid "password_recovered"
+msgstr "Пароль восстановлен"
+
+#: .\templates\users\password_reset_complete.html:10
+msgid "password_reset_completed_success"
+msgstr "Успешный сборс пароля"
+
+#: .\templates\users\password_reset_confirm.html:13
+msgid "reset"
+msgstr "Сброс"
+
+#: .\templates\users\password_reset_done.html:10
+msgid "email_instructions_for_password_recove_sent"
+msgstr "Здесь вы можете сбросить свой пароль"
 
 #: .\templates\users\profile.html:33
 msgid "delete_avatar"
@@ -284,38 +472,111 @@ msgstr "Удалить аватар"
 msgid "save"
 msgstr "Сохранить"
 
-#: .\templates\users\profile.html:73
-msgid "change_email"
-msgstr "Изменить почту"
-
 #: .\templates\users\signup.html:5
-msgid "registration"
-msgstr "Регистрация"
+msgid "Register Regional Representative"
+msgstr "Зарегистрируйте регионального представителя"
 
-#: .\templates\users\signup.html:13
-msgid "greeting"
-msgstr "Регистрация"
+#: .\templates\users\user_detail.html:12
+msgid "Подробная информация о пользователе"
+msgstr "Подробная информация о пользователе"
 
-#: .\templates\users\signup.html:14
-msgid "register"
-msgstr "Зарегистрироваться"
+#: .\templates\users\user_detail.html:23
+msgid "Профиль пользователя"
+msgstr "Профиль пользователя"
 
-#: .\templates\users\signup.html:18
-msgid "already_have_account"
-msgstr "Уже есть аккаунт?"
+#: .\templates\users\user_detail.html:39
+msgid "Email:"
+msgstr "Электронная почта"
 
-#: .\templates\users\signup.html:20
-msgid "log_in"
-msgstr "Войти"
+#: .\templates\users\user_detail.html:47
+msgid "Регион:"
+msgstr "Регион:"
 
-#: .\users\apps.py:8
-msgid "users"
-msgstr "Пользователи"
+#: .\templates\users\user_detail.html:55
+msgid "Дата регистрации:"
+msgstr "Дата регистрации:"
 
-#: .\users\models.py:9
+#: .\templates\users\user_detail.html:63
+msgid "Назад к списку"
+msgstr "Назад к списку"
+
+#: .\users\forms.py:61
+msgid "Region"
+msgstr "Регион"
+
+#: .\users\forms.py:66
+msgid "First Name"
+msgstr "Имя"
+
+#: .\users\forms.py:67
+msgid "Enter your first name"
+msgstr "Введите своё имя"
+
+#: .\users\forms.py:71
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: .\users\forms.py:72
+msgid "Enter your last name"
+msgstr "Введите свою фамилию"
+
+#: .\users\models.py:25
 msgid "avatar"
 msgstr "Аватарка"
 
-#: .\users\views.py:34
+#: .\users\views.py:40
 msgid "username_is_already_taken"
 msgstr "Такое имя пользователя уже использовано."
+
+#, fuzzy
+#~| msgid "Главная"
+#~ msgid "Главная страница"
+#~ msgstr "Главная"
+
+#~ msgid "Телефон"
+#~ msgstr "Телефон"
+
+#~ msgid "MyWebsite"
+#~ msgstr "МойСайт"
+
+#~ msgid "Профиль"
+#~ msgstr "Профиль"
+
+#~ msgid "Выйти"
+#~ msgstr "Выйти"
+
+#~ msgid "Войти"
+#~ msgstr "Войти"
+
+#~ msgid "Админ панель"
+#~ msgstr "Админ панель"
+
+#~ msgid "dont_have_account_yet"
+#~ msgstr "Нет аккаунта?"
+
+#~ msgid "create_it"
+#~ msgstr "Создать аккаунт"
+
+#~ msgid "Change Email"
+#~ msgstr "Поменять почту"
+
+#~ msgid "New Email"
+#~ msgstr "Новая почта"
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "registration"
+#~ msgstr "Регистрация"
+
+#~ msgid "greeting"
+#~ msgstr "Регистрация"
+
+#~ msgid "register"
+#~ msgstr "Зарегистрироваться"
+
+#~ msgid "already_have_account"
+#~ msgstr "Уже есть аккаунт?"
+
+#~ msgid "log_in"
+#~ msgstr "Войти"

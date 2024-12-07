@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Заголовок -->
+    <div class="col-12 text-center mb-4">
+      <h2>{% trans "Подробная информация о пользователе" %}</h2>
+    </div>
+
+    <!-- Карточка с информацией о пользователе -->
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-lg">
+        <div class="card-header text-center">
+          <!-- Аватарка и имя пользователя -->
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="ml-3">
+              <img src="{% if user.has_avatar %}{{ user.get_small_avatar }}{% else %}{% static 'img/default_user_avatar.jpg' %}{% endif %}" class="rounded-circle" alt="{{ user.first_name }} {{ user.last_name }}" style="width: 80px; height: 80px; object-fit: cover;">
+              <h4 class="text-muted">{% trans "Профиль пользователя" %}</h4>
+              <h3 class="mb-0">{{ user.first_name }} {{ user.last_name }}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <strong>{% trans "Username:" %}</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.username }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <strong>{% trans "Email:" %}</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.email }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <strong>{% trans "Регион:" %}</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.region.name }}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <strong>{% trans "Дата регистрации:" %}</strong>
+            </div>
+            <div class="col-md-8">
+              {{ user.date_joined|date:"d M Y" }}
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="{% url 'users:users' %}" class="btn btn-outline-primary">
+              <i class="bi bi-arrow-left-circle"></i> {% trans "Назад к списку" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

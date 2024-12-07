@@ -1,15 +1,16 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import DetailView
 from django.views.generic.edit import FormView, CreateView
 import django.views.generic
 
-from users.forms import UserForm
-from users.models import User
+from users.forms import UserForm, RegionForm
+from users.models import User, Region
 
 from users.forms import RegionalRepresentativeSignupForm
 
@@ -65,6 +66,7 @@ class RegionalRepresentativeSignupView(CreateView):
         user.save()
         return redirect("homepage:main")
 
+
 @method_decorator(staff_member_required, name="dispatch")
 class UsersView(django.views.generic.ListView):
     template_name = "users/list_users.html"
@@ -75,6 +77,26 @@ class UsersView(django.views.generic.ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Представители"
         return context
+
+
+@method_decorator(staff_member_required, name="dispatch")
+class NewRegionView(CreateView):
+    model = Region
+    form_class = RegionForm
+    template_name = "users/new_region.html"
+    success_url = reverse_lazy("users:users")
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = "users/user_detail.html"
+    context_object_name = "user"
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(User, pk=self.kwargs["pk"])
 
 
 __all__ = ()

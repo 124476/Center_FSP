@@ -85,6 +85,15 @@ class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
         return user
 
 
+class RegionForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = Region
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
 class EmailForm(BootstrapFormMixin, AddEmailForm):
     pass
 

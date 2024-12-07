@@ -1,0 +1,70 @@
+from django import forms
+
+from meropriations.models import Meropriation
+from users.models import Region
+
+
+class BootstrapFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if len(self.visible_fields()) == 1:
+            self.visible_fields()[0].field.widget.attrs[
+                "class"
+            ] = "form-control input-field-only-one"
+        else:
+            for field in self.visible_fields():
+                field.field.widget.attrs["class"] = "form-control input-field"
+                if isinstance(field.field.widget, forms.CheckboxInput):
+                    field.field.widget.attrs["class"] = "form-check-input"
+
+        self.update_errors_class()
+
+    def update_errors_class(self):
+        for field in self.visible_fields():
+            if self.errors.get(field.name):
+                if "is-invalid" not in field.field.widget.attrs["class"]:
+                    field.field.widget.attrs["class"] += " is-invalid"
+
+    def add_error(self, field, error):
+        super().add_error(field, error)
+        self.update_errors_class()
+
+
+class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
+    class Meta:
+        model = Meropriation
+        fields = [
+            "name", "text", "count", "place", "normal_place", "structure",
+            "tip", "disciplines", "date_start", "date_end"
+        ]
+        widgets = {
+            "text": forms.Textarea(attrs={"rows": 4, "cols": 40}),
+            "place": forms.Select(attrs={"class": "form-control"}),
+            "normal_place": forms.Textarea(attrs={"rows": 2}),
+            "date_start": forms.DateInput(
+                attrs={'class': 'form-control', 'type': 'date'}),
+            "date_end": forms.DateInput(
+                attrs={'class': 'form-control', 'type': 'date'}),
+        }
+        labels = {
+            "name": "Название мероприятия",
+            "text": "Описание мероприятия",
+            "count": "Количество участников",
+            "place": "Место проведения",
+            "normal_place": "Подробный адрес",
+            "structure": "Состав",
+            "tip": "Тип соревнования",
+            "disciplines": "Дисциплины",
+            "date_start": "Дата начала",
+            "date_end": "Дата конца",
+        }
+
+    place = forms.ModelChoiceField(
+        queryset=Region.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        label="Место проведения"
+    )
+
+
+__all__ = ()

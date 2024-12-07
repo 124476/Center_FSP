@@ -1,22 +1,40 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static %}
+
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<div class="container my-5">
+  <h2 class="text-center text-primary mb-4">{% trans "Все мероприятия" %}</h2>
 
-<div class="container">
-  <h2>Мероприятия</h2>
-  <div class="card-group">
-    {% for meropriation in meropriations %}
-      {{ meropriation.name }}
-      {{ meropriation.status }}
-      <a href="{% url 'meropriations:meropriation_detail' meropriation.pk %}">Подробнее</a>
-    {% empty %}
-      <p>Список пуст</p>
-    {% endfor %}
+  {% if meropriations %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for meropriation in meropriations %}
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-primary">{{ meropriation.name }}</h5>
+              <p class="card-text text-muted">{{ meropriation.text|truncatechars:100 }}</p>
+              <span class="badge bg-info">{{ meropriation.get_status_display }}</span>
+            </div>
+            <div class="card-footer text-end">
+              <a href="{% url 'meropriations:meropriation_detail' meropriation.pk %}" class="btn btn-outline-primary btn-sm">
+                {% trans "Подробнее" %}
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-muted">{% trans "Список пуст" %}</p>
+  {% endif %}
+
+  <div class="mt-4 text-center">
+    <a href="{% url 'meropriations:meropriation_new' %}" class="btn btn-primary">
+      {% trans "Добавить мероприятие" %}
+    </a>
   </div>
-  <a href="{% url 'meropriations:meropriation_new' %}">New</a>
 </div>
-
 {% endblock %}

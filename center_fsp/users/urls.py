@@ -112,9 +112,6 @@ urlpatterns = [
         views.UsersView.as_view(),
         name="users",
     ),
-    path(
-        "users/<int:pk>",
-        views.UsersView.as_view(),
-        name="user_detail",
-    ),
+    path("users/<int:pk>/", views.UserDetailView.as_view(), name="user_detail"),
+    path("new-region/", views.NewRegionView.as_view(), name="new_region"),
 ]

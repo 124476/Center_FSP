@@ -8,6 +8,10 @@ body {
   flex-direction: column;
 }
 
+main {
+  margin-bottom: 30px;
+}
+
 body[data-bs-theme="light"] {
   background-color: #fff;
   color: #000;
@@ -104,10 +108,11 @@ header .dropdown-menu .dropdown-item:hover {
 }
 
 footer {
-  color: #fff;
   text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
   padding: 15px 0;
-  margin-top: auto;
 }
 
 footer span {
@@ -119,3 +124,34 @@ footer b {
   font-size: 14px;
   color: #fff;
 }
+
+.card {
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0 0;
+}
+
+img.rounded-circle {
+  border: 2px solid #007bff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#main-nav.collapse {
+  display: none;
+  transition: all 0.3s ease;
+}
+
+#main-nav:not(.collapse) {
+  display: flex;
+}
+

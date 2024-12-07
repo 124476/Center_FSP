@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}{{ meropriation.name }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h2>{{ meropriation.name }}</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Описание:</strong></p>
+      <p>{{ meropriation.text }}</p>
+      <p><strong>Статус:</strong> <span class="badge bg-info">{{ meropriation.get_status_display }}</span></p>
+      <p><strong>Дата начала:</strong> {{ meropriation.date_start|date:"d.m.Y" }}</p>
+      <p><strong>Дата окончания:</strong> {{ meropriation.date_end|date:"d.m.Y" }}</p>
+    </div>
+    <div class="card-footer text-end">
+      <a href="{% url 'meropriations:meropriations' %}" class="btn btn-outline-secondary">Назад к списку</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -5,10 +5,78 @@
 {% block title %}{% trans "Главная" %}{% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h2>{% trans "Главная страница" %}</h2>
-    <div class="card-group">
-      <h3>Всё нормально :)</h3>
+  {% block styles %}
+  <style>
+      body {
+        background-image: url("{% static 'img/logo.svg' %}");
+        background-size: 800px;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .container {
+        margin-left: 400px;
+    }
+  </style>
+  {% endblock %}
+
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Основная информация -->
+      <div class="col-12 text-center mb-5">
+        <h1 class="display-4">{% trans "Платформа для взаимодействия с региональными представителями спортивного программирования" %}</h1>
+        <p class="lead">{% trans "ФСП Центр - это удобный сервис для отслеживания соревнований по спортивному программированию, а также взаимодействия региональных представителей с ФСП." %}</p>
+      </div>
+
+      <!-- Карточки с основными функциями -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{% trans "Личный кабинет регионального представителя" %}</h5>
+            <p class="card-text">
+              {% trans "Подача и отслеживание заявок на проведение соревнований, управление данными об успехах региональных участников." %}
+            </p>
+            <a href="#" class="btn btn-primary">{% trans "Узнать больше" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{% trans "Личный кабинет представителя Федерации" %}</h5>
+            <p class="card-text">
+              {% trans "Мониторинг заявок, акцепт и обратная связь с регионами, управление календарем соревнований." %}
+            </p>
+            <a href="#" class="btn btn-primary">{% trans "Узнать больше" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{% trans "Загрузка данных победителей" %}</h5>
+            <p class="card-text">
+              {% trans "Идентификация победителей и ведение статистики по командам и участникам." %}
+            </p>
+            <a href="#" class="btn btn-secondary">{% trans "Узнать больше" %}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{% trans "Генерация протоколов" %}</h5>
+            <p class="card-text">
+              {% trans "Автоматическая подготовка отчетов и протоколов после завершения соревнований." %}
+            </p>
+            <a href="#" class="btn btn-secondary">{% trans "Узнать больше" %}</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
