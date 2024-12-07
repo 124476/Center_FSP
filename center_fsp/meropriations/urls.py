@@ -29,5 +29,5 @@ urlpatterns = [
         "results/new/",
         views.ResultCreateView.as_view(),
         name="results_new",
-    )
+    ),
 ]

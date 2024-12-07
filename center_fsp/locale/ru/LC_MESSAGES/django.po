@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 04:54+0300\n"
+"POT-Creation-Date: 2024-12-07 16:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: .\meropriations\apps.py:8 .\templates\includes\header.html:76
+#: .\meropriations\apps.py:8 .\templates\includes\header.html:62
 msgid "meropriations"
 msgstr "Мероприятия"
 
@@ -39,6 +39,18 @@ msgstr "На рассмотрение"
 #: .\meropriations\models.py:62
 msgid "acceptance"
 msgstr "Принят"
+
+#: .\meropriations\models.py:137
+msgid "winner"
+msgstr "Победитель"
+
+#: .\meropriations\models.py:138
+msgid "prizer"
+msgstr "Призёр"
+
+#: .\meropriations\models.py:139
+msgid "participant"
+msgstr "Участник"
 
 #: .\templates\homepage\main.html:5 .\templates\includes\header.html:12
 msgid "Главная"
@@ -155,27 +167,31 @@ msgstr "Нет имени пользователя"
 msgid "my_profile"
 msgstr "Мой профиль"
 
-#: .\templates\includes\header.html:63
+#: .\templates\includes\header.html:66
 msgid "Регистрация региональных представителей"
 msgstr "Регистрация региональных представителей"
 
-#: .\templates\includes\header.html:66
+#: .\templates\includes\header.html:69
 msgid "Регистрация регионов"
 msgstr "Регистрация регионов"
 
-#: .\templates\includes\header.html:69 .\users\apps.py:8
+#: .\templates\includes\header.html:72 .\users\apps.py:8
 msgid "users"
 msgstr "Пользователи"
 
-#: .\templates\includes\header.html:72
+#: .\templates\includes\header.html:75
 msgid "admin_panel"
 msgstr "Панель админа"
 
 #: .\templates\includes\header.html:79
+msgid "results"
+msgstr "Результаты"
+
+#: .\templates\includes\header.html:82
 msgid "exit"
 msgstr "Выход"
 
-#: .\templates\includes\header.html:84 .\templates\users\login.html:14
+#: .\templates\includes\header.html:87 .\templates\users\login.html:14
 msgid "sign_in"
 msgstr "Авторизация"
 
@@ -183,17 +199,16 @@ msgstr "Авторизация"
 msgid "Все мероприятия"
 msgstr "Все мероприятия"
 
-#: .\templates\meropriations\list_meropriation.html:23
-#: .\templates\users\list_users.html:21
+#: .\templates\meropriations\list_meropriation.html:24
+#: .\templates\users\list_users.html:24
 msgid "Подробнее"
 msgstr "Подробнее"
 
-#: .\templates\meropriations\list_meropriation.html:31
-#: .\templates\users\list_users.html:27
-msgid "Список пуст"
-msgstr "Список пуст"
+#: .\templates\meropriations\list_meropriation.html:32
+msgid "Нет мероприятий"
+msgstr "Все мероприятия"
 
-#: .\templates\meropriations\list_meropriation.html:36
+#: .\templates\meropriations\list_meropriation.html:37
 msgid "Добавить мероприятие"
 msgstr "Добавить мероприятие"
 
@@ -221,85 +236,60 @@ msgstr "Тип"
 #: .\templates\meropriations_calendar\main.html:15
 #: .\templates\meropriations_calendar\main.html:25
 #: .\templates\meropriations_calendar\main.html:35
-#: .\templates\meropriations_calendar\main.html:45
-#: .\templates\meropriations_calendar\main.html:79
+#: .\templates\meropriations_calendar\main.html:59
 msgid "Все"
 msgstr "Все"
 
 #: .\templates\meropriations_calendar\main.html:23
-msgid "Пол"
-msgstr "Пол"
-
-#: .\templates\meropriations_calendar\main.html:33
-#: .\templates\meropriations_calendar\main.html:130
-msgid "Вид спорта"
-msgstr "Вид спорта"
-
-#: .\templates\meropriations_calendar\main.html:43
 msgid "Возрастная группа"
 msgstr "Возрастная группа"
 
-#: .\templates\meropriations_calendar\main.html:53
-msgid "Место"
-msgstr "Место"
+#: .\templates\meropriations_calendar\main.html:33
+#: .\templates\meropriations_calendar\main.html:110
+msgid "Регион"
+msgstr "Регион"
 
-#: .\templates\meropriations_calendar\main.html:54
-msgid "Введите место проведения"
-msgstr "Введите место проведения"
-
-#: .\templates\meropriations_calendar\main.html:58
+#: .\templates\meropriations_calendar\main.html:43
 msgid "Количество участников"
 msgstr "Количество участников"
 
-#: .\templates\meropriations_calendar\main.html:59
+#: .\templates\meropriations_calendar\main.html:44
 msgid "Введите количество участников"
 msgstr "Введите количество участников"
 
-#: .\templates\meropriations_calendar\main.html:63
-msgid "Дисциплина"
-msgstr "Дисциплина"
-
-#: .\templates\meropriations_calendar\main.html:64
-msgid "Введите дисциплину"
-msgstr "Введите дисциплину"
-
-#: .\templates\meropriations_calendar\main.html:68
+#: .\templates\meropriations_calendar\main.html:48
 msgid "Количество рядов на одной странице:"
 msgstr "Количество рядов на одной странице:"
 
-#: .\templates\meropriations_calendar\main.html:77
+#: .\templates\meropriations_calendar\main.html:57
 msgid "Выберите период:"
 msgstr "Выберите период:"
 
-#: .\templates\meropriations_calendar\main.html:80
+#: .\templates\meropriations_calendar\main.html:60
 msgid "Ближайшие мероприятия"
 msgstr "Ближайшие мероприятия"
 
-#: .\templates\meropriations_calendar\main.html:81
+#: .\templates\meropriations_calendar\main.html:61
 msgid "Мероприятия текущей недели"
 msgstr "Мероприятия текущей недели"
 
-#: .\templates\meropriations_calendar\main.html:82
+#: .\templates\meropriations_calendar\main.html:62
 msgid "Мероприятия следующего месяца"
 msgstr "Мероприятия следующего месяца"
 
-#: .\templates\meropriations_calendar\main.html:83
+#: .\templates\meropriations_calendar\main.html:63
 msgid "Мероприятия квартала"
 msgstr "Мероприятия квартала"
 
-#: .\templates\meropriations_calendar\main.html:84
+#: .\templates\meropriations_calendar\main.html:64
 msgid "Мероприятия полугодия"
 msgstr "Мероприятия полугодия"
 
-#: .\templates\meropriations_calendar\main.html:129
-msgid "СМ в ЕКП"
-msgstr "СМ в ЕКП"
-
-#: .\templates\meropriations_calendar\main.html:131
+#: .\templates\meropriations_calendar\main.html:109
 msgid "Состав"
 msgstr "Состав"
 
-#: .\templates\meropriations_calendar\main.html:132
+#: .\templates\meropriations_calendar\main.html:111
 msgid ""
 "Наименование спортивного мероприятия<br>(пол, возрастная "
 "группа)<br>(дисциплина, программа)"
@@ -307,19 +297,15 @@ msgstr ""
 "Наименование спортивного мероприятия<br>(пол, возрастная "
 "группа)<br>(дисциплина, программа)"
 
-#: .\templates\meropriations_calendar\main.html:133
+#: .\templates\meropriations_calendar\main.html:112
 msgid "Сроки проведения"
 msgstr "Сроки проведения"
 
-#: .\templates\meropriations_calendar\main.html:134
-msgid ""
-"Место проведения<br>(страна (-ы), субъект РФ, город)<br>(спортивная база, "
-"центр)"
-msgstr ""
-"Место проведения<br>(страна (-ы), субъект РФ, город)<br>(спортивная база, "
-"центр)"
+#: .\templates\meropriations_calendar\main.html:113
+msgid "Место проведения<br>(спортивная база, центр)"
+msgstr "Место проведения<br>(спортивная база, центр)"
 
-#: .\templates\meropriations_calendar\main.html:135
+#: .\templates\meropriations_calendar\main.html:114
 msgid "Количество участников<br>(чел.)"
 msgstr "Количество участников<br>(чел.)"
 
@@ -340,8 +326,8 @@ msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
 msgstr ""
-"Подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> является адресом электронной почты "
-"пользователя %(user_display)s."
+"Подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> является адресом "
+"электронной почты пользователя %(user_display)s."
 
 #: .\templates\users\confirm_email_from_sent.html:25
 msgid "Confirm"
@@ -362,8 +348,9 @@ msgid ""
 "This email confirmation link expired or is invalid. Please <a "
 "href=\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
-"Эта ссылка для подтверждения по электронной почте устарела или недействительна. Пожалуйста, <a "
-"href=\"%(email_url)s\">отправьте новый запрос на подтверждение по электронной почте</a>."
+"Эта ссылка для подтверждения по электронной почте устарела или "
+"недействительна. Пожалуйста, <a href=\"%(email_url)s\">отправьте новый "
+"запрос на подтверждение по электронной почте</a>."
 
 #: .\templates\users\email_change.html:7
 msgid "email_change"
@@ -385,11 +372,15 @@ msgstr "Изменить почту"
 msgid "Все представители по регионам"
 msgstr "Все представители по регионам"
 
-#: .\templates\users\list_users.html:18 .\templates\users\user_detail.html:31
+#: .\templates\users\list_users.html:21 .\templates\users\user_detail.html:31
 msgid "Username:"
 msgstr "Имя пользователя:"
 
-#: .\templates\users\list_users.html:33
+#: .\templates\users\list_users.html:30
+msgid "Список пуст"
+msgstr "Список пуст"
+
+#: .\templates\users\list_users.html:36
 msgid "Новый представитель"
 msgstr "Новый представитель"
 
@@ -527,6 +518,27 @@ msgstr "Аватарка"
 #: .\users\views.py:40
 msgid "username_is_already_taken"
 msgstr "Такое имя пользователя уже использовано."
+
+#~ msgid "Пол"
+#~ msgstr "Пол"
+
+#~ msgid "Вид спорта"
+#~ msgstr "Вид спорта"
+
+#~ msgid "Место"
+#~ msgstr "Место"
+
+#~ msgid "Введите место проведения"
+#~ msgstr "Введите место проведения"
+
+#~ msgid "Дисциплина"
+#~ msgstr "Дисциплина"
+
+#~ msgid "Введите дисциплину"
+#~ msgstr "Введите дисциплину"
+
+#~ msgid "СМ в ЕКП"
+#~ msgstr "СМ в ЕКП"
 
 #, fuzzy
 #~| msgid "Главная"

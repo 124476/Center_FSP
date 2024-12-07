@@ -2,7 +2,6 @@ from datetime import timedelta
 
 from django.core.paginator import Paginator
 from django.views.generic import ListView
-from django.db.models import Q
 from django.utils import timezone
 
 import meropriations.parser

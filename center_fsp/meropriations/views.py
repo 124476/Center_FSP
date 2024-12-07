@@ -1,25 +1,27 @@
 from allauth.core.internal.httpkit import redirect
 from django.contrib import messages
-from django.http import Http404, JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import CreateView
 import django.views.generic
 
 from meropriations.models import Meropriation, Result
 from meropriations.forms import MeropriationForm, MultiFileUploadForm, MeropriationStatusForm
 
 
-class MeropriationList(django.views.generic.ListView):
+class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
     template_name = "meropriations/list_meropriation.html"
     context_object_name = "meropriations"
 
     def get_queryset(self):
         region = self.request.user.region
-        queryset = Meropriation.objects.all()
-        if region:
-            queryset = queryset.filter(region=region)
-        return queryset
+        if self.request.user.is_staff:
+            return Meropriation.objects.filter()
+        elif not region:
+            return Meropriation.objects.none()
+        return Meropriation.objects.filter(region=region)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,8 +38,15 @@ class MeropriationCreateView(CreateView):
     def form_valid(self, form):
         form.instance.region = self.request.user.region
         form.instance.status = Meropriation.Status.CONSIDERATION
-        form.instance.normal_place = self.request.place.lower()
+        form.instance.normal_place = form.cleaned_data['normal_place']
         return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_staff:
+            messages.error(request,
+                           "Сотрудники не могут создавать мероприятия.")
+            return redirect("meropriations:meropriations")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class MeropriationDetailView(DetailView):
@@ -67,6 +76,7 @@ class MeropriationDetailView(DetailView):
         else:
             messages.error(request, "Ошибка при обновлении статуса.")
         return redirect(url)
+
 
 class ResultList(django.views.generic.ListView):
     template_name = "meropriations/results.html"

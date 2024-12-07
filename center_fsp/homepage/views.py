@@ -1,8 +1,4 @@
 import django.views.generic
-from django.core.exceptions import PermissionDenied
-from django.views import View
-
-import meropriations
 
 
 class Home(django.views.generic.ListView):
@@ -18,13 +14,3 @@ class Home(django.views.generic.ListView):
             "name": "second",
         },
     ]
-
-
-class UpdateDBView(View):
-    def get(self, request, *args, **kwargs):
-        if not request.user.is_superuser:
-            raise PermissionDenied(
-                "У вас недостаточно прав для выполнения этой операции."
-            )
-        meropriations.parser.import_pdf()
-        return django.shortcuts.redirect("calendar:main")

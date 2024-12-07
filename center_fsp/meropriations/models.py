@@ -94,7 +94,7 @@ class Meropriation(django.db.models.Model):
     )
     normal_place = django.db.models.TextField(
         null=True,
-        verbose_name="нормальное место проведения",
+        verbose_name="точное место проведения",
     )
     structure = django.db.models.ForeignKey(
         Structure,

@@ -1,6 +1,6 @@
 from django import forms
 
-from meropriations.models import Meropriation, Result
+from meropriations.models import Meropriation, Result, Structure, Tip
 from users.models import Region
 
 
@@ -47,18 +47,6 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
             "date_end": forms.DateInput(
                 attrs={'class': 'form-control', 'type': 'date'}),
         }
-        labels = {
-            "name": "Название мероприятия",
-            "text": "Описание мероприятия",
-            "count": "Количество участников",
-            "place": "Место проведения",
-            "normal_place": "Подробный адрес",
-            "structure": "Состав",
-            "tip": "Тип соревнования",
-            "disciplines": "Дисциплины",
-            "date_start": "Дата начала",
-            "date_end": "Дата конца",
-        }
 
     place = forms.ModelChoiceField(
         queryset=Region.objects.all(),
@@ -95,6 +83,7 @@ class MultiFileUploadForm(forms.ModelForm):
             ),
         }
 
+
 class MeropriationStatusForm(forms.ModelForm):
     class Meta:
         model = Meropriation
@@ -102,5 +91,6 @@ class MeropriationStatusForm(forms.ModelForm):
         widgets = {
             'status': forms.Select(attrs={'class': 'form-select'})
         }
+
 
 __all__ = ()

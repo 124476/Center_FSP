@@ -3,7 +3,7 @@ from allauth.account.forms import AddEmailForm, LoginForm, SignupForm, \
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User, Region
 
@@ -55,6 +55,18 @@ class UserForm(BootstrapFormMixin, UserChangeForm):
 
 
 class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
+    def __init__(self, *args, **kwargs):
+        kwargs.pop("instance", None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.region = self.cleaned_data["region"]
+        user.save()
+        return user
+
     region = forms.ModelChoiceField(
         queryset=Region.objects.all(),
         required=True,
@@ -71,18 +83,6 @@ class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
         label=_("Last Name"),
         widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your last name")}),
     )
-
-    def __init__(self, *args, **kwargs):
-        kwargs.pop("instance", None)
-        super().__init__(*args, **kwargs)
-
-    def save(self, request):
-        user = super().save(request)
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.region = self.cleaned_data["region"]
-        user.save()
-        return user
 
 
 class RegionForm(BootstrapFormMixin, forms.ModelForm):

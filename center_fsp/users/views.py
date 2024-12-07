@@ -3,6 +3,7 @@ from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView
@@ -55,6 +56,10 @@ class RegionalRepresentativeSignupView(CreateView):
     model = User
     form_class = RegionalRepresentativeSignupForm
     template_name = "users/signup.html"
+
+    def get(self, request, *args, **kwargs):
+        translation.activate(request.LANGUAGE_CODE)
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.save(request=self.request)

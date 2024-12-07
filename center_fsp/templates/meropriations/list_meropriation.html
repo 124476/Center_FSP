@@ -15,11 +15,12 @@
           <div class="card h-100 shadow-sm">
             <div class="card-body">
               <h5 class="card-title text-primary">{{ meropriation.name }}</h5>
-              <p class="card-text text-muted">{{ meropriation.text|truncatechars:100 }}</p>
+              <p class="card-text text-muted">{{ meropriation.place }}</p>
+              <p class="card-text text-muted">{{ meropriation.normal_place }}</p>
               <span class="badge bg-info">{{ meropriation.get_status_display }}</span>
             </div>
             <div class="card-footer text-end">
-              <a href="{% url 'meropriations:meropriation_detail' meropriation.pk %}" class="btn btn-outline-primary btn-sm">
+              <a href="{% url 'meropriations:meropriation_detail' meropriation.pk %}" class="btn btn-outline-primary btn-sm" style="margin-bottom: 15px;">
                 {% trans "Подробнее" %}
               </a>
             </div>
@@ -30,11 +31,12 @@
   {% else %}
     <p class="text-center text-muted">{% trans "Нет мероприятий" %}</p>
   {% endif %}
-
-  <div class="mt-4 text-center">
-    <a href="{% url 'meropriations:meropriation_new' %}" class="btn btn-primary">
-      {% trans "Добавить мероприятие" %}
-    </a>
-  </div>
+  {% if not user.is_staff %}
+    <div class="mt-4 text-center">
+      <a href="{% url 'meropriations:meropriation_new' %}" class="btn btn-primary">
+        {% trans "Добавить мероприятие" %}
+      </a>
+    </div>
+  {% endif %}
 </div>
 {% endblock %}

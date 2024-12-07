@@ -30,6 +30,3 @@ class MeropriationAdmin(django.contrib.admin.ModelAdmin):
         meropriations.models.Meropriation.name.field.name,
         meropriations.models.Meropriation.status.field.name,
     )
-    exclude = (
-        meropriations.models.Meropriation.normal_place.field.name,
-    )
