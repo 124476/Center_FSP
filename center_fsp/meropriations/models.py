@@ -222,3 +222,25 @@ class Result(django.db.models.Model):
 
     def __str__(self):
         return self.meropriation
+
+
+class Notification(django.db.models.Model):
+    meropriation = django.db.models.ForeignKey(
+        Meropriation,
+        verbose_name="мероприятие",
+        on_delete=django.db.models.CASCADE,
+        null=True,
+        blank=True,
+    )
+    text = django.db.models.CharField(
+        verbose_name="текст уведомления",
+        max_length=150,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = "уведомление"
+        verbose_name_plural = "уведомления"
+
+    def __str__(self):
+        return self.meropriation

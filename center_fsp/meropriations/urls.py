@@ -25,4 +25,9 @@ urlpatterns = [
         views.ResultCreateView.as_view(),
         name="results_new",
     ),
+    path(
+        "notifications/",
+        views.Notifications.as_view(),
+        name="notifications",
+    )
 ]

@@ -23,6 +23,21 @@ class ResultAdmin(django.contrib.admin.ModelAdmin):
     pass
 
 
+@django.contrib.admin.register(meropriations.models.Participant)
+class ParticipantAdmin(django.contrib.admin.ModelAdmin):
+    pass
+
+
+@django.contrib.admin.register(meropriations.models.Team)
+class TeamAdmin(django.contrib.admin.ModelAdmin):
+    pass
+
+
+@django.contrib.admin.register(meropriations.models.Notification)
+class NotificationAdmin(django.contrib.admin.ModelAdmin):
+    pass
+
+
 @django.contrib.admin.register(meropriations.models.Meropriation)
 class MeropriationAdmin(django.contrib.admin.ModelAdmin):
     list_display = (

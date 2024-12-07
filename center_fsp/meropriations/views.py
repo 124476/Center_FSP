@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView
 import django.views.generic
 import django.forms
 
-from meropriations.models import Meropriation, Result
+from meropriations.models import Meropriation, Result, Notification
 from meropriations.forms import MeropriationForm, ResultForm, \
     MeropriationStatusForm
 from meropriations.parsers.parser_xlsx import parse_excel_file
@@ -67,6 +67,7 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         meropriation = self.get_object()
+        last_status = meropriation.status
         url = django.urls.reverse('meropriations:meropriation_detail',
                                   kwargs={'pk': meropriation.pk})
 
@@ -78,6 +79,10 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
         form = MeropriationStatusForm(request.POST, instance=meropriation)
         if form.is_valid():
             form.save()
+            Notification.objects.create(
+                meropriation=meropriation,
+                text=f"Статус изменен с '{last_status}' на '{meropriation.status}'",
+            )
             messages.success(request, "Статус успешно обновлен!")
             return redirect(url)
         else:
@@ -90,7 +95,11 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
 
     def get(self, request):
         user_region = self.request.user.region
-        meropriations = Meropriation.objects.filter(region=user_region, status='Принят')
+        if not user_region:
+            return redirect('meropriations:meropriations')
+
+        meropriations = Meropriation.objects.filter(region=user_region,
+                                                    status='Принят')
 
         return django.shortcuts.render(request,
                                        "meropriations/new_results.html",
@@ -100,6 +109,10 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
                                        })
 
     def post(self, request):
+        user_region = self.request.user.region
+        if not user_region:
+            return redirect('meropriations:meropriations')
+
         files_count = int(request.POST.get('files_count', 0))
         files = request.FILES.getlist('file')
         merops = request.POST.getlist('meropriation')
@@ -122,15 +135,21 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
                 'meropriation': merops[i]
             })
             if form.is_valid():
-                if files[i].name.endswith('.xlsx') or files[i].name.endswith('.xls'):
-                    parse_excel_file(files[i], form.cleaned_data['meropriation'].id)
-                elif files[i].name.endswith('.txt') or files[i].name.endswith('.csv'):
-                    parse_txt_file(files[i], form.cleaned_data['meropriation'].id)
+                if files[i].name.endswith('.xlsx') or files[i].name.endswith(
+                        '.xls'):
+                    parse_excel_file(files[i],
+                                     form.cleaned_data['meropriation'].id)
+                elif files[i].name.endswith('.txt') or files[i].name.endswith(
+                        '.csv'):
+                    parse_txt_file(files[i],
+                                   form.cleaned_data['meropriation'].id)
                 else:
-                    messages.error(request, "Есть не подходящие типы файлов, посмотрите инструкцию!")
+                    messages.error(request,
+                                   "Есть не подходящие типы файлов, посмотрите инструкцию!")
                     user_region = self.request.user.region
-                    meropriations = Meropriation.objects.filter(region=user_region,
-                                                                status='Принят')
+                    meropriations = Meropriation.objects.filter(
+                        region=user_region,
+                        status='Принят')
                     return django.shortcuts.render(request,
                                                    "meropriations/new_results.html",
                                                    {
@@ -143,6 +162,22 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Загрузка"
+        return context
+
+
+class Notifications(django.views.generic.ListView):
+    template_name = "users/notifications.html"
+    context_object_name = "notifications"
+
+    def get_queryset(self):
+        region = self.request.user.region
+        if not region:
+            return redirect('homepage:main')
+        return Notification.objects.filter(meropriation__region=region)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Уведомления"
         return context
 
 
