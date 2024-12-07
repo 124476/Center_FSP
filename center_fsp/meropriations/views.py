@@ -36,6 +36,7 @@ class MeropriationCreateView(CreateView):
     def form_valid(self, form):
         form.instance.region = self.request.user.region
         form.instance.status = Meropriation.Status.CONSIDERATION
+        form.instance.normal_place = self.request.place.lower()
         return super().form_valid(form)
 
 

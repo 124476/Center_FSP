@@ -58,6 +58,9 @@
             <ul class="dropdown-menu text-small">
               <li><a class="dropdown-item" {% if view_name != "users:profile" %}href="{% url 'users:profile' %}"{% endif %}>{% trans "my_profile" %}</a></li>
               <li><hr class="dropdown-divider"></li>
+              <li><a href="{% url 'meropriations:meropriations' %}" class="dropdown-item">
+                {% trans "meropriations" %}
+              </a></li>
               {% if request.user.is_staff %}
                 <li><a href="{% url 'users:signup' %}" class="dropdown-item">
                   {% trans "Регистрация региональных представителей" %}
@@ -72,9 +75,6 @@
                   {% trans "admin_panel" %}
                 </a></li>
               {% else %}
-                <li><a href="{% url 'meropriations:meropriations' %}" class="dropdown-item">
-                  {% trans "meropriations" %}
-                </a></li>
                 <li><a href="{% url 'meropriations:results' %}" class="dropdown-item">
                   {% trans "results" %}
                 </a></li>

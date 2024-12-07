@@ -20,26 +20,6 @@
         </div>
 
         <div class="form-group">
-          <label for="gender">{% trans "Пол" %}</label>
-          <select name="gender" id="gender" class="form-control" onchange="this.form.submit()">
-            <option value="">{% trans "Все" %}</option>
-            {% for option in genders %}
-              <option value="{{ option }}" {% if option == request.GET.gender %}selected{% endif %}>{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="group">{% trans "Вид спорта" %}</label>
-          <select name="group" id="group" class="form-control" onchange="this.form.submit()">
-            <option value="">{% trans "Все" %}</option>
-            {% for option in groups %}
-              <option value="{{ option }}" {% if option == request.GET.group %}selected{% endif %}>{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="form-group">
           <label for="structure">{% trans "Возрастная группа" %}</label>
           <select name="structure" id="structure" class="form-control" onchange="this.form.submit()">
             <option value="">{% trans "Все" %}</option>
@@ -50,18 +30,18 @@
         </div>
 
         <div class="form-group">
-          <label for="place">{% trans "Место" %}</label>
-          <input type="text" name="place" id="place" value="{{ request.GET.place }}" class="form-control" placeholder="{% trans 'Введите место проведения' %}" onchange="this.form.submit()"/>
+          <label for="region">{% trans "Регион" %}</label>
+          <select name="region" id="region" class="form-control" onchange="this.form.submit()">
+            <option value="">{% trans "Все" %}</option>
+            {% for option in regions %}
+              <option value="{{ option }}" {% if option == request.GET.region %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
         </div>
 
         <div class="form-group">
           <label for="participants_count">{% trans "Количество участников" %}</label>
           <input type="number" name="participants_count" id="participants_count" value="{{ request.GET.participants_count }}" class="form-control" min="1" placeholder="{% trans 'Введите количество участников' %}" onchange="this.form.submit()"/>
-        </div>
-
-        <div class="form-group">
-          <label for="disciple">{% trans "Дисциплина" %}</label>
-          <input type="text" name="disciple" id="disciple" value="{{ request.GET.disciple }}" class="form-control" placeholder="{% trans 'Введите дисциплину' %}" onchange="this.form.submit()"/>
         </div>
 
         <div class="form-group">
@@ -126,22 +106,20 @@
     <thead class="table-dark">
       <tr>
         <th>№</th>
-        <th>{% trans "СМ в ЕКП" %}</th>
-        <th>{% trans "Вид спорта" %}</th>
         <th>{% trans "Состав" %}</th>
+        <th>{% trans "Регион" %}</th>
         <th>{% trans "Наименование спортивного мероприятия<br>(пол, возрастная группа)<br>(дисциплина, программа)" %}</th>
         <th>{% trans "Сроки проведения" %}</th>
-        <th>{% trans "Место проведения<br>(страна (-ы), субъект РФ, город)<br>(спортивная база, центр)" %}</th>
+        <th>{% trans "Место проведения<br>(спортивная база, центр)" %}</th>
         <th>{% trans "Количество участников<br>(чел.)" %}</th>
       </tr>
     </thead>
     <tbody>
       {% for item in page_obj.object_list %}
       <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ item.slug }}</td>
-        <td>{{ item.group.name }}</td>
+        <td>{{ item.id }}</td>
         <td>{{ item.structure.name }}</td>
+        <td>{{ item.region.name }}</td>
         <td>
           <strong>{{ item.name }}</strong><br>
           {{ item.text }}
