@@ -1,0 +1,953 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-12-07T18:33:52.621Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Молодёжный",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-12-07T18:33:58.172Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Взрослый",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-12-07T18:34:03.407Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "3",
+        "object_repr": "Юношеский",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-12-07T18:34:29.371Z",
+        "user": 1,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "Соревнования",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2024-12-07T18:34:34.545Z",
+        "user": 1,
+        "content_type": 13,
+        "object_id": "2",
+        "object_repr": "Чемпионат",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2024-12-07T18:34:38.588Z",
+        "user": 1,
+        "content_type": 13,
+        "object_id": "3",
+        "object_repr": "Первенство",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add регион",
+        "content_type": 6,
+        "codename": "add_region"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change регион",
+        "content_type": 6,
+        "codename": "change_region"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete регион",
+        "content_type": 6,
+        "codename": "delete_region"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view регион",
+        "content_type": 6,
+        "codename": "view_region"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add пользователь",
+        "content_type": 7,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change пользователь",
+        "content_type": 7,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete пользователь",
+        "content_type": 7,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view пользователь",
+        "content_type": 7,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add дисциплина",
+        "content_type": 8,
+        "codename": "add_discipline"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change дисциплина",
+        "content_type": 8,
+        "codename": "change_discipline"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete дисциплина",
+        "content_type": 8,
+        "codename": "delete_discipline"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view дисциплина",
+        "content_type": 8,
+        "codename": "view_discipline"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add мероприятие",
+        "content_type": 9,
+        "codename": "add_meropriation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change мероприятие",
+        "content_type": 9,
+        "codename": "change_meropriation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete мероприятие",
+        "content_type": 9,
+        "codename": "delete_meropriation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view мероприятие",
+        "content_type": 9,
+        "codename": "view_meropriation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add участник",
+        "content_type": 10,
+        "codename": "add_participant"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change участник",
+        "content_type": 10,
+        "codename": "change_participant"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete участник",
+        "content_type": 10,
+        "codename": "delete_participant"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view участник",
+        "content_type": 10,
+        "codename": "view_participant"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add состав",
+        "content_type": 11,
+        "codename": "add_structure"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change состав",
+        "content_type": 11,
+        "codename": "change_structure"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete состав",
+        "content_type": 11,
+        "codename": "delete_structure"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view состав",
+        "content_type": 11,
+        "codename": "view_structure"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add команда",
+        "content_type": 12,
+        "codename": "add_team"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change команда",
+        "content_type": 12,
+        "codename": "change_team"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete команда",
+        "content_type": 12,
+        "codename": "delete_team"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view команда",
+        "content_type": 12,
+        "codename": "view_team"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add тип соревнования",
+        "content_type": 13,
+        "codename": "add_tip"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change тип соревнования",
+        "content_type": 13,
+        "codename": "change_tip"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete тип соревнования",
+        "content_type": 13,
+        "codename": "delete_tip"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view тип соревнования",
+        "content_type": 13,
+        "codename": "view_tip"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add результат",
+        "content_type": 14,
+        "codename": "add_result"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change результат",
+        "content_type": 14,
+        "codename": "change_result"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete результат",
+        "content_type": 14,
+        "codename": "delete_result"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view результат",
+        "content_type": 14,
+        "codename": "view_result"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add kv store",
+        "content_type": 15,
+        "codename": "add_kvstore"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change kv store",
+        "content_type": 15,
+        "codename": "change_kvstore"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete kv store",
+        "content_type": 15,
+        "codename": "delete_kvstore"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view kv store",
+        "content_type": 15,
+        "codename": "view_kvstore"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add email address",
+        "content_type": 16,
+        "codename": "add_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change email address",
+        "content_type": 16,
+        "codename": "change_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete email address",
+        "content_type": 16,
+        "codename": "delete_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view email address",
+        "content_type": 16,
+        "codename": "view_emailaddress"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add email confirmation",
+        "content_type": 17,
+        "codename": "add_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change email confirmation",
+        "content_type": 17,
+        "codename": "change_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete email confirmation",
+        "content_type": 17,
+        "codename": "delete_emailconfirmation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view email confirmation",
+        "content_type": 17,
+        "codename": "view_emailconfirmation"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "users",
+        "model": "region"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "users",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "discipline"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "meropriation"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "participant"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "structure"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "team"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "tip"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "meropriations",
+        "model": "result"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "thumbnail",
+        "model": "kvstore"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "account",
+        "model": "emailaddress"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "account",
+        "model": "emailconfirmation"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "p9yhljzr6nwxcq25zlt0vh47uztjumkr",
+    "fields": {
+        "session_data": ".eJxVj8tOxDAMAP_F56rKo0mzPXLnCxCqHMelATZZNakArfbfaWAve7M845F8BSTKe6oz7nXlVCNhjTnNZ65rDgWmlyv8zzDBBUv5yluADrDCJEetzclarXpnjHJCdbAX3hKe-bDr4dxeO_hLzw3MsVUUPOw80genBsI7prfcU051i75vSn-npX_OgT-f7u5DYMWyHtdeOyUCsqbFWTuiGll54QZSYiHL3lpJJynRGz-SXiQPRprBeKtdcEZyixYupX3P35e4_cAkbr91hV9T:1tJzg0:C2cn3OyhvHLzXs2BP9NRCPPu_vAXoX3CXxFgCtoTaCU",
+        "expire_date": "2024-12-21T18:37:12.862Z"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 1,
+    "fields": {
+        "name": "Республика Татарстан"
+    }
+},
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$1eikVKmFGBT2jxhiNZgprZ$U+fZ15XJSWhNzjeAGgHUdEzz78s25KatueMwpDI63sA=",
+        "last_login": "2024-12-07T18:36:51.587Z",
+        "is_superuser": true,
+        "username": "mar1o",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-12-07T18:28:20.443Z",
+        "avatar": "",
+        "region": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$4y4SPIa96itjyzKaedWoz0$yfbcArHM/PfMRCWX1cv8jSA+WagE7LCIv7p1ZPvJLS8=",
+        "last_login": "2024-12-07T18:37:12.858Z",
+        "is_superuser": false,
+        "username": "tat",
+        "first_name": "Марсель",
+        "last_name": "Хуснуллин",
+        "email": "tat@tat.ru",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T18:32:00.313Z",
+        "avatar": "",
+        "region": 1,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "meropriations.structure",
+    "pk": 1,
+    "fields": {
+        "name": "Молодёжный"
+    }
+},
+{
+    "model": "meropriations.structure",
+    "pk": 2,
+    "fields": {
+        "name": "Взрослый"
+    }
+},
+{
+    "model": "meropriations.structure",
+    "pk": 3,
+    "fields": {
+        "name": "Юношеский"
+    }
+},
+{
+    "model": "meropriations.tip",
+    "pk": 1,
+    "fields": {
+        "name": "Соревнования"
+    }
+},
+{
+    "model": "meropriations.tip",
+    "pk": 2,
+    "fields": {
+        "name": "Чемпионат"
+    }
+},
+{
+    "model": "meropriations.tip",
+    "pk": 3,
+    "fields": {
+        "name": "Первенство"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 1,
+    "fields": {
+        "region": 1,
+        "status": "Принят",
+        "name": "Соревнования Татарстана по СП",
+        "text": "Описание Соревнования Татарстана по СП",
+        "count": 125,
+        "place": "Республика Татарстан",
+        "normal_place": "Иннополис Университет",
+        "structure": 2,
+        "tip": 2,
+        "disciplines": "Нет",
+        "date_start": "2025-09-25",
+        "date_end": "2025-09-27"
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "email": "tat@tat.ru",
+        "verified": false,
+        "primary": true
+    }
+}
+]

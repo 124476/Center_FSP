@@ -202,7 +202,7 @@ class Result(django.db.models.Model):
         null=True,
         blank=True,
     )
-    team = django.db.models.ForeignKey(
+    team = django.db.models.OneToOneField(
         Team,
         verbose_name="команда",
         on_delete=django.db.models.CASCADE,

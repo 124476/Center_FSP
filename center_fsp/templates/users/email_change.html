@@ -18,7 +18,9 @@
               <input type="email" name="email" placeholder="E-mail адрес" autocomplete="email" maxlength="320" class="form-control input-field-only-one" required="" id="id_email">
               <label for="id_email">{% trans "Email" %}</label>
             {% endif %}
+            <p class="alert alert-warning center" style="margin-top: 20px;">Отправка подтверждения только на Gmail почту</p>
           </div>
+
         </div>
       {% endslot %}
       {% slot actions %}

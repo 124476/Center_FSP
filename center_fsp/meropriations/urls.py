@@ -21,11 +21,6 @@ urlpatterns = [
         name="meropriation_new",
     ),
     path(
-        "results/",
-        views.ResultList.as_view(),
-        name="results",
-    ),
-    path(
         "results/new/",
         views.ResultCreateView.as_view(),
         name="results_new",

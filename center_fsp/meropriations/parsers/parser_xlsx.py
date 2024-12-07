@@ -7,6 +7,9 @@ def parse_excel_file(excel_file, meropriation_id):
         workbook = openpyxl.load_workbook(excel_file)
         sheet = workbook.active
 
+        teams = Team.objects.filter(result__meropriation_id=meropriation_id)
+        for team in teams:
+            team.delete()
         Result.objects.filter(meropriation_id=meropriation_id).delete()
 
         for row_idx, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):

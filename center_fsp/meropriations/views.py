@@ -14,6 +14,7 @@ from meropriations.forms import MeropriationForm, ResultForm, \
 from meropriations.parsers.parser_xlsx import parse_excel_file
 from meropriations.parsers.parser_txt import parse_txt_file
 
+
 class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
     template_name = "meropriations/list_meropriation.html"
     context_object_name = "meropriations"
@@ -32,7 +33,7 @@ class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
         return context
 
 
-class MeropriationCreateView(CreateView):
+class MeropriationCreateView(LoginRequiredMixin, CreateView):
     model = Meropriation
     form_class = MeropriationForm
     template_name = "meropriations/meropriation_form.html"
@@ -52,7 +53,7 @@ class MeropriationCreateView(CreateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class MeropriationDetailView(DetailView):
+class MeropriationDetailView(LoginRequiredMixin, DetailView):
     model = Meropriation
     template_name = "meropriations/meropriation_detail.html"
     context_object_name = "meropriation"
@@ -84,24 +85,7 @@ class MeropriationDetailView(DetailView):
         return redirect(url)
 
 
-class ResultList(django.views.generic.ListView):
-    template_name = "meropriations/results.html"
-    context_object_name = "results"
-
-    def get_queryset(self):
-        region = self.request.user.region
-        queryset = Result.objects.all()
-        if region:
-            queryset = queryset.filter(meropriation__region=region)
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Результаты"
-        return context
-
-
-class ResultCreateView(CreateView):
+class ResultCreateView(LoginRequiredMixin, CreateView):
     template_name = "meropriations/new_results.html"
 
     def get(self, request):
@@ -154,7 +138,7 @@ class ResultCreateView(CreateView):
                                                        "title": "Загрузка",
                                                    })
 
-        return django.shortcuts.redirect("meropriations:results")
+        return django.shortcuts.redirect("meropriations:meropriations")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

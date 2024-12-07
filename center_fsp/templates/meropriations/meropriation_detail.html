@@ -35,6 +35,40 @@
       </div>
     </div>
   {% endif %}
-</div>
 
+  {% if meropriation.result_set.exists %}
+    <div class="card mt-5">
+      <div class="card-header bg-success text-white">
+        <h5>Результаты мероприятия</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Название команды</th>
+              <th>Статус</th>
+              <th>Участники</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in meropriation.result_set.all %}
+              <tr>
+                <td>{{ result.team.name }}</td>
+                <td>{{ result.team.get_status_display }}</td>
+                <td>
+                  {% for participant in result.team.participant_set.all %}
+                    {{ participant.name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% else %}
+    <p class="mt-4 text-muted">Результаты пока не добавлены.</p>
+  {% endif %}
+</div>
 {% endblock %}
+
