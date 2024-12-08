@@ -3,11 +3,11 @@
     "model": "admin.logentry",
     "pk": 1,
     "fields": {
-        "action_time": "2024-12-07T18:33:52.621Z",
+        "action_time": "2024-12-07T21:57:29.591Z",
         "user": 1,
-        "content_type": 11,
+        "content_type": 8,
         "object_id": "1",
-        "object_repr": "Молодёжный",
+        "object_repr": "ПРОГРАММИРОВАНИ",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -16,11 +16,11 @@
     "model": "admin.logentry",
     "pk": 2,
     "fields": {
-        "action_time": "2024-12-07T18:33:58.172Z",
+        "action_time": "2024-12-07T21:57:53.507Z",
         "user": 1,
-        "content_type": 11,
+        "content_type": 8,
         "object_id": "2",
-        "object_repr": "Взрослый",
+        "object_repr": "ПРОГРАММИРОВАНИ",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -29,11 +29,11 @@
     "model": "admin.logentry",
     "pk": 3,
     "fields": {
-        "action_time": "2024-12-07T18:34:03.407Z",
+        "action_time": "2024-12-07T21:58:06.592Z",
         "user": 1,
-        "content_type": 11,
+        "content_type": 8,
         "object_id": "3",
-        "object_repr": "Юношеский",
+        "object_repr": "ПРОГРАММИРОВАНИ",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -42,11 +42,11 @@
     "model": "admin.logentry",
     "pk": 4,
     "fields": {
-        "action_time": "2024-12-07T18:34:29.371Z",
+        "action_time": "2024-12-07T21:58:56.593Z",
         "user": 1,
         "content_type": 13,
         "object_id": "1",
-        "object_repr": "Соревнования",
+        "object_repr": "ПЕРВЕНСТВО",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -55,11 +55,11 @@
     "model": "admin.logentry",
     "pk": 5,
     "fields": {
-        "action_time": "2024-12-07T18:34:34.545Z",
+        "action_time": "2024-12-07T21:59:04.556Z",
         "user": 1,
         "content_type": 13,
         "object_id": "2",
-        "object_repr": "Чемпионат",
+        "object_repr": "ЧЕМПИОНАТ",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -68,13 +68,442 @@
     "model": "admin.logentry",
     "pk": 6,
     "fields": {
-        "action_time": "2024-12-07T18:34:38.588Z",
+        "action_time": "2024-12-07T22:01:28.214Z",
         "user": 1,
-        "content_type": 13,
-        "object_id": "3",
-        "object_repr": "Первенство",
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "Республика Адыгея",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2024-12-07T22:01:36.338Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "Республика Ингушетия",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2024-12-07T22:01:42.760Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "3",
+        "object_repr": "Республика Коми",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2024-12-07T22:01:51.098Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "4",
+        "object_repr": "Кабардино-Балкарская Республика",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2024-12-07T22:01:59.768Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "5",
+        "object_repr": "Карачаево-Черкесская Республика",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2024-12-07T22:02:08.863Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "6",
+        "object_repr": "Республика Марий Эл",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2024-12-07T22:03:34.734Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "4",
+        "object_repr": "Кабардино-Балкарская Республика",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2024-12-07T22:03:53.525Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "3",
+        "object_repr": "Республика Коми",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2024-12-07T22:03:57.719Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "Республика Ингушетия",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2024-12-07T22:04:01.111Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "5",
+        "object_repr": "Карачаево-Черкесская Республика",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2024-12-07T22:04:04.245Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "Республика Адыгея",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2024-12-07T22:04:07.450Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "6",
+        "object_repr": "Республика Марий Эл",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2024-12-07T22:06:56.075Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "7",
+        "object_repr": "Камчатский край",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2024-12-07T22:07:15.220Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "8",
+        "object_repr": "Брянская область",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2024-12-07T22:07:40.458Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "9",
+        "object_repr": "Республика Адыгея",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2024-12-07T22:08:11.827Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "10",
+        "object_repr": "Республика Карелия",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2024-12-07T22:08:45.293Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "11",
+        "object_repr": "Республика Алтай",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2024-12-07T22:08:52.682Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "12",
+        "object_repr": "Курганская область",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2024-12-07T22:09:02.579Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "13",
+        "object_repr": "Республика Башкортостан",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2024-12-07T22:09:12.933Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "14",
+        "object_repr": "Республика Дагестан",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2024-12-07T22:09:24.700Z",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "15",
+        "object_repr": "Донецкая Народная Республика",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2024-12-07T22:14:38.612Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Молодежный (рез",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2024-12-07T22:15:33.588Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(БРЯНСКАЯ ОБЛАСТЬ)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2024-12-07T22:20:09.430Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(ДОНЕЦКАЯ НАРОДНАЯ РЕСПУБЛИКА)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2024-12-07T22:26:17.090Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(ДОНЕЦКАЯ НАРОДНАЯ РЕСПУБЛИКА)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2024-12-07T22:26:47.109Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(КАМЧАТСКИЙ КРАЙ)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u041d\\u0430\\u0437\\u0432\\u0430\\u043d\\u0438\\u0435\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2024-12-07T22:27:35.766Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(КАМЧАТСКИЙ КРАЙ)",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2024-12-07T22:30:06.729Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "4",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(КУРГАНСКАЯ ОБЛАСТЬ))",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2024-12-07T22:32:03.816Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "5",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА АДЫГЕЯ)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2024-12-07T22:35:12.416Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА АЛТАЙ)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2024-12-07T22:36:45.603Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "7",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА БАШКОРТОСТАН)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2024-12-07T22:39:20.273Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "8",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА ДАГЕСТАН)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2024-12-07T22:42:03.227Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "9",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА КАРЕЛИЯ))",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2024-12-07T23:45:34.496Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "6",
+        "object_repr": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА АЛТАЙ)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u043c\\u0435\\u0440\\u043e\\u043f\\u0440\\u0438\\u044f\\u0442\\u0438\\u044f\"]}}]"
     }
 },
 {
@@ -803,33 +1232,89 @@
 },
 {
     "model": "sessions.session",
-    "pk": "p9yhljzr6nwxcq25zlt0vh47uztjumkr",
+    "pk": "lcrkphjawnsovbnnngqilurdrwr4ubad",
     "fields": {
-        "session_data": ".eJxVj8tOxDAMAP_F56rKo0mzPXLnCxCqHMelATZZNakArfbfaWAve7M845F8BSTKe6oz7nXlVCNhjTnNZ65rDgWmlyv8zzDBBUv5yluADrDCJEetzclarXpnjHJCdbAX3hKe-bDr4dxeO_hLzw3MsVUUPOw80genBsI7prfcU051i75vSn-npX_OgT-f7u5DYMWyHtdeOyUCsqbFWTuiGll54QZSYiHL3lpJJynRGz-SXiQPRprBeKtdcEZyixYupX3P35e4_cAkbr91hV9T:1tJzg0:C2cn3OyhvHLzXs2BP9NRCPPu_vAXoX3CXxFgCtoTaCU",
-        "expire_date": "2024-12-21T18:37:12.862Z"
+        "session_data": ".eJxVj8FOwzAMQP_F56py4jTJeuTOFyBUuYlHCyyZmlSApv07C-yym-X3_CRfgEPIe6oT73WRVNfAdc1pOkldciwwvlzgf4YRzlzKV94idMAVRuWIrBo0Dr0dtNfGdrAX2RKf5GYrTXB97eAvPTUwra2i4GE3c_iQ1EB85_SW-5BT3da5b0p_p6V_zlE-n-7uQ2DhstyurdYOWRHPiIaVpcOA6GdnUVNEd_R0FOO8I0d-iMYfCAMHrT0JGlLSokVKad_L93ndfmDE6y9zxVzd:1tK4VZ:cmKFu3JJ4kh-maOnb8DioawM5rBRHKLAP3szq5OzCLU",
+        "expire_date": "2024-12-21T23:46:45.670Z"
     }
 },
 {
     "model": "users.region",
-    "pk": 1,
+    "pk": 7,
     "fields": {
-        "name": "Республика Татарстан"
+        "name": "Камчатский край"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 8,
+    "fields": {
+        "name": "Брянская область"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 9,
+    "fields": {
+        "name": "Республика Адыгея"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 10,
+    "fields": {
+        "name": "Республика Карелия"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 11,
+    "fields": {
+        "name": "Республика Алтай"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 12,
+    "fields": {
+        "name": "Курганская область"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 13,
+    "fields": {
+        "name": "Республика Башкортостан"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 14,
+    "fields": {
+        "name": "Республика Дагестан"
+    }
+},
+{
+    "model": "users.region",
+    "pk": 15,
+    "fields": {
+        "name": "Донецкая Народная Республика"
     }
 },
 {
     "model": "users.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$600000$1eikVKmFGBT2jxhiNZgprZ$U+fZ15XJSWhNzjeAGgHUdEzz78s25KatueMwpDI63sA=",
-        "last_login": "2024-12-07T18:36:51.587Z",
+        "password": "pbkdf2_sha256$600000$ZprhLzhGFCQFJZeXLYJFEB$1zL45BKUi/CNtev2uulG696vex3s4sl4fhWc4UHVBRQ=",
+        "last_login": "2024-12-07T23:46:45.660Z",
         "is_superuser": true,
-        "username": "mar1o",
+        "username": "123",
         "first_name": "",
         "last_name": "",
-        "email": "",
+        "email": "damirfaz239@gmail.com",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2024-12-07T18:28:20.443Z",
+        "date_joined": "2024-12-07T21:52:06.398Z",
         "avatar": "",
         "region": null,
         "groups": [],
@@ -840,18 +1325,178 @@
     "model": "users.user",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$600000$4y4SPIa96itjyzKaedWoz0$yfbcArHM/PfMRCWX1cv8jSA+WagE7LCIv7p1ZPvJLS8=",
-        "last_login": "2024-12-07T18:37:12.858Z",
+        "password": "pbkdf2_sha256$600000$N53R2t0tRswzpnEF02lqzM$i2673gXzP+41DemiiUbjXPsPHWHiQ+XuJdx9Ep/9tzA=",
+        "last_login": "2024-12-07T23:02:18.501Z",
         "is_superuser": false,
-        "username": "tat",
-        "first_name": "Марсель",
-        "last_name": "Хуснуллин",
-        "email": "tat@tat.ru",
+        "username": "OLEG",
+        "first_name": "Олег",
+        "last_name": "Казаков",
+        "email": "bryancsk@gmail.com",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-12-07T18:32:00.313Z",
+        "date_joined": "2024-12-07T22:47:15.022Z",
         "avatar": "",
-        "region": 1,
+        "region": 8,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$wXxw17JRiRnTRZyxxiB2ch$XbBbGkniieqIS01qcDyUpb+8CsorslNGkcLlQCufpLw=",
+        "last_login": "2024-12-07T23:19:55.834Z",
+        "is_superuser": false,
+        "username": "IGOR",
+        "first_name": "Игорь",
+        "last_name": "Станков",
+        "email": "doneck@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:48:34.772Z",
+        "avatar": "",
+        "region": 15,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$rxAhEJPETffTpu6jAObgI5$6RgJs9UJraU7GnmYJ0FZcPHGs70Flx9ANciSGx3o45U=",
+        "last_login": "2024-12-07T23:38:17.853Z",
+        "is_superuser": false,
+        "username": "Marat",
+        "first_name": "Марат",
+        "last_name": "Алиев",
+        "email": "adygea@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:50:59.930Z",
+        "avatar": "",
+        "region": 9,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$wEPsExI6uv8fSIfCVwaCaw$3npINJtubYcOVlsKHHrwT5pCcYT4YWNW8XiyD6pYpDU=",
+        "last_login": "2024-12-07T23:24:48.762Z",
+        "is_superuser": false,
+        "username": "Vladimir",
+        "first_name": "Владимир",
+        "last_name": "Дресвянский",
+        "email": "kamchatka@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:52:20.582Z",
+        "avatar": "",
+        "region": 7,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$GRiKRzigFkoyhQ5UbwHOo7$Fz42wxzcwQWwK2cYEU7BnTze98O8kjT+272OSMn2+tQ=",
+        "last_login": "2024-12-07T23:36:59.324Z",
+        "is_superuser": false,
+        "username": "Michail",
+        "first_name": "Михаил",
+        "last_name": "Белоусов",
+        "email": "kurganskaia@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:53:53.266Z",
+        "avatar": "",
+        "region": 12,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$uTrbhn8LPX4r9qskc9111d$sX+Jf0b5qggXAYFFjTsQq3dBaQAP0XsbWuCXDfeQgcQ=",
+        "last_login": "2024-12-07T23:46:04.420Z",
+        "is_superuser": false,
+        "username": "Svetlana",
+        "first_name": "Светлана",
+        "last_name": "Шило",
+        "email": "altay@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:55:58.356Z",
+        "avatar": "",
+        "region": 11,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$NY9SPGXKdGq32TJdP4GWHC$67+n+6y23r9jrtpRQ50n/poliILV+pl4SulSsRuuxls=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Ulia",
+        "first_name": "Юлия",
+        "last_name": "Валиахметова",
+        "email": "bashkortostan@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:57:10.753Z",
+        "avatar": "",
+        "region": 13,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$sfqS8rsybfRWJc6OTA96Gc$P0bS6XqmXMq5m+wuvhpuW+bYWLL10KZ+3oRMrth0eiU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Magomed",
+        "first_name": "Абдулаев",
+        "last_name": "Магомед",
+        "email": "dagestan@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T22:58:43.695Z",
+        "avatar": "",
+        "region": 14,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$Fz9OczO9vBRWDv5xSx5CRd$F8Zcoph3Xh1aQ29DbHpqzpsrqAc2XosAX2KiiIzV+/I=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Leha",
+        "first_name": "Александр",
+        "last_name": "Каширин",
+        "email": "karelia@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-12-07T23:00:14.685Z",
+        "avatar": "",
+        "region": 10,
         "groups": [],
         "user_permissions": []
     }
@@ -860,60 +1505,1924 @@
     "model": "meropriations.structure",
     "pk": 1,
     "fields": {
-        "name": "Молодёжный"
-    }
-},
-{
-    "model": "meropriations.structure",
-    "pk": 2,
-    "fields": {
-        "name": "Взрослый"
-    }
-},
-{
-    "model": "meropriations.structure",
-    "pk": 3,
-    "fields": {
-        "name": "Юношеский"
+        "name": "Молодежный (резервный) состав"
     }
 },
 {
     "model": "meropriations.tip",
     "pk": 1,
     "fields": {
-        "name": "Соревнования"
+        "name": "ПЕРВЕНСТВО"
     }
 },
 {
     "model": "meropriations.tip",
     "pk": 2,
     "fields": {
-        "name": "Чемпионат"
+        "name": "ЧЕМПИОНАТ"
     }
 },
 {
-    "model": "meropriations.tip",
+    "model": "meropriations.discipline",
+    "pk": 1,
+    "fields": {
+        "name": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ"
+    }
+},
+{
+    "model": "meropriations.discipline",
+    "pk": 2,
+    "fields": {
+        "name": "ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ"
+    }
+},
+{
+    "model": "meropriations.discipline",
     "pk": 3,
     "fields": {
-        "name": "Первенство"
+        "name": "ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ"
     }
 },
 {
     "model": "meropriations.meropriation",
     "pk": 1,
     "fields": {
-        "region": 1,
+        "region": 8,
         "status": "Принят",
-        "name": "Соревнования Татарстана по СП",
-        "text": "Описание Соревнования Татарстана по СП",
-        "count": 125,
-        "place": "Республика Татарстан",
-        "normal_place": "Иннополис Университет",
-        "structure": 2,
-        "tip": 2,
-        "disciplines": "Нет",
-        "date_start": "2025-09-25",
-        "date_end": "2025-09-27"
+        "name": "ПЕРВЕНСТВО РЕГИОНА(БРЯНСКАЯ ОБЛАСТЬ)",
+        "text": "Отборочный на округу России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Брянский государственный инженерно-технологический университет",
+        "normal_place": "Главное здание брянского государственного инженерно-технологического университета",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 2,
+    "fields": {
+        "region": 15,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(ДОНЕЦКАЯ НАРОДНАЯ РЕСПУБЛИКА)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Донецкий государственный технический университет",
+        "normal_place": "Донецкий государственно технический университет",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 3,
+    "fields": {
+        "region": 7,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(КАМЧАТСКИЙ КРАЙ)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "база регионального центра «Восход»",
+        "normal_place": "главная база регионального центра «Восход»",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 4,
+    "fields": {
+        "region": 12,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(КУРГАНСКАЯ ОБЛАСТЬ))",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "курганский государственный университет",
+        "normal_place": "курганский государственный университет главное здание",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 5,
+    "fields": {
+        "region": 9,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА АДЫГЕЯ)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Институт точных наук и цифровых технологий",
+        "normal_place": "Институт точных наук и цифровых технологий, главное здание",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 6,
+    "fields": {
+        "region": 11,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА АЛТАЙ)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Горно-Алтайский государственный университет",
+        "normal_place": "Горно-Алтайский государственный университет главное здание",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 7,
+    "fields": {
+        "region": 13,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА БАШКОРТОСТАН)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Межвузовский кампус Евразийского НОЦ мирового уровня в Уфе",
+        "normal_place": "Межвузовский кампус Евразийского НОЦ мирового уровня в Уфе, главное здание",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 8,
+    "fields": {
+        "region": 14,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА ДАГЕСТАН)",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Донский государственный технический университет",
+        "normal_place": "Донский государственный технический университет(филиал в Каспийске)",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.meropriation",
+    "pk": 9,
+    "fields": {
+        "region": 10,
+        "status": "Принят",
+        "name": "ПЕРВЕНСТВО РЕГИОНА(РЕСПУБЛИКА КАРЕЛИЯ))",
+        "text": "Отборочный на округ России среди молодежи по спортивному программированию",
+        "count": 200,
+        "place": "Колледж технологии и предпринимательства в Петрозаводске",
+        "normal_place": "Колледж технологии и предпринимательства в Петрозаводске(главное здание)",
+        "structure": 1,
+        "tip": 1,
+        "disciplines": "ПРОГРАММИРОВАНИЕ СИСТЕМ ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ, ПРОГРАММИРОВАНИЕ ПРОДУКТОВОЕ, ПРОГРАММИРОВАНИЕ АЛГОРИТМИЧЕСКОЕ",
+        "date_start": "2024-11-22",
+        "date_end": "2024-11-24"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 7,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 8,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 9,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 10,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 11,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 12,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 13,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 14,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 15,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 16,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 17,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 18,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 19,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 20,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 21,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 22,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 23,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 24,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 25,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 26,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 27,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 28,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 29,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 30,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 31,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 32,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 33,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 34,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 35,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 36,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 37,
+    "fields": {
+        "status": "Победитель",
+        "name": "Команда 1"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 38,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 2"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 39,
+    "fields": {
+        "status": "Призёр",
+        "name": "Команда 3"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 40,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 4"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 41,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 5"
+    }
+},
+{
+    "model": "meropriations.team",
+    "pk": 42,
+    "fields": {
+        "status": "Участник",
+        "name": "Команда 6"
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 22,
+    "fields": {
+        "name": "Иванова Полина Даниловна",
+        "team": 7
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 23,
+    "fields": {
+        "name": "Горлова Дарья Павловна",
+        "team": 7
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 24,
+    "fields": {
+        "name": "Петров Леонид Николаевич",
+        "team": 7
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 25,
+    "fields": {
+        "name": "Семенов Егор Денисович",
+        "team": 8
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 26,
+    "fields": {
+        "name": "Крылов Максим Михайлович",
+        "team": 8
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 27,
+    "fields": {
+        "name": "Павлов Никита Андреевич",
+        "team": 8
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 28,
+    "fields": {
+        "name": "Федоров Марк Кириллович",
+        "team": 9
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 29,
+    "fields": {
+        "name": "Новиков Матвей Львович",
+        "team": 9
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 30,
+    "fields": {
+        "name": "Сергеев Платон Дмитриевич",
+        "team": 9
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 31,
+    "fields": {
+        "name": "Чернова Александра Даниэльевна",
+        "team": 9
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 32,
+    "fields": {
+        "name": "Булгаков Иван Михайлович",
+        "team": 10
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 33,
+    "fields": {
+        "name": "Старостина Виктория Глебовна",
+        "team": 10
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 34,
+    "fields": {
+        "name": "Калинин Савелий Данилович",
+        "team": 10
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 35,
+    "fields": {
+        "name": "Абрамов Николай Вячеславович",
+        "team": 10
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 36,
+    "fields": {
+        "name": "Миронова Варвара Станиславовна",
+        "team": 10
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 37,
+    "fields": {
+        "name": "Данилова Аделина Артёмовна",
+        "team": 11
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 38,
+    "fields": {
+        "name": "Королева Василиса Григорьевна",
+        "team": 11
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 39,
+    "fields": {
+        "name": "Бирюкова Полина Ильинична",
+        "team": 11
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 40,
+    "fields": {
+        "name": "Демидов Дмитрий Иванович",
+        "team": 11
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 41,
+    "fields": {
+        "name": "Кузнецова Мила Тимофеевна",
+        "team": 12
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 42,
+    "fields": {
+        "name": "Лобанов Константин Александрович",
+        "team": 12
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 43,
+    "fields": {
+        "name": "Булгаков Иван Михайлович",
+        "team": 13
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 44,
+    "fields": {
+        "name": "Горлова Дарья Павловна",
+        "team": 13
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 45,
+    "fields": {
+        "name": "Демина Агата Михайловна",
+        "team": 13
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 46,
+    "fields": {
+        "name": "Абрамов Николай Вячеславович",
+        "team": 13
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 47,
+    "fields": {
+        "name": "Олейникова Виктория Максимовна",
+        "team": 13
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 48,
+    "fields": {
+        "name": "Фомичева Мария Егоровна",
+        "team": 14
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 49,
+    "fields": {
+        "name": "Иванова Полина Даниловна",
+        "team": 14
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 50,
+    "fields": {
+        "name": "Тимофеев Алексей Матвеевич",
+        "team": 14
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 51,
+    "fields": {
+        "name": "Федоров Марк Кириллович",
+        "team": 15
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 52,
+    "fields": {
+        "name": "Беляков Елисей Елисеевич",
+        "team": 15
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 53,
+    "fields": {
+        "name": "Сергеев Платон Дмитриевич",
+        "team": 15
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 54,
+    "fields": {
+        "name": "Чернова Александра Даниэльевна",
+        "team": 15
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 55,
+    "fields": {
+        "name": "Еремин Борис Никитич",
+        "team": 16
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 56,
+    "fields": {
+        "name": "Кудрявцев Александр Алексеевич",
+        "team": 16
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 57,
+    "fields": {
+        "name": "Мельникова Аиша Александровна",
+        "team": 16
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 58,
+    "fields": {
+        "name": "Данилова Аделина Артёмовна",
+        "team": 17
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 59,
+    "fields": {
+        "name": "Федоров Марк Кириллович",
+        "team": 17
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 60,
+    "fields": {
+        "name": "Сергеев Платон Дмитриевич",
+        "team": 17
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 61,
+    "fields": {
+        "name": "Кузнецова Мила Тимофеевна",
+        "team": 18
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 62,
+    "fields": {
+        "name": "Павлов Никита Андреевич",
+        "team": 18
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 63,
+    "fields": {
+        "name": "Бирюкова Полина Ильинична",
+        "team": 18
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 64,
+    "fields": {
+        "name": "Орлова Елизавета Игоревна",
+        "team": 19
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 65,
+    "fields": {
+        "name": "Кузнецов Никита Романович",
+        "team": 19
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 66,
+    "fields": {
+        "name": "Высоцкий Матвей Максимович",
+        "team": 19
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 67,
+    "fields": {
+        "name": "Андреев Георгий Михайлович",
+        "team": 19
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 68,
+    "fields": {
+        "name": "Федотова Мария Олеговна",
+        "team": 19
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 69,
+    "fields": {
+        "name": "Воронин Тимофей Андреевич",
+        "team": 20
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 70,
+    "fields": {
+        "name": "Новиков Артём Максимович",
+        "team": 20
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 71,
+    "fields": {
+        "name": "Носов Вадим Филиппович",
+        "team": 20
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 72,
+    "fields": {
+        "name": "Федотова Мария Олеговна",
+        "team": 20
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 73,
+    "fields": {
+        "name": "Соколов Сергей Артёмович",
+        "team": 21
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 74,
+    "fields": {
+        "name": "Тихомиров Константин Ильич",
+        "team": 21
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 75,
+    "fields": {
+        "name": "Сергеев Платон Дмитриевич",
+        "team": 21
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 76,
+    "fields": {
+        "name": "Афанасьева Полина Юрьевна",
+        "team": 21
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 77,
+    "fields": {
+        "name": "Некрасова Амира Владиславовна",
+        "team": 22
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 78,
+    "fields": {
+        "name": "Кудрявцев Александр Алексеевич",
+        "team": 22
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 79,
+    "fields": {
+        "name": "Озерова Анна Тимофеевна",
+        "team": 22
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 80,
+    "fields": {
+        "name": "Кошелев Семён Константинович",
+        "team": 23
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 81,
+    "fields": {
+        "name": "Смирнова Ксения Владиславовна",
+        "team": 23
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 82,
+    "fields": {
+        "name": "Давыдов Никита Артёмович",
+        "team": 23
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 83,
+    "fields": {
+        "name": "Соколов Артём Дмитриевич",
+        "team": 23
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 84,
+    "fields": {
+        "name": "Рыбаков Арсений Семёнович",
+        "team": 23
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 85,
+    "fields": {
+        "name": "Волков Артём Фёдорович",
+        "team": 24
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 86,
+    "fields": {
+        "name": "Лукьянова Кристина Фёдоровна",
+        "team": 24
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 87,
+    "fields": {
+        "name": "Сидорова Анастасия Егоровна",
+        "team": 24
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 88,
+    "fields": {
+        "name": "Полякова Надежда Львовна",
+        "team": 25
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 89,
+    "fields": {
+        "name": "Лаптев Олег Константинович",
+        "team": 25
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 90,
+    "fields": {
+        "name": "Губанова София Павловна",
+        "team": 25
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 91,
+    "fields": {
+        "name": "Шевелев Егор Артёмович",
+        "team": 25
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 92,
+    "fields": {
+        "name": "Попов Тимур Артёмович",
+        "team": 26
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 93,
+    "fields": {
+        "name": "Андреев Пётр Андреевич",
+        "team": 26
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 94,
+    "fields": {
+        "name": "Петрова Марьяна Фёдоровна",
+        "team": 26
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 95,
+    "fields": {
+        "name": "Федотова Мария Олеговна",
+        "team": 26
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 96,
+    "fields": {
+        "name": "Осипова Агата Ивановна",
+        "team": 27
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 97,
+    "fields": {
+        "name": "Тихомиров Константин Ильич",
+        "team": 27
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 98,
+    "fields": {
+        "name": "Минаев Кирилл Максимович",
+        "team": 27
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 99,
+    "fields": {
+        "name": "Беликова Ева Никитична",
+        "team": 27
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 100,
+    "fields": {
+        "name": "Федотова Мира Александровна",
+        "team": 28
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 101,
+    "fields": {
+        "name": "Соловьев Давид Ильич",
+        "team": 28
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 102,
+    "fields": {
+        "name": "Родина Стефания Львовна",
+        "team": 28
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 103,
+    "fields": {
+        "name": "Новикова Анастасия Тимофеевна",
+        "team": 29
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 104,
+    "fields": {
+        "name": "Смирнова Ксения Владиславовна",
+        "team": 29
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 105,
+    "fields": {
+        "name": "Никифорова Амалия Никитична",
+        "team": 29
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 106,
+    "fields": {
+        "name": "Семенов Егор Алексеевич",
+        "team": 29
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 107,
+    "fields": {
+        "name": "Волков Артём Фёдорович",
+        "team": 30
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 108,
+    "fields": {
+        "name": "Александрова Полина Матвеевна",
+        "team": 30
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 109,
+    "fields": {
+        "name": "Давыдов Илья Александрович",
+        "team": 30
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 110,
+    "fields": {
+        "name": "Тихонова Маргарита Григорьевна",
+        "team": 31
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 111,
+    "fields": {
+        "name": "Цветков Николай Матвеевич",
+        "team": 31
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 112,
+    "fields": {
+        "name": "Прохорова Алиса Ивановна",
+        "team": 31
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 113,
+    "fields": {
+        "name": "Гусева София Егоровна",
+        "team": 31
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 114,
+    "fields": {
+        "name": "Зорин Марк Маркович",
+        "team": 31
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 115,
+    "fields": {
+        "name": "Кузнецов Борис Кириллович",
+        "team": 32
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 116,
+    "fields": {
+        "name": "Павлова Анастасия Олеговна",
+        "team": 32
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 117,
+    "fields": {
+        "name": "Федорова Ксения Семёновна",
+        "team": 32
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 118,
+    "fields": {
+        "name": "Кузьмин Владислав Константинович",
+        "team": 32
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 119,
+    "fields": {
+        "name": "Горшков Михаил Александрович",
+        "team": 33
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 120,
+    "fields": {
+        "name": "Соколова Варвара Викторовна",
+        "team": 33
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 121,
+    "fields": {
+        "name": "Петров Лев Андреевич",
+        "team": 33
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 122,
+    "fields": {
+        "name": "Капустин Максим Тимурович",
+        "team": 33
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 123,
+    "fields": {
+        "name": "Кулешов Алексей Денисович",
+        "team": 34
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 124,
+    "fields": {
+        "name": "Горелова Милана Михайловна",
+        "team": 34
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 125,
+    "fields": {
+        "name": "Федорова Ульяна Марковна",
+        "team": 34
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 126,
+    "fields": {
+        "name": "Дьяков Андрей Львович",
+        "team": 34
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 127,
+    "fields": {
+        "name": "Алексеев Владимир Иванович",
+        "team": 35
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 128,
+    "fields": {
+        "name": "Филатова Полина Юрьевна",
+        "team": 35
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 129,
+    "fields": {
+        "name": "Лебедева Валерия Ивановна",
+        "team": 35
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 130,
+    "fields": {
+        "name": "Лебедева Элина Кирилловна",
+        "team": 36
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 131,
+    "fields": {
+        "name": "Щербаков Роман Романович",
+        "team": 36
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 132,
+    "fields": {
+        "name": "Розанов Филипп Дмитриевич",
+        "team": 36
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 133,
+    "fields": {
+        "name": "Розанов Филипп Дмитриевич",
+        "team": 37
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 134,
+    "fields": {
+        "name": "Цветков Николай Матвеевич",
+        "team": 37
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 135,
+    "fields": {
+        "name": "Зорин Марк Маркович",
+        "team": 37
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 136,
+    "fields": {
+        "name": "Гусева София Егоровна",
+        "team": 37
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 137,
+    "fields": {
+        "name": "Петров Лев Андреевич",
+        "team": 37
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 138,
+    "fields": {
+        "name": "Кузьмин Владислав Константинович",
+        "team": 38
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 139,
+    "fields": {
+        "name": "Сорокина Елизавета Николаевна",
+        "team": 38
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 140,
+    "fields": {
+        "name": "Лебедева Валерия Ивановна",
+        "team": 38
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 141,
+    "fields": {
+        "name": "Дьяков Андрей Львович",
+        "team": 38
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 142,
+    "fields": {
+        "name": "Горшков Михаил Александрович",
+        "team": 39
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 143,
+    "fields": {
+        "name": "Лебедева Элина Кирилловна",
+        "team": 39
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 144,
+    "fields": {
+        "name": "Петров Лев Андреевич",
+        "team": 39
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 145,
+    "fields": {
+        "name": "Капустин Максим Тимурович",
+        "team": 39
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 146,
+    "fields": {
+        "name": "Филатова Полина Юрьевна",
+        "team": 40
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 147,
+    "fields": {
+        "name": "Кузнецов Максим Леонидович",
+        "team": 40
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 148,
+    "fields": {
+        "name": "Федорова Ульяна Марковна",
+        "team": 40
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 149,
+    "fields": {
+        "name": "Прохорова Алиса Ивановна",
+        "team": 40
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 150,
+    "fields": {
+        "name": "Федорова Ксения Семёновна",
+        "team": 41
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 151,
+    "fields": {
+        "name": "Павлова Анастасия Олеговна",
+        "team": 41
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 152,
+    "fields": {
+        "name": "Тихонова Маргарита Григорьевна",
+        "team": 41
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 153,
+    "fields": {
+        "name": "Горелова Милана Михайловна",
+        "team": 42
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 154,
+    "fields": {
+        "name": "Щербаков Роман Романович",
+        "team": 42
+    }
+},
+{
+    "model": "meropriations.participant",
+    "pk": 155,
+    "fields": {
+        "name": "Дементьев Константин Ильич",
+        "team": 42
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 7,
+    "fields": {
+        "meropriation": 1,
+        "captain": 22,
+        "team": 7,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 8,
+    "fields": {
+        "meropriation": 1,
+        "captain": 25,
+        "team": 8,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 9,
+    "fields": {
+        "meropriation": 1,
+        "captain": 28,
+        "team": 9,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 10,
+    "fields": {
+        "meropriation": 1,
+        "captain": 32,
+        "team": 10,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 11,
+    "fields": {
+        "meropriation": 1,
+        "captain": 37,
+        "team": 11,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 12,
+    "fields": {
+        "meropriation": 1,
+        "captain": 41,
+        "team": 12,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 13,
+    "fields": {
+        "meropriation": 2,
+        "captain": 43,
+        "team": 13,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 14,
+    "fields": {
+        "meropriation": 2,
+        "captain": 48,
+        "team": 14,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 15,
+    "fields": {
+        "meropriation": 2,
+        "captain": 51,
+        "team": 15,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 16,
+    "fields": {
+        "meropriation": 2,
+        "captain": 55,
+        "team": 16,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 17,
+    "fields": {
+        "meropriation": 2,
+        "captain": 58,
+        "team": 17,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 18,
+    "fields": {
+        "meropriation": 2,
+        "captain": 61,
+        "team": 18,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 19,
+    "fields": {
+        "meropriation": 3,
+        "captain": 64,
+        "team": 19,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 20,
+    "fields": {
+        "meropriation": 3,
+        "captain": 69,
+        "team": 20,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 21,
+    "fields": {
+        "meropriation": 3,
+        "captain": 73,
+        "team": 21,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 22,
+    "fields": {
+        "meropriation": 3,
+        "captain": 77,
+        "team": 22,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 23,
+    "fields": {
+        "meropriation": 3,
+        "captain": 80,
+        "team": 23,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 24,
+    "fields": {
+        "meropriation": 3,
+        "captain": 85,
+        "team": 24,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 25,
+    "fields": {
+        "meropriation": 4,
+        "captain": 88,
+        "team": 25,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 26,
+    "fields": {
+        "meropriation": 4,
+        "captain": 92,
+        "team": 26,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 27,
+    "fields": {
+        "meropriation": 4,
+        "captain": 96,
+        "team": 27,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 28,
+    "fields": {
+        "meropriation": 4,
+        "captain": 100,
+        "team": 28,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 29,
+    "fields": {
+        "meropriation": 4,
+        "captain": 103,
+        "team": 29,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 30,
+    "fields": {
+        "meropriation": 4,
+        "captain": 107,
+        "team": 30,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 31,
+    "fields": {
+        "meropriation": 5,
+        "captain": 110,
+        "team": 31,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 32,
+    "fields": {
+        "meropriation": 5,
+        "captain": 115,
+        "team": 32,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 33,
+    "fields": {
+        "meropriation": 5,
+        "captain": 119,
+        "team": 33,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 34,
+    "fields": {
+        "meropriation": 5,
+        "captain": 123,
+        "team": 34,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 35,
+    "fields": {
+        "meropriation": 5,
+        "captain": 127,
+        "team": 35,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 36,
+    "fields": {
+        "meropriation": 5,
+        "captain": 130,
+        "team": 36,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 37,
+    "fields": {
+        "meropriation": 6,
+        "captain": 133,
+        "team": 37,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 38,
+    "fields": {
+        "meropriation": 6,
+        "captain": 138,
+        "team": 38,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 39,
+    "fields": {
+        "meropriation": 6,
+        "captain": 142,
+        "team": 39,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 40,
+    "fields": {
+        "meropriation": 6,
+        "captain": 146,
+        "team": 40,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 41,
+    "fields": {
+        "meropriation": 6,
+        "captain": 150,
+        "team": 41,
+        "file": ""
+    }
+},
+{
+    "model": "meropriations.result",
+    "pk": 42,
+    "fields": {
+        "meropriation": 6,
+        "captain": 153,
+        "team": 42,
+        "file": ""
     }
 },
 {
@@ -921,7 +3430,87 @@
     "pk": 1,
     "fields": {
         "user": 2,
-        "email": "tat@tat.ru",
+        "email": "bryancsk@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "email": "doneck@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "email": "adygea@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 4,
+    "fields": {
+        "user": 5,
+        "email": "kamchatka@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 5,
+    "fields": {
+        "user": 6,
+        "email": "kurganskaia@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 6,
+    "fields": {
+        "user": 7,
+        "email": "altay@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 7,
+    "fields": {
+        "user": 8,
+        "email": "bashkortostan@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 8,
+    "fields": {
+        "user": 9,
+        "email": "dagestan@gmail.com",
+        "verified": false,
+        "primary": true
+    }
+},
+{
+    "model": "account.emailaddress",
+    "pk": 9,
+    "fields": {
+        "user": 10,
+        "email": "karelia@gmail.com",
         "verified": false,
         "primary": true
     }

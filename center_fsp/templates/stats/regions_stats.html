@@ -3,7 +3,7 @@
 {% load static %}
 {% load active_link_tags %}
 {% load i18n %}
-{% block title %}Аналитика по пользователям{% endblock %}
+{% block title %}Аналитика по регионам{% endblock %}
 
 {% block content %}
 
@@ -11,37 +11,41 @@
   <div class="container d-flex justify-content-between align-items-center py-3">
     <nav class="my-auto nav-item dropdown">
       <a href="{% url 'stats:region_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Регионы" %}</a>
-      <a href="{% url 'stats:team_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Команды" %}</a>
-      <a href="{% url 'stats:user_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Участники" %}</a>
+      <a href="{% url 'stats:team_statistics' %}" class="{% if view_name == 'stats:team_statistics' %}active{% endif %}">{% trans "Команды" %}</a>
+      <a href="{% url 'stats:user_statistics' %}" class="{% if view_name == 'stats:user_statistics' %}active{% endif %}">{% trans "Участники" %}</a>
     </nav>
   </div>
 </header>
+
 <h2>Аналитика по регионам</h2>
+
 <table>
   <thead>
-  <tr>
-    <th>Регион</th>
-    <th>Количество мероприятий</th>
-  </tr>
+    <tr>
+      <th>Регион</th>
+      <th>Количество мероприятий</th>
+      <th>Количество участников</th>
+    </tr>
   </thead>
   <tbody>
-  {% for stat in region_stats %}
-  <tr>
-    <td>{{ stat.meropriation__region__name }}</td>
-    <td>{{ stat.total }}</td>
-  </tr>
-  {% endfor %}
+    {% for stat in region_stats %}
+    <tr>
+      <td>{{ stat.region__name }}</td>
+      <td>{{ stat.total_events }}</td>
+      <td>{{ stat.total_participants }}</td>
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
 
-<script src="{% static '/js/chart.js' %}"></script>
+<script src="{% static 'js/chart.js' %}"></script>
 <canvas id="regionStatsChart" style="max-width:1000px; max-height:600px;"></canvas>
+
 <script>
     const regionData = {{ region_stats|safe }};
-
-    const labels = regionData.map(item => item.meropriation__region__name);
+    const labels = regionData.map(item => item.region__name);
     const data = regionData.map(item => item.total_events);
-    const participants = regionData.map(item => item.total_participants);
+    const participants = regionData.map(item => item.total_participants || 0);
 
     const ctx = document.getElementById('regionStatsChart').getContext('2d');
     new Chart(ctx, {
@@ -61,8 +65,7 @@
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
-            },
-            ]
+            }]
         },
         options: {
             responsive: true,

@@ -9,12 +9,16 @@ class RegionStatisticsView(ListView):
     context_object_name = "region_stats"
 
     def get_queryset(self):
-        results = list(Result.objects.filter(
-            meropriation__region__isnull=False,
-        ).values('meropriation__region__name').annotate(
+        results = Meropriation.objects.filter(region__isnull=False).values(
+            'region__name').annotate(
             total_events=Count('id'),
-            total_participants=Sum('meropriation__count')
-        ))
+            total_participants=Sum('count')
+        )
+
+        for result in results:
+            if result['total_participants'] is None:
+                result['total_participants'] = 0
+
         return results
 
 
@@ -23,11 +27,14 @@ class UserStatisticsView(ListView):
     context_object_name = "user_stats"
 
     def get_queryset(self):
-        results = list(Result.objects.filter(
-            captain__isnull=False
-        ).values('captain__name').annotate(
-            total=Count('id'),
-        ))
+        results = list(
+            Result.objects.filter(
+                captain__isnull=False
+            ).values('captain__name')
+            .annotate(
+                total=Count('id')
+            )
+        )
         return results
 
 
@@ -36,9 +43,12 @@ class TeamStatisticsView(ListView):
     context_object_name = "team_stats"
 
     def get_queryset(self):
-        results = list(Result.objects.filter(
-            team__isnull=False
-        ).values('team__name').annotate(
-            total=Count('id'),
-        ))
+        results = list(
+            Result.objects.filter(
+                team__isnull=False
+            ).values('team__name')
+            .annotate(
+                total=Count('id')
+            )
+        )
         return results

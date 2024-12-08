@@ -215,8 +215,8 @@ class GenerateResultReportView(DetailView):
         return context
 
 
-class Notifications(django.views.generic.ListView):
-    template_name = "users/notifications.html"
+class Notifications(LoginRequiredMixin, django.views.generic.ListView):
+    template_name = "meropriations/notifications.html"
     context_object_name = "notifications"
 
     def get_queryset(self):
