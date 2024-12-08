@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-center text-primary">
+    <i class="bi bi-bell-fill"></i> {% trans "Уведомления" %}
+  </h2>
+
+  {% if notifications %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for notification in notifications %}
+        <div class="col">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-primary">
+                <i class="bi bi-calendar-check me-2"></i>{{ notification.meropriation }}
+              </h5>
+              <p class="card-text text-muted">
+                {{ notification.text }}
+              </p>
+            </div>
+            <div class="card-footer text-muted small text-end">
+              <i class="bi bi-clock me-1"></i>{{ notification.created_at|date:"d.m.Y H:i" }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-4" role="alert">
+      <i class="bi bi-info-circle"></i> {% trans "Уведомлений нет" %}
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

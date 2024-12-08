@@ -58,7 +58,7 @@
             {% for result in meropriation.result_set.all %}
               <tr>
                 <td>{{ result.team.name }}</td>
-                <td>{{ result.team.get_status_display }}</td>
+                <td>{{ result.team.status }}</td>
                 <td>
                   {% for participant in result.team.participant_set.all %}
                     {{ participant.name }}{% if not forloop.last %}, {% endif %}
