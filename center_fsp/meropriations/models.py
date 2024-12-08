@@ -221,7 +221,7 @@ class Result(django.db.models.Model):
         verbose_name_plural = "результаты"
 
     def __str__(self):
-        return self.meropriation
+        return self.meropriation.name
 
 
 class Notification(django.db.models.Model):
@@ -243,4 +243,4 @@ class Notification(django.db.models.Model):
         verbose_name_plural = "уведомления"
 
     def __str__(self):
-        return self.meropriation
+        return self.meropriation.name

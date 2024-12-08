@@ -1,7 +1,9 @@
-from django.db.models import Count, Sum
 from django.views.generic import ListView
 
 from meropriations.models import Result, Team, Participant, Meropriation
+from users.models import Region
+
+from django.db.models import Count
 
 
 class RegionStatisticsView(ListView):
@@ -9,17 +11,26 @@ class RegionStatisticsView(ListView):
     context_object_name = "region_stats"
 
     def get_queryset(self):
-        results = Meropriation.objects.filter(region__isnull=False).values(
-            'region__name').annotate(
-            total_events=Count('id'),
-            total_participants=Sum('count')
-        )
+        regions = []
 
-        for result in results:
-            if result['total_participants'] is None:
-                result['total_participants'] = 0
+        all_regions = Region.objects.all()
 
-        return results
+        for region in all_regions:
+            meropriations = Meropriation.objects.filter(region=region)
+
+            total_participants = 0
+            for meropriation in meropriations:
+                total_participants += Participant.objects.filter(
+                    team__result__meropriation=meropriation,
+                ).count()
+
+            regions.append({
+                "region": region.name,
+                "total_events": meropriations.count(),
+                "total_participants": total_participants,
+            })
+
+        return regions
 
 
 class UserStatisticsView(ListView):

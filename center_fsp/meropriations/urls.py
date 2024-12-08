@@ -38,7 +38,7 @@ urlpatterns = [
         name='download_templates'
     ),
     path(
-        'generate-result-report/<int:result_id>/',
+        'generate-result-report/<int:meropriation_id>/',
         views.GenerateResultReportView.as_view(),
         name="generate_result_report",
     ),

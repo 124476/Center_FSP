@@ -170,23 +170,24 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
 
 class GenerateResultReportView(DetailView):
     def get(self, request, *args, **kwargs):
-        result_id = kwargs.get("result_id")
+        meropriation_id = kwargs.get("meropriation_id")
 
         try:
-            result = Result.objects.get(id=result_id)
+            meropriation = Meropriation.objects.get(id=meropriation_id)
+        except Meropriation.DoesNotExist:
+            return HttpResponse(status=404, content="Мероприятие не найдено.")
 
-            if not result:
-                return HttpResponse("Результат не найден", status=404)
-        except Result.DoesNotExist:
-            return HttpResponse("Результат не найден", status=404)
-
-        all_teams = Team.objects.order_by("-status")
-        winners = Team.objects.filter(status="WINNER").count()
-        prizers = Team.objects.filter(status="PRIZER").count()
-        participants = Team.objects.filter(status="PARTICIPANT").count()
+        all_teams = Team.objects.filter(
+            result__meropriation=meropriation).order_by("-status")
+        winners = Team.objects.filter(result__meropriation=meropriation,
+                                      status="Победитель").count()
+        prizers = Team.objects.filter(result__meropriation=meropriation,
+                                      status="Призёр").count()
+        participants = Team.objects.filter(result__meropriation=meropriation,
+                                           status="Участник").count()
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = f'attachment; filename="result_report_{result.id}.csv"'
+        response['Content-Disposition'] = f'attachment; filename="result_report_{meropriation_id}.csv"'
 
         writer = csv.writer(response)
 

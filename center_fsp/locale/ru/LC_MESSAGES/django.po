@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 01:16+0300\n"
+"POT-Creation-Date: 2024-12-08 04:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: .\meropriations\apps.py:8 .\templates\includes\header.html:62
+#: .\meropriations\apps.py:8 .\templates\includes\header.html:63
 msgid "meropriations"
 msgstr "Мероприятия"
 
@@ -51,6 +51,14 @@ msgstr "Призёр"
 #: .\meropriations\models.py:139
 msgid "participant"
 msgstr "Участник"
+
+#: .\meropriations_calendar\apps.py:8
+msgid "meropriations_calendar"
+msgstr "Календарь Мероприятий"
+
+#: .\stats\apps.py:8
+msgid "stats"
+msgstr "Статистика"
 
 #: .\templates\homepage\main.html:5 .\templates\includes\header.html:12
 msgid "Главная"
@@ -128,8 +136,8 @@ msgstr "Центр спортивного программирования - м�
 msgid "Контакты"
 msgstr "Контакты"
 
-#: .\templates\includes\footer.html:12 .\templates\users\email_change.html:16
-#: .\templates\users\email_change.html:19
+#: .\templates\includes\footer.html:12 .\templates\users\email_change.html:19
+#: .\templates\users\email_change.html:22
 msgid "Email"
 msgstr "Электронная почта"
 
@@ -141,52 +149,60 @@ msgstr "Центр ФСП"
 msgid "Календарь мероприятий"
 msgstr "Календарь мероприятий"
 
-#: .\templates\includes\header.html:40
+#: .\templates\includes\header.html:14
+msgid "Аналитика"
+msgstr "Аналитика"
+
+#: .\templates\includes\header.html:41
 msgid "theme"
 msgstr "Тема"
 
-#: .\templates\includes\header.html:44
+#: .\templates\includes\header.html:45
 msgid "light"
 msgstr "Светлая"
 
-#: .\templates\includes\header.html:47
+#: .\templates\includes\header.html:48
 msgid "dark"
 msgstr "Тёмная"
 
-#: .\templates\includes\header.html:52
+#: .\templates\includes\header.html:53
 msgid "no_user"
 msgstr "Нет имени пользователя"
 
-#: .\templates\includes\header.html:59 .\templates\users\profile.html:5
-#: .\templates\users\profile.html:9
+#: .\templates\includes\header.html:60 .\templates\users\profile.html:5
+#: .\templates\users\profile.html:10
 msgid "my_profile"
 msgstr "Мой профиль"
 
-#: .\templates\includes\header.html:66
+#: .\templates\includes\header.html:67
 msgid "Регистрация региональных представителей"
 msgstr "Регистрация региональных представителей"
 
-#: .\templates\includes\header.html:69
+#: .\templates\includes\header.html:70
 msgid "Регистрация регионов"
 msgstr "Регистрация регионов"
 
-#: .\templates\includes\header.html:72 .\users\apps.py:8
+#: .\templates\includes\header.html:73 .\users\apps.py:8
 msgid "users"
 msgstr "Пользователи"
 
-#: .\templates\includes\header.html:75
+#: .\templates\includes\header.html:76
 msgid "admin_panel"
 msgstr "Панель админа"
 
-#: .\templates\includes\header.html:79
+#: .\templates\includes\header.html:80
 msgid "results"
 msgstr "Результаты"
 
-#: .\templates\includes\header.html:82
+#: .\templates\includes\header.html:83
+msgid "notifications"
+msgstr "Уведомления"
+
+#: .\templates\includes\header.html:86
 msgid "exit"
 msgstr "Выход"
 
-#: .\templates\includes\header.html:87 .\templates\users\login.html:14
+#: .\templates\includes\header.html:91 .\templates\users\login.html:15
 msgid "sign_in"
 msgstr "Авторизация"
 
@@ -227,7 +243,7 @@ msgid "Все мероприятия"
 msgstr "Все мероприятия"
 
 #: .\templates\meropriations\list_meropriation.html:24
-#: .\templates\users\list_users.html:24
+#: .\templates\users\list_users.html:25
 msgid "Подробнее"
 msgstr "Подробнее"
 
@@ -270,7 +286,7 @@ msgid "Дата окончания:"
 msgstr "Дата окончания:"
 
 #: .\templates\meropriations\meropriation_detail.html:24
-#: .\templates\users\user_detail.html:63
+#: .\templates\users\user_detail.html:64
 msgid "Назад к списку"
 msgstr "Назад к списку"
 
@@ -298,10 +314,12 @@ msgid "Статус"
 msgstr "Статус"
 
 #: .\templates\meropriations\meropriation_detail.html:54
+#: .\templates\stats\regions_stats.html:15
+#: .\templates\stats\teams_stats.html:13 .\templates\stats\users_stats.html:13
 msgid "Участники"
 msgstr "Участники"
 
-#: .\templates\meropriations\meropriation_detail.html:74
+#: .\templates\meropriations\meropriation_detail.html:75
 msgid "Результаты пока не добавлены."
 msgstr "Результаты пока не добавлены."
 
@@ -336,6 +354,14 @@ msgstr "Добавить ещё"
 msgid "Загрузить"
 msgstr "Загрузить"
 
+#: .\templates\meropriations\notifications.html:11
+msgid "Уведомления"
+msgstr "Уведомления"
+
+#: .\templates\meropriations\notifications.html:36
+msgid "Уведомлений нет"
+msgstr "Уведомлений нет"
+
 #: .\templates\meropriations_calendar\event_results.html:9
 msgid "Результаты мероприятия: "
 msgstr "Результаты мероприятия: "
@@ -345,7 +371,7 @@ msgid "Описание мероприятия:"
 msgstr "Описание мероприятия"
 
 #: .\templates\meropriations_calendar\event_results.html:17
-#: .\templates\meropriations_calendar\main.html:115
+#: .\templates\meropriations_calendar\main.html:116
 msgid "Результаты"
 msgstr "Результаты"
 
@@ -358,7 +384,7 @@ msgid "Капитан"
 msgstr "Капитан"
 
 #: .\templates\meropriations_calendar\event_results.html:24
-#: .\templates\meropriations_calendar\main.html:109
+#: .\templates\meropriations_calendar\main.html:110
 msgid "Состав"
 msgstr "Состав"
 
@@ -366,67 +392,67 @@ msgstr "Состав"
 msgid "Calendar"
 msgstr "Календарь"
 
-#: .\templates\meropriations_calendar\main.html:8
+#: .\templates\meropriations_calendar\main.html:9
 msgid "Список спортивных мероприятий"
 msgstr "Список спортивных мероприятий"
 
-#: .\templates\meropriations_calendar\main.html:13
+#: .\templates\meropriations_calendar\main.html:14
 msgid "Тип"
 msgstr "Тип"
 
-#: .\templates\meropriations_calendar\main.html:15
-#: .\templates\meropriations_calendar\main.html:25
-#: .\templates\meropriations_calendar\main.html:35
-#: .\templates\meropriations_calendar\main.html:59
+#: .\templates\meropriations_calendar\main.html:16
+#: .\templates\meropriations_calendar\main.html:26
+#: .\templates\meropriations_calendar\main.html:36
+#: .\templates\meropriations_calendar\main.html:60
 msgid "Все"
 msgstr "Все"
 
-#: .\templates\meropriations_calendar\main.html:23
+#: .\templates\meropriations_calendar\main.html:24
 msgid "Возрастная группа"
 msgstr "Возрастная группа"
 
-#: .\templates\meropriations_calendar\main.html:33
-#: .\templates\meropriations_calendar\main.html:110
+#: .\templates\meropriations_calendar\main.html:34
+#: .\templates\meropriations_calendar\main.html:111
 msgid "Регион"
 msgstr "Регион"
 
-#: .\templates\meropriations_calendar\main.html:43
+#: .\templates\meropriations_calendar\main.html:44
 msgid "Количество участников"
 msgstr "Количество участников"
 
-#: .\templates\meropriations_calendar\main.html:44
+#: .\templates\meropriations_calendar\main.html:45
 msgid "Введите количество участников"
 msgstr "Введите количество участников"
 
-#: .\templates\meropriations_calendar\main.html:48
+#: .\templates\meropriations_calendar\main.html:49
 msgid "Количество рядов на одной странице:"
 msgstr "Количество рядов на одной странице:"
 
-#: .\templates\meropriations_calendar\main.html:57
+#: .\templates\meropriations_calendar\main.html:58
 msgid "Выберите период:"
 msgstr "Выберите период:"
 
-#: .\templates\meropriations_calendar\main.html:60
+#: .\templates\meropriations_calendar\main.html:61
 msgid "Ближайшие мероприятия"
 msgstr "Ближайшие мероприятия"
 
-#: .\templates\meropriations_calendar\main.html:61
+#: .\templates\meropriations_calendar\main.html:62
 msgid "Мероприятия текущей недели"
 msgstr "Мероприятия текущей недели"
 
-#: .\templates\meropriations_calendar\main.html:62
+#: .\templates\meropriations_calendar\main.html:63
 msgid "Мероприятия следующего месяца"
 msgstr "Мероприятия следующего месяца"
 
-#: .\templates\meropriations_calendar\main.html:63
+#: .\templates\meropriations_calendar\main.html:64
 msgid "Мероприятия квартала"
 msgstr "Мероприятия квартала"
 
-#: .\templates\meropriations_calendar\main.html:64
+#: .\templates\meropriations_calendar\main.html:65
 msgid "Мероприятия полугодия"
 msgstr "Мероприятия полугодия"
 
-#: .\templates\meropriations_calendar\main.html:111
+#: .\templates\meropriations_calendar\main.html:112
 msgid ""
 "Наименование спортивного мероприятия<br>(пол, возрастная "
 "группа)<br>(дисциплина, программа)"
@@ -434,34 +460,68 @@ msgstr ""
 "Наименование спортивного мероприятия<br>(пол, возрастная "
 "группа)<br>(дисциплина, программа)"
 
-#: .\templates\meropriations_calendar\main.html:112
+#: .\templates\meropriations_calendar\main.html:113
 msgid "Сроки проведения"
 msgstr "Сроки проведения"
 
-#: .\templates\meropriations_calendar\main.html:113
+#: .\templates\meropriations_calendar\main.html:114
 msgid "Место проведения<br>(спортивная база, центр)"
 msgstr "Место проведения<br>(спортивная база, центр)"
 
-#: .\templates\meropriations_calendar\main.html:114
+#: .\templates\meropriations_calendar\main.html:115
 msgid "Количество участников<br>(чел.)"
 msgstr "Количество участников<br>(чел.)"
 
-#: .\templates\meropriations_calendar\main.html:136
+#: .\templates\meropriations_calendar\main.html:137
 msgid "Посмотреть результаты"
 msgstr "Посмотреть результаты"
 
+#: .\templates\stats\regions_stats.html:13
+#: .\templates\stats\teams_stats.html:11 .\templates\stats\users_stats.html:11
+msgid "Регионы"
+msgstr "Регионы"
+
+#: .\templates\stats\regions_stats.html:14
+#: .\templates\stats\teams_stats.html:12 .\templates\stats\users_stats.html:12
+msgid "Команды"
+msgstr "Команды"
+
+#: .\templates\stats\teams_stats.html:4
+msgid "Аналитика по командам"
+msgstr "Аналитика по командам"
+
+#: .\templates\stats\teams_stats.html:23
+msgid "График по командам"
+msgstr "График по командам"
+
+#: .\templates\stats\teams_stats.html:44
+msgid "Количество результатов"
+msgstr "Количество результатов"
+
+#: .\templates\stats\users_stats.html:4
+msgid "Аналитика по пользователям"
+msgstr "Аналитика по пользователям"
+
+#: .\templates\stats\users_stats.html:22
+msgid "График по участникам"
+msgstr "График по участникам"
+
+#: .\templates\stats\users_stats.html:43
+msgid "Количество мероприятий"
+msgstr "Количество мероприятий"
+
 #: .\templates\users\confirm_email.html:5
-#: .\templates\users\confirm_email.html:10
+#: .\templates\users\confirm_email.html:11
 #: .\templates\users\confirm_email_from_sent.html:7
-#: .\templates\users\confirm_email_from_sent.html:12
+#: .\templates\users\confirm_email_from_sent.html:13
 msgid "email_confirmation"
 msgstr "Подтверждение почты"
 
-#: .\templates\users\confirm_email.html:11
+#: .\templates\users\confirm_email.html:12
 msgid "email_confirmation_description"
 msgstr "Здесь вы можете подтвердить свою почту"
 
-#: .\templates\users\confirm_email_from_sent.html:17
+#: .\templates\users\confirm_email_from_sent.html:18
 #, python-format
 msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
@@ -470,11 +530,11 @@ msgstr ""
 "Подтвердите, что <a href=\"mailto:%(email)s\">%(email)s</a> является адресом "
 "электронной почты пользователя %(user_display)s."
 
-#: .\templates\users\confirm_email_from_sent.html:25
+#: .\templates\users\confirm_email_from_sent.html:26
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: .\templates\users\confirm_email_from_sent.html:32
+#: .\templates\users\confirm_email_from_sent.html:33
 #, python-format
 msgid ""
 "Unable to confirm %(email)s because it is already confirmed by a different "
@@ -483,7 +543,7 @@ msgstr ""
 "Невозможно подтвердить %(email)s, так как он уже подтвержден другим "
 "аккаунтом."
 
-#: .\templates\users\confirm_email_from_sent.html:38
+#: .\templates\users\confirm_email_from_sent.html:39
 #, python-format
 msgid ""
 "This email confirmation link expired or is invalid. Please <a "
@@ -493,35 +553,39 @@ msgstr ""
 "недействительна. Пожалуйста, <a href=\"%(email_url)s\">отправьте новый "
 "запрос на подтверждение по электронной почте</a>."
 
-#: .\templates\users\email_change.html:7
+#: .\templates\users\email_change.html:5
+msgid "email"
+msgstr "Электронная почта"
+
+#: .\templates\users\email_change.html:10
 msgid "email_change"
 msgstr "Смена почты"
 
-#: .\templates\users\email_change.html:29
+#: .\templates\users\email_change.html:32
 msgid "Re-send Verification"
 msgstr "Повторно отправить подтверждение"
 
-#: .\templates\users\email_change.html:30
+#: .\templates\users\email_change.html:33
 msgid "Cancel"
 msgstr "Отмена"
 
-#: .\templates\users\email_change.html:32 .\templates\users\profile.html:73
+#: .\templates\users\email_change.html:35 .\templates\users\profile.html:74
 msgid "change_email"
 msgstr "Изменить почту"
 
-#: .\templates\users\list_users.html:9
+#: .\templates\users\list_users.html:10
 msgid "Все представители по регионам"
 msgstr "Все представители по регионам"
 
-#: .\templates\users\list_users.html:21 .\templates\users\user_detail.html:31
+#: .\templates\users\list_users.html:22 .\templates\users\user_detail.html:32
 msgid "Username:"
 msgstr "Имя пользователя:"
 
-#: .\templates\users\list_users.html:30
+#: .\templates\users\list_users.html:31
 msgid "Список пуст"
 msgstr "Список пуст"
 
-#: .\templates\users\list_users.html:36
+#: .\templates\users\list_users.html:37
 msgid "Новый представитель"
 msgstr "Новый представитель"
 
@@ -529,7 +593,7 @@ msgstr "Новый представитель"
 msgid "authorization"
 msgstr "Авторизоваться"
 
-#: .\templates\users\login.html:13
+#: .\templates\users\login.html:14
 msgid "log_in_to"
 msgstr "Войти"
 
@@ -537,16 +601,16 @@ msgstr "Войти"
 msgid "logout"
 msgstr "Выйти"
 
-#: .\templates\users\new_region.html:6
+#: .\templates\users\new_region.html:7
 msgid "Зарегистрировать новый регион"
 msgstr "Зарегистрировать новый регион"
 
 #: .\templates\users\password_change.html:5
-#: .\templates\users\password_change.html:12
+#: .\templates\users\password_change.html:13
 msgid "password_change"
 msgstr "Изменить пароль"
 
-#: .\templates\users\password_change.html:13 .\templates\users\profile.html:79
+#: .\templates\users\password_change.html:14 .\templates\users\profile.html:80
 msgid "change_password"
 msgstr "Изменить пароль"
 
@@ -554,25 +618,25 @@ msgstr "Изменить пароль"
 msgid "password_changed"
 msgstr "Пароль изменён"
 
-#: .\templates\users\password_change_done.html:10
+#: .\templates\users\password_change_done.html:11
 msgid "your_password_be_success_changed"
 msgstr "Пароль успешно изменён!"
 
-#: .\templates\users\password_change_done.html:11
-#: .\templates\users\password_reset_complete.html:11
-#: .\templates\users\password_reset_done.html:11
+#: .\templates\users\password_change_done.html:12
+#: .\templates\users\password_reset_complete.html:12
+#: .\templates\users\password_reset_done.html:12
 msgid "to_main"
 msgstr "На главную"
 
 #: .\templates\users\password_reset.html:5
-#: .\templates\users\password_reset.html:12
+#: .\templates\users\password_reset.html:13
 #: .\templates\users\password_reset_confirm.html:5
-#: .\templates\users\password_reset_confirm.html:12
+#: .\templates\users\password_reset_confirm.html:13
 #: .\templates\users\password_reset_done.html:5
 msgid "password_recovery"
 msgstr "Восстановить пароль"
 
-#: .\templates\users\password_reset.html:13
+#: .\templates\users\password_reset.html:14
 msgid "recover"
 msgstr "Восстановление"
 
@@ -580,23 +644,23 @@ msgstr "Восстановление"
 msgid "password_recovered"
 msgstr "Пароль восстановлен"
 
-#: .\templates\users\password_reset_complete.html:10
+#: .\templates\users\password_reset_complete.html:11
 msgid "password_reset_completed_success"
 msgstr "Успешный сборс пароля"
 
-#: .\templates\users\password_reset_confirm.html:13
+#: .\templates\users\password_reset_confirm.html:14
 msgid "reset"
 msgstr "Сброс"
 
-#: .\templates\users\password_reset_done.html:10
+#: .\templates\users\password_reset_done.html:11
 msgid "email_instructions_for_password_recove_sent"
 msgstr "Здесь вы можете сбросить свой пароль"
 
-#: .\templates\users\profile.html:33
+#: .\templates\users\profile.html:34
 msgid "delete_avatar"
 msgstr "Удалить аватар"
 
-#: .\templates\users\profile.html:64
+#: .\templates\users\profile.html:65
 msgid "save"
 msgstr "Сохранить"
 
@@ -604,23 +668,23 @@ msgstr "Сохранить"
 msgid "Register Regional Representative"
 msgstr "Зарегистрируйте регионального представителя"
 
-#: .\templates\users\user_detail.html:12
+#: .\templates\users\user_detail.html:13
 msgid "Подробная информация о пользователе"
 msgstr "Подробная информация о пользователе"
 
-#: .\templates\users\user_detail.html:23
+#: .\templates\users\user_detail.html:24
 msgid "Профиль пользователя"
 msgstr "Профиль пользователя"
 
-#: .\templates\users\user_detail.html:39
+#: .\templates\users\user_detail.html:40
 msgid "Email:"
 msgstr "Электронная почта"
 
-#: .\templates\users\user_detail.html:47
+#: .\templates\users\user_detail.html:48
 msgid "Регион:"
 msgstr "Регион:"
 
-#: .\templates\users\user_detail.html:55
+#: .\templates\users\user_detail.html:56
 msgid "Дата регистрации:"
 msgstr "Дата регистрации:"
 
