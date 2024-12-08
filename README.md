@@ -105,3 +105,9 @@ python3.8 -m venv venv
 | республика Адыгея | Marat | адыгеямарат |
 | курганская область | Michail | курганская |
 | камчатский край | Vladimir | камчатка |
+
+### Видеодемонстрация
+
+<a href="https://disk.yandex.ru/i/QcpC5Ad38EOOsw">https://disk.yandex.ru/i/QcpC5Ad38EOOsw</a>
+
+[Скачать видеодемонстрацию проекта](https://github.com/hackathonsrus/pp_final_20299_pfo_ta_litseisti_kfu_102/raw/main/Видеодемонстрация.mp4)
