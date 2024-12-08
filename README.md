@@ -85,3 +85,7 @@ C:\path\to\python3.8\python.exe -m venv venv
 ```commandline
 python3.8 -m venv venv
 ```
+
+### Хостинг
+
+<a href="https://mario12508.pythonanywhere.com/">https://mario12508.pythonanywhere.com/</a>
