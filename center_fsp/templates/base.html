@@ -17,6 +17,20 @@
     <body>
       {% include "includes/header.html" %}
       <main>
+          <!-- Сообщения об ошибках и успехах -->
+        <div class="container">
+          {% if messages %}
+            <div class="container mt-4">
+              {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
         {% block content %} Dont load {% endblock %}
       </main>
       {% include "includes/footer.html" %}

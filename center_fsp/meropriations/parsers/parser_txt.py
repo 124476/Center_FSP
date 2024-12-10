@@ -18,19 +18,13 @@ def parse_txt_file(txt_file, meropriation_id):
             team_name = data[0]
             status = data[1] if data[1] else "PARTICIPANT"
             members = data[2].split(";")
-            captain_name = members[0]
 
             team = Team.objects.create(
                 name=team_name,
                 status=status,
             )
 
-            captain = Participant.objects.create(
-                name=captain_name,
-                team=team,
-            )
-
-            for member_name in members[1:]:
+            for member_name in members:
                 Participant.objects.create(
                     name=member_name,
                     team=team,
@@ -38,7 +32,6 @@ def parse_txt_file(txt_file, meropriation_id):
 
             Result.objects.create(
                 meropriation_id=meropriation_id,
-                captain=captain,
                 team=team,
             )
 

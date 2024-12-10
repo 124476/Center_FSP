@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "feedback.apps.FeedbackConfig",
     "users.apps.UsersConfig",
     "homepage.apps.HomepageConfig",
     "meropriations.apps.MeropriationsConfig",

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+  <!-- Форма обратной связи -->
+  <div class="card">
+    <div class="card-header text-center">
+      <h4>Форма обратной связи</h4>
+    </div>
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data" id="feedbackForm">
+        {% csrf_token %}
+
+        <!-- Поля для ввода данных пользователя -->
+        <div class="mb-3">
+          <label class="form-label">Имя пользователя</label>
+          {{ author_form.name }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Почта</label>
+          {{ author_form.mail }}
+        </div>
+
+        <!-- Поле для отзыва -->
+        <div class="mb-3">
+          <label class="form-label">Текст отзыва</label>
+          {{ content_form.text }}
+        </div>
+
+        <!-- Поле для загрузки файлов -->
+        <div class="mb-3">
+          <label class="form-label">Загрузите файлы (до 20 МБ)</label>
+          {{ files_form.file }}
+        </div>
+
+        <!-- Кнопка отправки -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно для ошибок -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="errorModalLabel">Ошибка загрузки</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        Файл слишком большой. Максимально допустимый размер файла: <strong>20 МБ</strong>.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    const fileInput = document.querySelector('[name="file"]');
+    if (fileInput && fileInput.files.length > 0) {
+      for (let i = 0; i < fileInput.files.length; i++) {
+        const fileSizeMB = fileInput.files[i].size / (1024 * 1024);
+        if (fileSizeMB > 20) {
+          // Показываем модальное окно
+          const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+          errorModal.show();
+
+          e.preventDefault();
+          return false;
+        }
+      }
+    }
+  });
+</script>
+
+{% endblock %}

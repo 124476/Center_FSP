@@ -53,6 +53,13 @@ class UserForm(BootstrapFormMixin, UserChangeForm):
             User.avatar.field.name,
         ]
 
+class UserRegionForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["region"]
+        widgets = {
+            "region": forms.Select(attrs={"class": "form-control"})
+        }
 
 class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
     def __init__(self, *args, **kwargs):
@@ -83,15 +90,6 @@ class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
         label=_("Last Name"),
         widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your last name")}),
     )
-
-
-class RegionForm(BootstrapFormMixin, forms.ModelForm):
-    class Meta:
-        model = Region
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-        }
 
 
 class EmailForm(BootstrapFormMixin, AddEmailForm):

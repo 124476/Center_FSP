@@ -1,7 +1,6 @@
 import django.db.models
 import django.conf
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import FileExtensionValidator
 
 import users.models
 
@@ -58,10 +57,6 @@ class Discipline(django.db.models.Model):
 
 
 class Meropriation(django.db.models.Model):
-    class Status(django.db.models.TextChoices):
-        CONSIDERATION = _("consideration")
-        ACCEPT = _("acceptance")
-
     region = django.db.models.ForeignKey(
         users.models.Region,
         verbose_name="регион",
@@ -69,11 +64,9 @@ class Meropriation(django.db.models.Model):
         on_delete=django.db.models.CASCADE,
         related_name="meropriation_regions",
     )
-    status = django.db.models.CharField(
-        verbose_name="статус мероприятия",
-        choices=Status.choices,
-        default=Status.CONSIDERATION,
-        max_length=30,
+    is_published = django.db.models.BooleanField(
+        verbose_name="опубликовано",
+        default=False,
     )
     name = django.db.models.CharField(
         verbose_name="название",
@@ -93,10 +86,6 @@ class Meropriation(django.db.models.Model):
         null=True,
         verbose_name="место проведения",
     )
-    normal_place = django.db.models.TextField(
-        null=True,
-        verbose_name="точное место проведения",
-    )
     structure = django.db.models.ForeignKey(
         Structure,
         verbose_name="состав",
@@ -111,9 +100,9 @@ class Meropriation(django.db.models.Model):
         on_delete=django.db.models.CASCADE,
         related_name="meropriation_tips",
     )
-    disciplines = django.db.models.TextField(
+    disciplines = django.db.models.ManyToManyField(
+        Discipline,
         verbose_name="дисциплины",
-        null=True,
     )
     date_start = django.db.models.DateField(
         verbose_name="дата начала",
@@ -186,9 +175,6 @@ class Participant(django.db.models.Model):
 
 
 class Result(django.db.models.Model):
-    def get_upload_file(self, filename):
-        return f"uploads/{self.meropriation.name}/{filename}"
-
     meropriation = django.db.models.ForeignKey(
         Meropriation,
         verbose_name="мероприятие",
@@ -196,24 +182,10 @@ class Result(django.db.models.Model):
         null=True,
         blank=True,
     )
-    captain = django.db.models.ForeignKey(
-        Participant,
-        verbose_name="капитан",
-        on_delete=django.db.models.SET_NULL,
-        null=True,
-        blank=True,
-    )
-    team = django.db.models.OneToOneField(
+    team = django.db.models.ForeignKey(
         Team,
         verbose_name="команда",
         on_delete=django.db.models.CASCADE,
-        null=True,
-        blank=True,
-    )
-    file = django.db.models.FileField(
-        verbose_name="файлы",
-        upload_to=get_upload_file,
-        validators=[FileExtensionValidator(allowed_extensions=['csv', 'xlsx', 'xls'])],
         null=True,
         blank=True,
     )
@@ -238,6 +210,10 @@ class Notification(django.db.models.Model):
         verbose_name="текст уведомления",
         max_length=150,
         null=False,
+    )
+    is_active = django.db.models.BooleanField(
+        verbose_name="активен",
+        default=True,
     )
 
     class Meta:

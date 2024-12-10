@@ -12,7 +12,12 @@ class RegionStatisticsView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Аналитика по регионам
-        regions = Region.objects.all()
+        regions = (
+            Region.objects.annotate(
+                event_count=Count('meropriation_regions')
+            )
+            .order_by('-event_count')[:10]
+        )
         region_names = []
         region_events = []
 
@@ -43,7 +48,7 @@ class RegionStatisticsView(TemplateView):
         context['total_events'] = total_events
         context['total_participants'] = total_participants
         context['region_names'] = region_names
-        context['region_events'] = region_events
+        context['region_events'] = region_events[:10]
         context['forecast_years'] = forecast_years
         context['forecast_values'] = forecast_values
 
@@ -56,7 +61,13 @@ class UserStatisticsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        participants = Participant.objects.all()
+        participants = (
+            Participant.objects.annotate(
+                event_count=Count('team__result'),
+            )
+            .order_by('-event_count')[:10]
+        )
+
         participant_names = []
         participant_events = []
 
@@ -93,10 +104,10 @@ class TeamStatisticsView(TemplateView):
         # Получение данных о командах с количеством мероприятий и участников
         teams_with_counts = (
             Team.objects.annotate(
-                event_count=Count('result'),  # Количество мероприятий
-                participant_count=Count('participant')  # Количество участников
+                event_count=Count('result'),
+                participant_count=Count('participant')
             )
-            .order_by('-event_count')[:10]  # Топ-10 команд
+            .order_by('-event_count')[:10]
         )
 
         team_names = [team.name for team in teams_with_counts]

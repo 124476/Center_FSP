@@ -19,7 +19,7 @@ class Home(ListView):
     def get_queryset(self):
         queryset = meropriations.models.Meropriation.objects.all()
 
-        queryset = queryset.filter(status=meropriations.models.Meropriation.Status.ACCEPT)
+        queryset = queryset.filter(is_published=True)
 
         tip = self.request.GET.get("tip")
         structure = self.request.GET.get("structure")

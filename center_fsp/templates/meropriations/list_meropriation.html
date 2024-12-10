@@ -2,9 +2,10 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Мероприятия{% endblock %}
 
 {% block content %}
+
 <div class="container my-5">
   <h2 class="text-center text-primary mb-4">{% trans "Все мероприятия" %}</h2>
 
@@ -17,7 +18,11 @@
               <h5 class="card-title text-primary">{{ meropriation.name }}</h5>
               <p class="card-text text-muted">{{ meropriation.place }}</p>
               <p class="card-text text-muted">{{ meropriation.normal_place }}</p>
-              <span class="badge bg-info">{{ meropriation.get_status_display }}</span>
+              {% if meropriation.is_published %}
+                <p class="badge bg-success">{% trans "Мероприятие опубликовано" %}</p>
+              {% else %}
+                <p class="badge bg-danger">{% trans "Мероприятие не опубликовано" %}</p>
+              {% endif %}
             </div>
             <div class="card-footer text-end">
               <a href="{% url 'meropriations:meropriation_detail' meropriation.pk %}" class="btn btn-outline-primary btn-sm" style="margin-bottom: 15px;">
@@ -39,4 +44,5 @@
     </div>
   {% endif %}
 </div>
+
 {% endblock %}

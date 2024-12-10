@@ -9,38 +9,64 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <form method="POST" class="form-user-auth mt-5" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div class="d-flex flex-column col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4 col-xxl-3 ms-auto me-auto">
+<div class="container">
+  <form method="POST" class="form-user-auth mt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
         <h1 class="h3 mb-4 fw-bold text-center text-primary">{% trans "Register New Event" %}</h1>
 
-        <div class="form-group d-flex flex-column gap-3">
+        <div class="form-group">
           {% for field in form %}
-            <div class="form-floating">
-              {{ field }}
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {% if field.errors %}
-                <div class="invalid-feedback">
-                  {{ field.errors|first }}
-                </div>
-              {% endif %}
-            </div>
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <div class="text-danger small mt-1">
+                {{ field.errors|first }}
+              </div>
+            {% endif %}
+          </div>
           {% endfor %}
         </div>
 
         {% if form.non_field_errors %}
           {% for error in form.non_field_errors %}
-            <div class="alert alert-danger mt-2 text-center" role="alert">
-              {{ error }}
-            </div>
+          <div class="alert alert-danger mt-2 text-center" role="alert">
+            {{ error }}
+          </div>
           {% endfor %}
         {% endif %}
-      </div>
 
-      <div class="d-flex flex-column text-center mt-4">
-        <button class="btn btn-primary btn-lg w-100 py-2" type="submit">{% trans "Submit" %}</button>
+        <div class="d-flex justify-content-center mt-4">
+          <button type="submit" class="btn btn-primary btn-lg px-4 py-2">
+            {% trans "Submit" %}
+          </button>
+        </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dateStartInput = document.getElementById("id_date_start");
+    const dateEndInput = document.getElementById("id_date_end");
+
+    function validateDates() {
+      const dateStart = new Date(dateStartInput.value);
+      const dateEnd = new Date(dateEndInput.value);
+
+      if (dateStart && dateEnd && dateEnd < dateStart) {
+        alert("Дата конца должна быть после даты начала!");
+        dateEndInput.value = "";
+      }
+    }
+
+    dateStartInput.addEventListener("change", validateDates);
+    dateEndInput.addEventListener("change", validateDates);
+  });
+</script>
 {% endblock %}

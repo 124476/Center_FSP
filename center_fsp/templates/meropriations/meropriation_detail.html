@@ -13,10 +13,27 @@
     <div class="card-body">
       <p><strong>{% trans "Описание:" %}</strong></p>
       <p>{{ meropriation.text }}</p>
-      <p><strong>{% trans "Точный адрес:" %}</strong> {{ meropriation.normal_place }}</p>
-      <p><strong>{% trans "Дисциплины:" %}</strong> {{ meropriation.disciplines }}</p>
+
+      {% if meropriation.is_published %}
+        <p class="badge bg-success">{% trans "Мероприятие опубликовано" %}</p>
+      {% else %}
+        <p class="badge bg-danger">{% trans "Мероприятие не опубликовано" %}</p>
+      {% endif %}
+      <p><strong>{% trans "Адрес:" %}</strong> {{ meropriation.place }}</p>
+
+      <!-- Вывод дисциплин в виде списка -->
+      <p><strong>{% trans "Дисциплины:" %}</strong></p>
+      {% if meropriation.disciplines.all %}
+        <ul class="list-group mb-3">
+          {% for discipline in meropriation.disciplines.all %}
+            <li class="list-group-item">{{ discipline.name }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">{% trans "Дисциплины отсутствуют." %}</p>
+      {% endif %}
+
       <p><strong>{% trans "Количество участников:" %}</strong> {{ meropriation.count }}</p>
-      <p><strong>{% trans "Статус:" %}</strong> <span class="badge bg-info">{{ meropriation.get_status_display }}</span></p>
       <p><strong>{% trans "Дата начала:" %}</strong> {{ meropriation.date_start|date:"d.m.Y" }}</p>
       <p><strong>{% trans "Дата окончания:" %}</strong> {{ meropriation.date_end|date:"d.m.Y" }}</p>
     </div>
@@ -33,12 +50,17 @@
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
-          {{ status_form.as_p }}
-          <button type="submit" class="btn btn-primary">{% trans "Сохранить" %}</button>
+          <div class="form-check">
+            {{ status_form.is_published }}
+            <label class="form-check-label" for="id_is_active">
+              {% trans "Активировать мероприятие" %}
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">{% trans "Сохранить" %}</button>
         </form>
       </div>
     </div>
-  {% endif %}
+    {% endif %}
 
   {% if meropriation.result_set.exists %}
     <div class="card mt-5">
@@ -76,4 +98,3 @@
   {% endif %}
 </div>
 {% endblock %}
-

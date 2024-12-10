@@ -43,5 +43,5 @@ class MeropriationAdmin(django.contrib.admin.ModelAdmin):
     list_display = (
         meropriations.models.Meropriation.region.field.name,
         meropriations.models.Meropriation.name.field.name,
-        meropriations.models.Meropriation.status.field.name,
+        meropriations.models.Meropriation.is_published.field.name,
     )

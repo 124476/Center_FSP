@@ -2,21 +2,9 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Загрузка{% endblock %}
 
 {% block content %}
-
-<!-- Сообщения об ошибках и успехах -->
-{% if messages %}
-  <div class="container mt-4">
-    {% for message in messages %}
-      <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
 
 <div class="container mt-5">
   <h2 class="text-center mb-4">{% trans "Мультизагрузчик результатов соревнований" %}</h2>

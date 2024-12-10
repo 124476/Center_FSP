@@ -19,6 +19,11 @@
 <div class="container mt-4">
   <h2>Аналитика по командам</h2>
 
+  <!-- Кнопка печати -->
+  <div class="mb-3 text-end">
+    <button class="btn btn-secondary" onclick="printAnalytics()">{% trans "Печать аналитики" %}</button>
+  </div>
+
   <!-- Карточки с основными показателями -->
   <div class="row mb-4">
     <div class="col-md-6">
@@ -96,6 +101,10 @@
       }
     }
   });
+
+  function printAnalytics() {
+    window.print();
+  }
 </script>
 
 {% endblock %}

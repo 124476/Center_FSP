@@ -12,6 +12,7 @@
       <a href="{% url 'homepage:main' %}" class="{% if view_name == 'homepage:main' %}active{% endif %}">{% trans "Главная" %}</a>
       <a href="{% url 'calendar:main' %}" class="{% if view_name == 'calendar:main' %}active{% endif %}">{% trans "Календарь мероприятий" %}</a>
       <a href="{% url 'stats:region_statistics' %}" class="{% if view_name == 'stats:region_statistics' %}active{% endif %}">{% trans "Аналитика" %}</a>
+      <a href="{% url 'feedback:feedback' %}" class="{% if view_name == 'feedback:feedback' %}active{% endif %}">{% trans "Обратная связь" %}</a>
     </nav>
     <nav class="d-flex collapse" id="main-nav">
       <nav class="my-auto nav-item dropdown me-2">
@@ -63,14 +64,11 @@
                 {% trans "meropriations" %}
               </a></li>
               {% if request.user.is_staff %}
-                <li><a href="{% url 'users:signup' %}" class="dropdown-item">
-                  {% trans "Регистрация региональных представителей" %}
-                </a></li>
-                <li><a href="{% url 'users:new_region' %}" class="dropdown-item">
-                  {% trans "Регистрация регионов" %}
-                </a></li>
                 <li><a href="{% url 'users:users' %}" class="dropdown-item">
                   {% trans "users" %}
+                </a></li>
+                <li><a href="{% url 'feedback:feedbacks' %}" class="dropdown-item">
+                  {% trans "feedbacks" %}
                 </a></li>
                 <li><a href="{% url 'admin:index' %}" class="dropdown-item">
                   {% trans "admin_panel" %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Обратная связь{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+  <h1 class="text-center mb-4">Список обратной связи</h1>
+
+  <div class="row">
+    {% for feedback in feedbacks %}
+      <div class="col-md-4 col-sm-6 col-12 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-primary text-white text-center">
+            <h5 class="mb-0">№{{ feedback.id }}</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Дата создания:</strong> {{ feedback.created_on|date:"Y-m-d H:i" }}</p>
+            <p class="text-truncate"><strong>Текст:</strong> {{ feedback.text }}</p>
+            <p><strong>Имя пользователя:</strong>
+              {% if feedback.profile %}
+                {{ feedback.profile.name }} <br><small>({{ feedback.profile.mail }})</small>
+              {% else %}
+                <em>Нет профиля</em>
+              {% endif %}
+            </p>
+            <p><strong>Файлы:</strong>
+              {% for file in feedback.fields.all %}
+                <a href="{{ file.file.url }}" target="_blank" class="d-block small">{{ forloop.counter }}. <span class="text-primary">Файл</span></a>
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

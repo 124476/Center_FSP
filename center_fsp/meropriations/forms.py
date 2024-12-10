@@ -1,6 +1,7 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
-from meropriations.models import Meropriation, Result, Structure, Tip
+from meropriations.models import Meropriation, Result, Structure, Tip, Discipline
 from users.models import Region
 
 
@@ -35,24 +36,36 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Meropriation
         fields = [
-            "name", "text", "count", "place", "normal_place", "structure",
+            "name", "text", "count", "place", "structure",
             "tip", "disciplines", "date_start", "date_end"
         ]
         widgets = {
             "text": forms.Textarea(attrs={"rows": 4, "cols": 40}),
-            "place": forms.Select(attrs={"class": "form-control"}),
-            "normal_place": forms.Textarea(attrs={"rows": 2}),
+            "place": forms.Textarea(attrs={"rows": 4, "cols": 40}),
             "date_start": forms.DateInput(
                 attrs={'class': 'form-control', 'type': 'date'}),
             "date_end": forms.DateInput(
                 attrs={'class': 'form-control', 'type': 'date'}),
         }
 
-    place = forms.ModelChoiceField(
-        queryset=Region.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        label="Место проведения"
+    disciplines = forms.ModelMultipleChoiceField(
+        queryset=Discipline.objects.all(),
+        widget=forms.SelectMultiple(attrs={"class": "form-control select-multiple-discipline"}),
+        required=True,
+        label="Выбор дисциплин"
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date_start = cleaned_data.get("date_start")
+        date_end = cleaned_data.get("date_end")
+
+        if date_start and date_end and date_end < date_start:
+            raise forms.ValidationError(
+                _("The end date must be after the start date.")
+            )
+
+        return cleaned_data
 
 
 class ResultForm(forms.ModelForm):
@@ -69,10 +82,7 @@ class ResultForm(forms.ModelForm):
 class MeropriationStatusForm(forms.ModelForm):
     class Meta:
         model = Meropriation
-        fields = ['status']
+        fields = ['is_published']
         widgets = {
-            'status': forms.Select(attrs={'class': 'form-select'})
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
-
-
-__all__ = ()
