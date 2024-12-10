@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% load static %}
 {% load i18n %}
-{% block title %}{% trans "Аналитика по командам" %}{% endblock %}
+{% load static %}
+
+{% block title %}Аналитика по командам{% endblock %}
 
 {% block content %}
 
@@ -15,45 +16,86 @@
   </div>
 </header>
 
-<div class="container my-4">
+<div class="container mt-4">
+  <h2>Аналитика по командам</h2>
 
-  <!-- Карточка с графиком -->
-  <div class="card shadow-sm">
-    <div class="card-header bg-info text-white">
-      <i class="bi bi-graph-up"></i> {% trans "График по командам" %}
+  <!-- Карточки с основными показателями -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card text-white bg-primary">
+        <div class="card-body">
+          <h5 class="card-title">Всего команд</h5>
+          <p class="card-text display-4">{{ total_teams }}</p>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <canvas id="teamStatsChart" style="max-width: 100%; height: 400px;"></canvas>
+    <div class="col-md-6">
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Общее количество мероприятий</h5>
+          <p class="card-text display-4">{{ total_events }}</p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- График мероприятий по командам -->
+  <div class="mb-5">
+    <h3>Топ 10 команд по количеству мероприятий</h3>
+    <canvas id="eventsChart"></canvas>
+  </div>
+
+  <!-- Прогнозирование -->
+  <div>
+    <h3>Прогноз мероприятий</h3>
+    <canvas id="predictionChart"></canvas>
   </div>
 </div>
 
-<!-- Скрипт для Chart.js -->
 <script src="{% static '/js/chart.js' %}"></script>
 <script>
-  const teamData = {{ team_stats|safe }};
-  const labels = teamData.map(item => item.team__name);
-  const data = teamData.map(item => item.total);
-
-  const ctx = document.getElementById('teamStatsChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
+  const eventsChart = new Chart(document.getElementById('eventsChart'), {
+    type: 'bar',
     data: {
-      labels: labels,
+      labels: {{ team_names|safe }},
       datasets: [{
-        label: '{% trans "Количество результатов" %}',
-        data: data,
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        label: 'Количество мероприятий',
+        data: {{ team_events|safe }},
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        tension: 0.4
+        borderWidth: 1,
       }]
     },
     options: {
-      responsive: true,
       scales: {
-        y: { beginAtZero: true }
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const predictionChart = new Chart(document.getElementById('predictionChart'), {
+    type: 'line',
+    data: {
+      labels: {{ forecast_years|safe }},
+      datasets: [{
+        label: 'Прогноз мероприятий',
+        data: {{ forecast_values|safe }},
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        fill: true,
+        tension: 0.4,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
   });
 </script>
+
 {% endblock %}

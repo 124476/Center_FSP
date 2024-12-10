@@ -15,42 +15,107 @@
   </div>
 </header>
 
-<div class="container my-4">
-  <!-- Карточка с графиком -->
-  <div class="card shadow-sm">
-    <div class="card-header bg-info text-white">
-      <i class="bi bi-graph-up"></i> {% trans "График по участникам" %}
+<div class="container mt-4">
+
+  <h2>Аналитика по участникам</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card text-white bg-primary">
+        <div class="card-body">
+          <h5 class="card-title">Всего участников</h5>
+          <p class="card-text display-4">{{ total_participants|floatformat:0 }}</p>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <canvas id="userStatsChart" style="max-width: 100%; height: 400px;"></canvas>
+    <div class="col-md-6">
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Общее количество мероприятий</h5>
+          <p class="card-text display-4">{{ total_events|floatformat:0 }}</p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- График мероприятий по участникам -->
+  <div class="mb-5">
+    <h3>Топ 10 участников по количеству мероприятий</h3>
+    <canvas id="eventsChart"></canvas>
+  </div>
+
+  <!-- Прогнозирование -->
+  <div>
+    <h3>Прогноз участников</h3>
+    <canvas id="predictionChart"></canvas>
   </div>
 </div>
 
-<!-- Скрипт для Chart.js -->
 <script src="{% static '/js/chart.js' %}"></script>
 <script>
-  const userData = {{ user_stats|safe }};
-  const labels = userData.map(item => item.captain__name);
-  const data = userData.map(item => item.total);
+  // Данные для графика мероприятий (Топ 10 участников)
+  const topParticipants = {{ participant_names|safe }};
+  const topParticipantEvents = {{ participant_events|safe }};
 
-  const ctx = document.getElementById('userStatsChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
+  const eventsChart = new Chart(document.getElementById('eventsChart'), {
+    type: 'bar',
     data: {
-      labels: labels,
+      labels: topParticipants,
       datasets: [{
-        label: '{% trans "Количество мероприятий" %}',
-        data: data,
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        tension: 0.4
+        label: 'Количество мероприятий',
+        data: topParticipantEvents,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
       }]
     },
     options: {
-      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem) {
+              return `${tooltipItem.label}: ${Math.round(tooltipItem.raw)}`;
+            }
+          }
+        }
+      },
       scales: {
-        y: { beginAtZero: true }
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return Math.round(value);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Данные для графика прогнозирования
+  const predictionChart = new Chart(document.getElementById('predictionChart'), {
+    type: 'line',
+    data: {
+      labels: {{ forecast_years|safe }},
+      datasets: [{
+        label: 'Прогноз мероприятий',
+        data: {{ forecast_values|safe }},
+        borderColor: 'rgba(255, 206, 86, 1)',
+        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+        fill: true,
+        tension: 0.4,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return Math.round(value);
+            }
+          }
+        }
       }
     }
   });

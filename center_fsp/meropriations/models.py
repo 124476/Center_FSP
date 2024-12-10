@@ -1,6 +1,7 @@
 import django.db.models
 import django.conf
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import FileExtensionValidator
 
 import users.models
 
@@ -176,7 +177,7 @@ class Participant(django.db.models.Model):
     )
 
     class Meta:
-        ordering = ("name",)
+        ordering = ("team__name",)
         verbose_name = "участник"
         verbose_name_plural = "участники"
 
@@ -212,6 +213,7 @@ class Result(django.db.models.Model):
     file = django.db.models.FileField(
         verbose_name="файлы",
         upload_to=get_upload_file,
+        validators=[FileExtensionValidator(allowed_extensions=['csv', 'xlsx', 'xls'])],
         null=True,
         blank=True,
     )

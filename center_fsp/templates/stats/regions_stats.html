@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-
-{% load static %}
-{% load active_link_tags %}
 {% load i18n %}
+{% load static %}
+
 {% block title %}Аналитика по регионам{% endblock %}
 
 {% block content %}
@@ -18,87 +17,89 @@
 </header>
 
 <div class="container mt-4">
-  <h2 class="mb-4">Аналитика по регионам</h2>
+  <h2>Аналитика по регионам</h2>
 
-  <!-- Таблица -->
-  <div class="table-responsive mb-4">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Регион</th>
-          <th>Количество мероприятий</th>
-          <th>Количество участников</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for stat in region_stats %}
-        <tr>
-          <td>{{ stat.region|default:"Без региона" }}</td>
-          <td>{{ stat.total_events }}</td>
-          <td>{{ stat.total_participants }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <!-- Карточки с основными показателями -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary">
+        <div class="card-body">
+          <h5 class="card-title">Всего регионов</h5>
+          <p class="card-text display-4">{{ total_regions }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">Общее количество мероприятий</h5>
+          <p class="card-text display-4">{{ total_events }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-warning">
+        <div class="card-body">
+          <h5 class="card-title">Общее количество участников</h5>
+          <p class="card-text display-4">{{ total_participants }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- График -->
-  <div class="chart-container mb-4">
-    <canvas id="regionStatsChart" style="max-width:100%; max-height:600px;"></canvas>
+  <!-- График мероприятий по регионам -->
+  <div class="mb-5">
+    <h3>Мероприятия по регионам</h3>
+    <canvas id="eventsChart"></canvas>
   </div>
 
+  <!-- Прогнозирование -->
+  <div>
+    <h3>Прогноз количества мероприятий</h3>
+    <canvas id="predictionChart"></canvas>
+  </div>
 </div>
 
 <script src="{% static '/js/chart.js' %}"></script>
 <script>
-  const regionData = {{ region_stats|safe }};
-
-  const labels = regionData.map(item => item.region);
-  const data = regionData.map(item => item.total_events);
-  const participants = regionData.map(item => item.total_participants);
-
-  // Массив с разными цветами для каждого сектора
-  const colors = [
-    'rgba(54, 162, 235, 0.5)',  // синий
-    'rgba(255, 99, 132, 0.5)',  // розовый
-    'rgba(75, 192, 192, 0.5)',  // зеленый
-    'rgba(153, 102, 255, 0.5)',  // фиолетовый
-    'rgba(255, 159, 64, 0.5)',  // оранжевый
-    'rgba(255, 205, 86, 0.5)',  // желтый
-    'rgba(255, 99, 71, 0.5)',  // красный
-    'rgba(32, 178, 170, 0.5)', // бирюзовый
-    'rgba(255, 165, 0, 0.5)',  // оранжевый
-    'rgba(255, 105, 180, 0.5)' // розовый
-  ];
-
-  // Генерация цветов для каждого региона
-  const regionColors = regionData.map((_, index) => colors[index % colors.length]);
-
-  const ctx = document.getElementById('regionStatsChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'pie', // Круговая диаграмма
+  const eventsChart = new Chart(document.getElementById('eventsChart'), {
+    type: 'bar',
     data: {
-      labels: labels,
+      labels: {{ region_names|safe }},
       datasets: [{
         label: 'Количество мероприятий',
-        data: data,
-        backgroundColor: regionColors,
-        borderColor: regionColors.map(color => color.replace('0.5', '1')), // более темные оттенки для границ
-        borderWidth: 1
-      },
-      {
-        label: 'Количество участников',
-        data: participants,
-        backgroundColor: regionColors.map((color, index) => colors[(index + 1) % colors.length]), // немного измененные цвета для участников
-        borderColor: regionColors.map(color => color.replace('0.5', '1')), // более темные оттенки для границ
-        borderWidth: 1
+        data: {{ region_events|safe }},
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
       }]
     },
     options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const predictionChart = new Chart(document.getElementById('predictionChart'), {
+    type: 'line',
+    data: {
+      labels: {{ forecast_years|safe }},
+      datasets: [{
+        label: 'Прогноз мероприятий',
+        data: {{ forecast_values|safe }},
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        fill: true,
+        tension: 0.4,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
         }
       }
     }

@@ -4,14 +4,14 @@ from allauth.core.internal.httpkit import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 import django.shortcuts
-from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
 from django.views.generic.edit import CreateView
 import django.views.generic
 import django.forms
 
-from meropriations.models import Meropriation, Result, Notification, Team
+from meropriations.models import Meropriation, Result, Notification, Team, \
+    Participant
 from meropriations.forms import MeropriationForm, ResultForm, \
     MeropriationStatusForm
 from meropriations.parsers.parser_xlsx import parse_excel_file
@@ -116,99 +116,143 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
         if not user_region:
             return redirect('meropriations:meropriations')
 
-        files_count = int(request.POST.get('files_count', 0))
+        meropriations = Meropriation.objects.filter(region=user_region,
+                                                    status='Принят')
+
+        meropriation_id = request.POST.get('meropriation')
+        try:
+            meropriation = Meropriation.objects.get(id=meropriation_id)
+        except Meropriation.DoesNotExist:
+            messages.error(request, "Выбранное мероприятие некорректно.")
+            return redirect('meropriations:results_new')
+
         files = request.FILES.getlist('file')
-        merops = request.POST.getlist('meropriation')
+        if not files:
+            messages.error(request, "Вы не загрузили файлы.")
+            return redirect('meropriations:results_new')
 
-        if len(files) != files_count or len(merops) != files_count:
-            messages.error(request, "Заполните все поля")
-            user_region = self.request.user.region
-            meropriations = Meropriation.objects.filter(region=user_region,
-                                                        status='Принят')
-            return django.shortcuts.render(request,
-                                           "meropriations/new_results.html",
-                                           {
-                                               "meropriations": meropriations,
-                                               "title": "Загрузка",
-                                           })
+        teams = Team.objects.filter(result__meropriation_id=meropriation_id)
+        for team in teams:
+            team.delete()
+        Result.objects.filter(meropriation_id=meropriation_id).delete()
 
-        for i in range(files_count):
-            form = ResultForm({
-                'file': files[i],
-                'meropriation': merops[i]
-            })
-            if form.is_valid():
-                if files[i].name.endswith('.xlsx') or files[i].name.endswith(
-                        '.xls'):
-                    parse_excel_file(files[i],
-                                     form.cleaned_data['meropriation'].id)
-                elif files[i].name.endswith('.txt') or files[i].name.endswith(
-                        '.csv'):
-                    parse_txt_file(files[i],
-                                   form.cleaned_data['meropriation'].id)
-                else:
-                    messages.error(request,
-                                   "Есть не подходящие типы файлов, посмотрите инструкцию!")
-                    user_region = self.request.user.region
-                    meropriations = Meropriation.objects.filter(
-                        region=user_region,
-                        status='Принят')
-                    return django.shortcuts.render(request,
-                                                   "meropriations/new_results.html",
-                                                   {
-                                                       "meropriations": meropriations,
-                                                       "title": "Загрузка",
-                                                   })
+        for uploaded_file in files:
+            if uploaded_file.name.endswith(
+                    '.xlsx') or uploaded_file.name.endswith('.xls'):
+                parse_excel_file(uploaded_file, meropriation.id)
+            elif uploaded_file.name.endswith(
+                    '.txt') or uploaded_file.name.endswith('.csv'):
+                parse_txt_file(uploaded_file, meropriation.id)
+            else:
+                messages.error(request,
+                               "Неподдерживаемый тип файла: {}".format(
+                                   uploaded_file.name))
+                return redirect('meropriations:results_new')
 
-        return django.shortcuts.redirect("meropriations:meropriations")
+        results = Result.objects.filter(meropriation=meropriation).all()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Загрузка"
-        return context
+        if not results:
+            messages.error(request, "Нет результатов")
+            return redirect('meropriations:results_new')
+
+        teams = [result.team for result in results if result.team]
+
+        participants = Participant.objects.filter(team__in=teams).distinct()
+
+        messages.success(request, "Файлы успешно загружены и обработаны.")
+        return django.shortcuts.render(request,
+                                       "meropriations/new_results.html",
+                                       {
+                                           "uploaded": True,
+                                           "meropriations": meropriations,
+                                           "participants": participants,
+                                           "title": "Загрузка",
+                                       })
 
 
-class GenerateResultReportView(DetailView):
-    def get(self, request, *args, **kwargs):
-        meropriation_id = kwargs.get("meropriation_id")
+class AddTeamView(View):
+    def post(self, request):
+        meropriation_id = request.POST.get('meropriation')
+        team_name = request.POST.get('team_name')
+
+        if not meropriation_id or not team_name:
+            messages.error(request, "Ошибка: все поля обязательны для заполнения.")
+            return redirect('meropriations:add_team')
 
         try:
             meropriation = Meropriation.objects.get(id=meropriation_id)
         except Meropriation.DoesNotExist:
-            return HttpResponse(status=404, content="Мероприятие не найдено.")
+            messages.error(request, "Выбранное мероприятие некорректно.")
+            return redirect('meropriations:add_team')
 
-        all_teams = Team.objects.filter(
-            result__meropriation=meropriation).order_by("-status")
-        winners = Team.objects.filter(result__meropriation=meropriation,
-                                      status="Победитель").count()
-        prizers = Team.objects.filter(result__meropriation=meropriation,
-                                      status="Призёр").count()
-        participants = Team.objects.filter(result__meropriation=meropriation,
-                                           status="Участник").count()
+        Team.objects.create(name=team_name)
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = f'attachment; filename="result_report_{meropriation_id}.csv"'
+        messages.success(request, f"Команда '{team_name}' успешно добавлена на мероприятие '{meropriation.name}'")
+        return redirect('meropriations:results_new')
 
-        writer = csv.writer(response)
 
-        writer.writerow(["Статистика", "Количество"])
-        writer.writerow(["Победителей", winners])
-        writer.writerow(["Призёров", prizers])
-        writer.writerow(["Участников", participants])
-        writer.writerow(["Общее количество участников", participants + winners + prizers])
+class DeleteParticipantView(View):
+    def post(self, request, participant_id):
+        try:
+            participant = Participant.objects.get(id=participant_id)
+            participant.delete()
+            messages.success(request, "Участник успешно удален.")
+        except Participant.DoesNotExist:
+            messages.error(request, "Участник не найден.")
 
-        writer.writerow([])
+        return redirect('meropriations:results_new')
 
-        writer.writerow(["Команда", "Статус"])
-        for team in all_teams:
-            status = "участник"
-            if team.status == "PRIZER":
-                status = "призер"
-            elif team.status == "WINNER":
-                status = "победитель"
-            writer.writerow([team.name, status])
 
-        return response
+class GenerateResultReportView(DetailView):
+    template_name = "meropriations/new_results.html"
+
+    def get(self, request):
+        user_region = self.request.user.region
+        if not user_region:
+            return redirect('meropriations:meropriations')
+
+        meropriations = Meropriation.objects.filter(region=user_region,
+                                                    status='Принят')
+
+        return django.shortcuts.render(request,
+                                       "meropriations/new_results.html",
+                                       {
+                                           "meropriations": meropriations,
+                                           "title": "Загрузка",
+                                       })
+
+    def post(self, request):
+        user_region = self.request.user.region
+        if not user_region:
+            return redirect('meropriations:meropriations')
+
+        meropriation_id = request.POST.get('meropriation')
+        try:
+            meropriation = Meropriation.objects.get(id=meropriation_id)
+        except Meropriation.DoesNotExist:
+            messages.error(request, "Выбранное мероприятие некорректно.")
+            return redirect('meropriations:new_results')
+
+        files = request.FILES.getlist('file')
+        if not files:
+            messages.error(request, "Вы не загрузили файлы.")
+            return redirect('meropriations:new_results')
+
+        for uploaded_file in files:
+            if uploaded_file.name.endswith(
+                    '.xlsx') or uploaded_file.name.endswith('.xls'):
+                parse_excel_file(uploaded_file, meropriation.id)
+            elif uploaded_file.name.endswith(
+                    '.txt') or uploaded_file.name.endswith('.csv'):
+                parse_txt_file(uploaded_file, meropriation.id)
+            else:
+                messages.error(request,
+                               "Неподдерживаемый тип файла: {}".format(
+                                   uploaded_file.name))
+                return redirect('meropriations:new_results')
+
+        messages.success(request, "Файлы успешно загружены и обработаны.")
+        return redirect('meropriations:meropriations')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

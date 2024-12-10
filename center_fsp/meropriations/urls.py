@@ -27,6 +27,16 @@ urlpatterns = [
         name="results_new",
     ),
     path(
+        'add-team/',
+        views.AddTeamView.as_view(),
+        name="add_team"
+    ),
+    path(
+        'delete-participant/<int:participant_id>/',
+        views.DeleteParticipantView.as_view(),
+        name="delete_participant"
+    ),
+    path(
         "notifications/",
         views.Notifications.as_view(),
         name="notifications",

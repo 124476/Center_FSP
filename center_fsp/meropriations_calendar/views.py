@@ -1,11 +1,15 @@
 from datetime import timedelta
+import numpy as np
 
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 from django.utils import timezone
+from django.shortcuts import render, get_object_or_404
+from sklearn.linear_model import LinearRegression
 
+from meropriations.models import Meropriation, Result
 import meropriations.models
 
 
@@ -147,15 +151,40 @@ class Home(ListView):
 
 
 def event_results(request, event_id):
-    meropriation = get_object_or_404(meropriations.models.Meropriation, id=event_id)
+    # Retrieve the event
+    meropriation = get_object_or_404(Meropriation, id=event_id)
 
-    results = meropriations.models.Result.objects.filter(meropriation=meropriation)
-
-    if not results:
+    # Retrieve results
+    results = Result.objects.filter(meropriation=meropriation)
+    if not results.exists():
         raise Http404("Результаты для данного мероприятия не найдены.")
 
-    return render(
-        request,
-        "meropriations_calendar/event_results.html",
-        {"meropriation": meropriation, "results": results},
-    )
+    # Analyze data
+    team_sizes = [team.participant_set.count() for team in [result.team for result in results]]
+    avg_participants = np.mean(team_sizes) if team_sizes else 0
+    max_participants = np.max(team_sizes) if team_sizes else 0
+    min_participants = np.min(team_sizes) if team_sizes else 0
+
+    # Simple predictive model: Assume a linear trend based on historical data
+    if len(team_sizes) > 1:
+        x = np.arange(len(team_sizes))
+        y = np.array(team_sizes)
+        coeffs = np.polyfit(x, y, 1)  # Fit a linear model
+        predicted_teams = max(0, int(np.polyval(coeffs, len(team_sizes))))  # Prediction for next event
+    else:
+        predicted_teams = len(team_sizes)  # Default to current if insufficient data
+
+    # Prepare data for chart
+    team_names = [result.team.name for result in results]
+
+    context = {
+        "meropriation": meropriation,
+        "avg_participants": avg_participants,
+        "max_participants": max_participants,
+        "min_participants": min_participants,
+        "predicted_teams": predicted_teams,
+        "team_names": team_names,
+        "team_sizes": team_sizes,
+    }
+
+    return render(request, "meropriations_calendar/event_results.html", context)

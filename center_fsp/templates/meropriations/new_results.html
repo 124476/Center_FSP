@@ -6,62 +6,100 @@
 
 {% block content %}
 
+<!-- Сообщения об ошибках и успехах -->
 {% if messages %}
   <div class="container mt-4">
     {% for message in messages %}
-      <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}">
+      <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" role="alert">
         {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     {% endfor %}
   </div>
 {% endif %}
 
 <div class="container mt-5">
-  <h2>{% trans "Мультизагрузчик результатов соревнований" %}</h2>
+  <h2 class="text-center mb-4">{% trans "Мультизагрузчик результатов соревнований" %}</h2>
 
-  <p style="margin-bottom: 30px; margin-top: 30px;" class="alert alert-warning">
-    {% trans "Подходят только форматы .xlsx .txt .csv .xls.  Шаблон файла результатов: " %}
-    <a href="{% url 'meropriations:download_templates' %}">{% trans "Скачать шаблон" %}</a>
-  </p>
+  <div class="alert alert-warning text-center mb-4">
+    {% trans "Подходят только форматы .xlsx .txt .csv .xls. Шаблон файла результатов: " %}
+    <a href="{% url 'meropriations:download_templates' %}" class="btn btn-link">{% trans "Скачать шаблон" %}</a>
+  </div>
 
-  <form method="post" enctype="multipart/form-data" id="dynamic-form">
-    {% csrf_token %}
-    <div id="form-container">
-      <div class="form-row">
-        <input type="file" name="file" class="form-control mb-2">
-        <select name="meropriation" class="form-control mb-2">
-          {% for item in meropriations %}
-            <option value="{{ item.id }}">{{ item.name }}</option>
-          {% endfor %}
-        </select>
+  {% if not uploaded %}
+    <!-- Форма для выбора мероприятия и загрузки данных -->
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white text-center">
+        {% trans "Выберите мероприятие и загрузите файлы" %}
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="meropriation" class="form-label">{% trans "Выберите мероприятие" %}</label>
+            <select name="meropriation" class="form-select" required>
+              {% for item in meropriations %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="files" class="form-label">{% trans "Загрузите файлы" %}</label>
+            <input type="file" name="file" multiple class="form-control" required>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success mt-2 px-4">{% trans "Загрузить" %}</button>
+          </div>
+        </form>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" onclick="addForm()" style="margin-top: 20px;">{% trans "Добавить ещё" %}</button>
-    <input type="hidden" name="files_count" value="1" id="files_count">
-    <button type="submit" class="btn btn-success" style="margin-top: 20px;">{% trans "Загрузить" %}</button>
-  </form>
+  {% else %}
+    <div class="alert alert-success text-center mb-4">
+      {% trans "Файлы и мероприятие успешно загружены." %}
+    </div>
+  {% endif %}
+
+  <!-- Информация об участниках и командах -->
+  {% if participants %}
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white text-center">
+        {% trans "Списки команд и участников" %}
+      </div>
+      <div class="card-body">
+        <div class="accordion" id="teamsAccordion">
+          {% for participant in participants %}
+            {% ifchanged participant.team.id %}
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                          aria-controls="collapse{{ forloop.counter }}">
+                    {{ participant.team.name }}
+                  </button>
+                </h2>
+                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ forloop.counter }}"
+                     data-bs-parent="#teamsAccordion">
+                  <div class="accordion-body">
+                    <ul class="list-group">
+                      {% for p in participants %}
+                        {% if p.team and p.team.id == participant.team.id %}
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ p.name }}
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            {% endifchanged %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 
-<script>
-let count = 1;
-
-function addForm() {
-  const container = document.getElementById('form-container');
-  const newRow = document.createElement('div');
-  newRow.classList.add('form-row');
-
-  newRow.innerHTML = `
-    <input type="file" name="file" class="form-control mb-2">
-    <select name="meropriation" class="form-control mb-2">
-      {% for item in meropriations %}
-        <option value="{{ item.id }}">{{ item.name }}</option>
-      {% endfor %}
-    </select>
-  `;
-
-  container.appendChild(newRow);
-  count++;
-  document.getElementById('files_count').value = count;
-}
-</script>
 {% endblock %}

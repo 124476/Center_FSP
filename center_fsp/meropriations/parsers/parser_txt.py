@@ -6,11 +6,6 @@ def parse_txt_file(txt_file, meropriation_id):
         content = txt_file.read().decode("utf-8")
         lines = content.splitlines()
 
-        teams = Team.objects.filter(result__meropriation_id=meropriation_id)
-        for team in teams:
-            team.delete()
-        Result.objects.filter(meropriation_id=meropriation_id).delete()
-
         for line_number, line in enumerate(lines, start=1):
             if line_number == 1:
                 continue
