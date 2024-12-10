@@ -52,4 +52,9 @@ urlpatterns = [
         views.GenerateResultReportView.as_view(),
         name="generate_result_report",
     ),
+    path(
+        'notifications/delete/<int:notification_id>/',
+        views.DeleteNotificationView.as_view(),
+        name='delete_notification',
+    ),
 ]

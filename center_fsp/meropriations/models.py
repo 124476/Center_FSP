@@ -211,10 +211,6 @@ class Notification(django.db.models.Model):
         max_length=150,
         null=False,
     )
-    is_active = django.db.models.BooleanField(
-        verbose_name="активен",
-        default=True,
-    )
 
     class Meta:
         verbose_name = "уведомление"

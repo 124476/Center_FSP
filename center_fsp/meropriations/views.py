@@ -1,5 +1,6 @@
 import csv
 
+from allauth.core.internal.httpkit import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 import django.shortcuts
@@ -250,4 +251,9 @@ class Notifications(LoginRequiredMixin, django.views.generic.ListView):
         return Notification.objects.filter(meropriation__region=region)
 
 
-__all__ = ()
+class DeleteNotificationView(LoginRequiredMixin, View):
+    def post(self, request, notification_id):
+        notification = django.shortcuts.get_object_or_404(Notification, id=notification_id)
+        notification.delete()
+
+        return redirect('meropriations:notifications')
