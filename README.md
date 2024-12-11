@@ -60,10 +60,17 @@ docker compose up
 ```
 
 #### 3. Пропишите миграцию базы данных и создайте супер юзера:
+***Их нужно прописать в отдельной консоли***
 ```commandline
 docker exec -it django bash
+```
+```commandline
 python manage.py migrate
+```
+```commandline
 python manage.py createsuperuser
+```
+```commandline
 exit
 ```
 
