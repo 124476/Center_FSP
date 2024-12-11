@@ -45,7 +45,7 @@ cp .env.example .env
 
 ### Команды для запуска проекта с Docker - PostgreSQL
 
-***Для этого варианта требуется установленный Docker, а также в `.env` нужно 
+***Для этого варианта требуется установленный <a href='https://www.docker.com/products/docker-desktop/'>Docker</a>, а также в `.env` нужно 
 прописать значение `USE_DOCKER=True`***
 ***
 
@@ -163,6 +163,5 @@ python3.8 -m venv venv
 
 ### Видеодемонстрация
 
-<a href="https://disk.yandex.ru/i/QcpC5Ad38EOOsw">https://disk.yandex.ru/i/QcpC5Ad38EOOsw</a>
+<a href="https://disk.yandex.ru/i/QcpC5Ad38EOOsw">Видеодемонстрация на Yandex disk</a>
 
-[Скачать видеодемонстрацию проекта](https://github.com/hackathonsrus/pp_final_20299_pfo_ta_litseisti_kfu_102/raw/main/Видеодемонстрация.mp4)
