@@ -11,3 +11,4 @@ venv.bak/
 .vscode/*
 media/
 send_mail/
+data/
