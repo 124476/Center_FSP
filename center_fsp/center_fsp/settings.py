@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "allauth",
     "allauth.account",
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -74,9 +75,13 @@ WSGI_APPLICATION = "center_fsp.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fsp',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'postgres',
+        'PORT': '5432',
     }
 }
 
