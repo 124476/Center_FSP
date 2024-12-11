@@ -54,17 +54,24 @@ cp .env.example .env
 docker build . -t=py-server:local
 ```
 
-#### 2. Пропишите миграцию базы данных и создайте супер юзера:
-```commandline
-docker exec -it django bash
-python manage.py migrate
-python manage.py createsuperuser
-exit
-```
-
-#### 3. Запустите контейнер при помощи Docker Compose:
+#### 2. Запустите контейнер при помощи Docker Compose:
 ```commandline
 docker compose up
+```
+
+#### 3. Пропишите миграцию базы данных и создайте супер юзера:
+***Их нужно прописать в отдельной консоли***
+```commandline
+docker exec -it django bash
+```
+```commandline
+python manage.py migrate
+```
+```commandline
+python manage.py createsuperuser
+```
+```commandline
+exit
 ```
 
 ### Команды для запуска проекта без Docker - SQLite
@@ -109,9 +116,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-#### 6. Переходим на сайт
+## Переходим на сайт
 
-<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
+### <a href="http://localhost:8000/">http://localhost:8000/</a>
 
 ***Терминал не закрываем!***
 
