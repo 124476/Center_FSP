@@ -1,8 +1,10 @@
 # Center FSP
 ## Платформа, которая улучшит координацию между ФСП и регионами, упростит процессы подачи и обработки заявок, а также повысит качество общения и управления данными.
+***
+
 ### Инструкция по запуску проекта
-Все команды вводятся в терминале</br>
-***Необходимо иметь установленные pip и python для терминала***
+Все команды вводятся в терминале.  
+**Необходимо иметь установленные pip и python для терминала.**
 
 #### Клонируем проект
 
@@ -16,7 +18,60 @@ git clone https://github.com/hackathonsrus/pp_final_20299_pfo_ta_litseisti_kfu_1
 cd pp_final_20299_pfo_ta_litseisti_kfu_102
 ```
 
-#### Создаём и активируем виртуальное окружение
+#### Создайте в коренной папке проекта файл `.env` рядом с `center_fsp`
+
+***Для Linux системы используйте следующую команду***
+```commandline
+touch .env
+```
+
+#### Скопируйте содержимое `.env.example` в `.env`
+#### Windows
+Если вы используете командную строку (cmd):
+```commandline
+copy .env.example .env
+```
+Если вы используете PowerShell:
+```commandline
+Copy-Item .env.example .env
+```
+***
+
+#### Linux / macOS
+В терминале используйте команду:
+```commandline
+cp .env.example .env
+```
+
+### Команды для запуска проекта с Docker - PostgreSQL
+
+***Для этого варианта требуется установленный Docker, а также в `.env` нужно 
+прописать значение `USE_DOCKER=True`***
+***
+
+#### 1. Для билда Docker-образа используйте команду:
+```commandline
+docker build . -t=py-server:local
+```
+
+#### 2. Пропишите миграцию базы данных и создайте супер юзера:
+```commandline
+docker exec -it django bash
+python manage.py migrate
+python manage.py createsuperuser
+exit
+```
+
+#### 3. Запустите контейнер при помощи Docker Compose:
+```commandline
+docker compose up
+```
+
+### Команды для запуска проекта без Docker - SQLite
+***Для этого варианта требуется прописать значение в `.env` `USE_DOCKER=False`***
+***
+
+#### 1. Создаём и активируем виртуальное окружение
 Рекомендуется использовать виртуальное окружение для изоляции зависимостей:<br>
 Для Windows:
 ```commandline
@@ -30,31 +85,31 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-#### Устанавливаем зависимости
+#### 2. Устанавливаем зависимости
 
 ```commandline
 pip install -r requirements.txt
 ```
 
-#### Переходим в папку с manage.py
+#### 3. Переходим в папку с manage.py
 
 ```commandline
 cd center_fsp
 ```
 
-#### Настраиваем миграции
+#### 4. Настраиваем миграции
 
 ```commandline
 python manage.py migrate
 ```
 
-#### Запускаем сервер 
+#### 5. Запускаем сервер 
 
 ```commandline
 python manage.py runserver
 ```
 
-#### Переходим на сайт
+#### 6. Переходим на сайт
 
 <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
 
