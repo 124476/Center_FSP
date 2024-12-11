@@ -74,6 +74,12 @@ python manage.py createsuperuser
 exit
 ```
 
+#### 4. Переходим на сайт
+
+#### <a href="http://localhost:8000/">http://localhost:8000/</a>
+
+***Терминал не закрываем!***
+
 ### Команды для запуска проекта без Docker - SQLite
 ***Для этого варианта требуется прописать значение в `.env` `USE_DOCKER=False`***
 ***
@@ -116,9 +122,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## Переходим на сайт
+#### 6. Переходим на сайт
 
-### <a href="http://localhost:8000/">http://localhost:8000/</a>
+#### <a href="http://localhost:8000/">http://localhost:8000/</a>
 
 ***Терминал не закрываем!***
 
