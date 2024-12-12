@@ -68,9 +68,6 @@ docker exec -it django bash
 python manage.py migrate
 ```
 ```commandline
-python manage.py createsuperuser
-```
-```commandline
 exit
 ```
 
