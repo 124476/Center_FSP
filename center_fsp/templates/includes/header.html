@@ -4,7 +4,7 @@
 
 <header>
   <div class="container d-flex justify-content-between align-items-center py-3">
-    <a href="/" class="logo d-flex align-items-center">
+    <a href="{% url 'homepage:main' %}" class="logo d-flex align-items-center">
       <img src="{% static 'img/logo.svg' %}" alt="Logo" height="40">
       <span class="ms-2 fw-bold">{% trans "FSP Center" %}</span>
     </a>

@@ -4,32 +4,81 @@
 {% block title %}{% trans "Аналитика и прогнозирование мероприятия" %}{% endblock %}
 
 {% block content %}
-
-<div class="container my-5">
-    <h1 class="text-center mb-4 text-primary">
-        {% trans "Аналитика мероприятия: " %} {{ meropriation.name }}
-    </h1>
-
-    <div class="mb-4">
-        <strong>{% trans "Описание мероприятия:" %}</strong>
-        <p>{{ meropriation.text }}</p>
+<div class="container py-5">
+    <!-- Заголовок страницы -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary font-weight-bold">
+            {% trans "Аналитика мероприятия" %}: {{ meropriation.name }}
+        </h1>
+        <p class="lead text-muted">{% trans "Детальный анализ и прогнозирование результатов" %}</p>
     </div>
 
-    <h3>{% trans "Анализ результатов" %}</h3>
-    <div id="analysis">
-        <p>{% trans "Среднее количество участников в командах: " %}{{ avg_participants }}</p>
-        <p>{% trans "Максимальное количество участников в команде: " %}{{ max_participants }}</p>
-        <p>{% trans "Минимальное количество участников в команде: " %}{{ min_participants }}</p>
-    </div>
+    <!-- Описание мероприятия -->
+    <section class="mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-gradient-primary">
+                <h4 class="mb-0">{% trans "Описание мероприятия" %}</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">{{ meropriation.text }}</p>
+            </div>
+        </div>
+    </section>
 
-    <h3>{% trans "Прогнозирование" %}</h3>
-    <div id="forecast">
-        <p>{% trans "Прогнозируемое количество команд в следующем мероприятии: " %}{{ predicted_teams }}</p>
-    </div>
+    <!-- Анализ результатов -->
+    <section class="mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-gradient-secondary">
+                <h4 class="mb-0">{% trans "Анализ результатов" %}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-users text-primary"></i>
+                        <strong>{% trans "Среднее количество участников в командах" %}:</strong> {{ avg_participants }}
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-user-plus text-success"></i>
+                        <strong>{% trans "Максимальное количество участников в команде" %}:</strong> {{ max_participants }}
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-user-minus text-danger"></i>
+                        <strong>{% trans "Минимальное количество участников в команде" %}:</strong> {{ min_participants }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-    <canvas id="resultChart" width="400" height="200"></canvas>
+    <!-- Прогнозирование -->
+    <section class="mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-gradient-warning">
+                <h4 class="mb-0">{% trans "Прогнозирование" %}</h4>
+            </div>
+            <div class="card-body">
+                <p>
+                    <i class="fas fa-chart-line text-warning"></i>
+                    <strong>{% trans "Прогнозируемое количество команд в следующем мероприятии" %}:</strong> {{ predicted_teams }}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- График результатов -->
+    <section>
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-gradient-info">
+                <h4 class="mb-0">{% trans "График распределения участников" %}</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="resultChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </section>
 </div>
 
+<!-- Скрипт для графика -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('resultChart').getContext('2d');
@@ -46,13 +95,38 @@
             }]
         },
         options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw + ' {% trans "участников" %}';
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '{% trans "Количество участников" %}'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: '{% trans "Команды" %}'
+                    }
                 }
             }
         }
     });
-
 </script>
+
 {% endblock %}

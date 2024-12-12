@@ -59,7 +59,7 @@ body[data-bs-theme="dark"] header .btn.dropdown-toggle {
 }
 
 body[data-bs-theme="light"] header a:hover {
-  background-color: #b8bfbd;
+  background-color: #989a9a;
 }
 
 body[data-bs-theme="dark"] header a:hover {

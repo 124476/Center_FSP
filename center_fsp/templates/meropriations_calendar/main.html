@@ -31,6 +31,14 @@
         </select>
       </div>
 
+      <div class="form-group col-md-2 text-center">
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-outline-primary mx-2" id="prev-month"><</button>
+          <h4 id="month-year" class="m-0 text-uppercase"></h4>
+          <button type="button" class="btn btn-outline-primary mx-2" id="next-month">></button>
+        </div>
+      </div>
+
       <div class="form-group col-md-2">
         <label for="region">{% trans "Регион" %}</label>
         <select name="region" id="region" class="form-control" onchange="this.form.submit()">
@@ -42,11 +50,6 @@
       </div>
 
       <div class="form-group col-md-2">
-        <label for="participants_count">{% trans "Количество участников" %}</label>
-        <input type="number" name="participants_count" id="participants_count" value="{{ request.GET.participants_count }}" class="form-control" min="1" placeholder="{% trans 'Введите количество участников' %}" onchange="this.form.submit()"/>
-      </div>
-
-      <div class="form-group col-md-2">
         <label for="discipline">{% trans "Дисциплина" %}</label>
         <select name="discipline" id="discipline" class="form-control" onchange="this.form.submit()">
           <option value="">{% trans "Все" %}</option>
@@ -55,29 +58,28 @@
           {% endfor %}
         </select>
       </div>
-
-      <div class="form-group col-md-2 text-center">
-        <div class="d-flex justify-content-center align-items-center">
-          <button type="button" class="btn btn-outline-primary mx-2" id="prev-month"><</button>
-          <h4 id="month-year" class="m-0 text-uppercase"></h4>
-          <button type="button" class="btn btn-outline-primary mx-2" id="next-month">></button>
-        </div>
-      </div>
     </form>
   </div>
 
   <!-- Calendar Grid -->
   <div class="calendar">
     <div class="calendar-body">
+      <div class="d-flex">
+        {% for day_week in day_week_list %}
+          <div class="week-day position-relative">
+            <div class="week_numb">{{ day_week }}</div>
+          </div>
+        {% endfor %}
+      </div>
       {% for week in calendar_weeks %}
-        <div class="calendar-week d-flex justify-content-between">
+        <div class="calendar-week d-flex">
           {% for day in week %}
             <div class="calendar-day position-relative">
               <div class="day-number">{{ day.date }}</div>
               {% if day.events %}
                 <ul class="events-list">
                   {% for event in day.events %}
-                    <li class="event-item">{{ event.name }}</li>
+                    <li class="event-item"><a href="{% url 'calendar:detail_event' event.id %}">{{ event.name }}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %}
@@ -136,31 +138,18 @@
   /* Calendar Styles */
   .calendar {
     display: flex;
-    flex-direction: column;
     margin-top: 30px;
     height: 100vh;
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .calendar-header {
-    display: grid;
-    font-weight: bold;
-    text-align: center;
-    background-color: #3A8DFF;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 1.2rem;
+    margin-bottom: 800px;
+    justify-content: center;
   }
 
   .calendar-body {
-    display: grid;
     gap: 10px;
     padding: 20px 10px;
-    border-radius: 12px;
     grid-template-rows: repeat(auto-fill, 1fr);
     height: 100%;
-    grid-auto-rows: minmax(80px, 1fr);
+    grid-auto-rows: minmax(100px, 1fr);
   }
 
   .calendar-week {
@@ -168,22 +157,55 @@
   }
 
   .calendar-day {
-    height: 100px;
-    width: 200px;
+    height: 270px;
+    width: 250px;
     position: relative;
     padding: 15px;
-    background-color: #378fd2;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    background-color: transparent;
   }
 
+  body[data-bs-theme="light"] .week-day .calendar-day {
+    color: #434343;
+  }
+
+  body[data-bs-theme="dark"] .week-day .calendar-day {
+    color: #fff;
+  }
+
+  body[data-bs-theme="light"] .event-item {
+    color: #000;
+  }
+
+  body[data-bs-theme="dark"] .event-item {
+    color: #fff;
+  }
+
+  .week-day {
+    height: 20px;
+    width: 250px;
+    position: relative;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .week_numb {
+    font-size: 1.6rem;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+  }
+
+
   .calendar-day:hover {
-    background-color: #57a9e7;
+    background-color: #a1a1a1;
     transform: translateY(-3px);
   }
 
@@ -201,13 +223,9 @@
 
   .event-item {
     font-size: 1rem;
-    color: #007bff;
     margin: 5px 0;
   }
 
-  .event-item:hover {
-    text-decoration: underline;
-  }
 
   /* Buttons */
   .btn-outline-primary {

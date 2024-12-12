@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-lg border-0 rounded">
+        <!-- Заголовок с градиентным фоном -->
+        <div class="card-header text-white text-center"
+             style="background: linear-gradient(90deg, #007bff, #6610f2);">
+            <h1 class="card-title mb-0 display-4">{{ meropriation.name }}</h1>
+        </div>
+
+        <!-- Основное содержание -->
+        <div class="card-body px-4 py-5">
+            <!-- Раздел информации -->
+            <section class="mb-4">
+                <h5 class="text-uppercase text-primary font-weight-bold">{% trans "Основная информация" %}</h5>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <p><i class="fas fa-tag text-primary"></i> <strong>{% trans "Тип" %}:</strong> {{ meropriation.tip.name }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <p><i class="fas fa-sitemap text-success"></i> <strong>{% trans "Структура" %}:</strong> {{ meropriation.structure.name }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <p><i class="fas fa-map-marker-alt text-danger"></i> <strong>{% trans "Регион" %}:</strong> {{ meropriation.region.name }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <p><i class="fas fa-clock text-info"></i>
+                           <strong>{% trans "Период проведения" %}:</strong>
+                           {{ meropriation.date_start|date:"d.m.Y" }} – {{ meropriation.date_end|date:"d.m.Y" }}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Раздел дисциплин -->
+            <section class="mb-4">
+                <h5 class="text-uppercase text-warning font-weight-bold">{% trans "Дисциплины" %}</h5>
+                <hr>
+                <p>
+                    <i class="fas fa-tasks text-warning"></i>
+                    {{ meropriation.disciplines.all|join:", " }}
+                </p>
+            </section>
+
+            <!-- Раздел описания -->
+            <section>
+                <h5 class="text-uppercase text-secondary font-weight-bold">{% trans "Описание" %}</h5>
+                <hr>
+                <p class="text-muted text-justify">{{ meropriation.text }}</p>
+            </section>
+        </div>
+
+        <!-- Подвал с призывом к действию -->
+        <div class="card-footer text-center py-4">
+            <a href="{% url 'calendar:event_results' event_id=meropriation.id %}"
+               class="btn btn-lg btn-success shadow-sm">
+                <i class="fas fa-arrow-right"></i> {% trans "Перейти на страницу результатов" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

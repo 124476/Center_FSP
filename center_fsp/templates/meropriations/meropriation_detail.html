@@ -50,17 +50,19 @@
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
-          <div class="form-check">
-            {{ status_form.is_published }}
-            <label class="form-check-label" for="id_is_active">
-              {% trans "Активировать мероприятие" %}
-            </label>
+          <div class="form-group">
+            <button type="submit" class="btn {% if meropriation.is_published %}btn-danger{% else %}btn-success{% endif %}">
+              {% if meropriation.is_published %}
+                {% trans "Снять с публикации" %}
+              {% else %}
+                {% trans "Опубликовать" %}
+              {% endif %}
+            </button>
           </div>
-          <button type="submit" class="btn btn-primary mt-2">{% trans "Сохранить" %}</button>
         </form>
       </div>
     </div>
-    {% endif %}
+  {% endif %}
 
   {% if meropriation.result_set.exists %}
     <div class="card mt-5">

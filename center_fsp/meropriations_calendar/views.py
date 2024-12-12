@@ -16,44 +16,125 @@ class Home(ListView):
     template_name = "meropriations_calendar/main.html"
 
     def get_queryset(self):
-        queryset = Meropriation.objects.filter(is_published=True)
+        queryset = meropriations.models.Meropriation.objects.all()
 
-        # Apply filters
-        filters = {
-            'tip': 'tip__name',
-            'structure': 'structure__name',
-            'gender': 'text__icontains',
-            'region': 'region__name',
-            'discipline': 'disciplines__name__icontains'
-        }
+        queryset = queryset.filter(is_published=True)
 
-        for key, field in filters.items():
-            value = self.request.GET.get(key)
-            if value:
-                queryset = queryset.filter(**{field: value})
+        tip = self.request.GET.get("tip")
+        structure = self.request.GET.get("structure")
+        region = self.request.GET.get("region")
+        discipline = self.request.GET.get("discipline")
+        date = self.request.GET.get("date")
 
-        # Filter by date range (if provided)
-        date_param = self.request.GET.get('date')
-        if date_param:
+        if discipline:
+            queryset = queryset.filter(disciplines__name__icontains=discipline)
+
+        if tip:
+            queryset = queryset.filter(tip__name=tip)
+
+        if structure:
+            queryset = queryset.filter(structure__name=structure)
+
+        if region:
+            queryset = queryset.filter(region__name=region)
+
+        if date:
             try:
-                input_date = datetime.strptime(date_param, "%Y-%m-%d").date()
+                input_date = datetime.strptime(date, "%Y-%m-%d").date()
+                input_date.replace(
+                    day=calendar.monthrange(input_date.year, input_date.month)[
+                        1]
+                )
+
                 last_day_of_month = input_date.replace(
                     day=calendar.monthrange(input_date.year, input_date.month)[
-                        1])
-                queryset = queryset.filter(date_end__gte=input_date,
-                                           date_start__lte=last_day_of_month)
+                        1]
+                )
+
+                queryset = queryset.filter(
+                    date_end__gte=input_date,
+                    date_start__lte=last_day_of_month
+                )
             except ValueError:
                 pass
+        else:
+            input_dt = datetime.today()
+            input_date = input_dt.replace(day=1)
+            input_date.replace(
+                day=calendar.monthrange(input_date.year, input_date.month)[
+                    1]
+            )
+
+            last_day_of_month = input_date.replace(
+                day=calendar.monthrange(input_date.year, input_date.month)[
+                    1]
+            )
+
+            queryset = queryset.filter(
+                date_end__gte=input_date,
+                date_start__lte=last_day_of_month
+            )
 
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Prepare calendar data
+        context["page_obj"] = self.get_queryset
+        context["disciplines"] = (
+            meropriations.models.Discipline.objects.values_list(
+                "name", flat=True
+            )
+            .distinct()
+            .order_by("name")
+        )
+        context["tips"] = (
+            meropriations.models.Meropriation.objects.values_list(
+                "tip__name", flat=True
+            )
+            .distinct()
+            .order_by("tip__name")
+        )
+        context["structures"] = (
+            meropriations.models.Meropriation.objects.values_list(
+                "structure__name", flat=True
+            )
+            .distinct()
+            .order_by("structure__name")
+        )
+        context["regions"] = (
+            meropriations.models.Meropriation.objects.values_list(
+                "region__name", flat=True
+            )
+            .distinct()
+            .order_by("region__name")
+        )
+        context["request"] = self.request
+        context["day_week_list"] = [
+            'Понедельник',
+            'Вторник',
+            'Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота',
+            'Воскресенье'
+        ]
+
+        date = self.request.GET.get("date")
+
+        if date:
+            try:
+                input_date = datetime.strptime(date, "%Y-%m-%d").date()
+                date_delta = input_date.weekday()
+            except ValueError:
+                input_date = datetime.now()
+                date_delta = input_date.weekday()
+        else:
+            input_date = datetime.now()
+            date_delta = input_date.weekday()
+
         queryset = self.get_queryset()
         grouped_events = defaultdict(list)
-
         for event in queryset:
             start_date = event.date_start
             end_date = event.date_end
@@ -62,9 +143,11 @@ class Home(ListView):
                 grouped_events[current_date.day].append(event)
                 current_date += timedelta(days=1)
 
+        _, days_in_month = calendar.monthrange(input_date.year,
+                                               input_date.month)
         weeks = []
-        current_week = []
-        for day in range(1, 32):
+        current_week = [0] * date_delta
+        for day in range(1, days_in_month + 1):
             events_for_day = grouped_events.get(day, [])
             current_week.append({'date': day, 'events': events_for_day})
 
@@ -112,3 +195,13 @@ def event_results(request, event_id):
     }
 
     return render(request, "meropriations_calendar/event_results.html", context)
+
+
+def event_detail(request, event_id):
+    meropriation = get_object_or_404(Meropriation, id=event_id)
+
+    context = {
+        "meropriation": meropriation,
+    }
+
+    return render(request, "meropriations_calendar/event_detail.html", context)
