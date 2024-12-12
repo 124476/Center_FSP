@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "allauth",
     "allauth.account",
-    'django.contrib.postgres',
 ]
+
+if os.getenv("USE_DOCKER") == "True":
+    INSTALLED_APPS.append("django.contrib.postgres")
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

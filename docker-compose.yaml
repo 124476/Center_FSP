@@ -11,6 +11,7 @@ services:
       - 8000:8000
     depends_on:
       - postgres
+      - migration
 
   postgres:
     image: postgres:14-alpine
@@ -28,3 +29,16 @@ services:
       interval: 5s
       timeout: 10s
       retries: 5
+
+  migration:
+    build: .
+    container_name: django-migration
+    command: python manage.py migrate --noinput
+    volumes:
+      - ./center_fsp:/usr/src/app
+    environment:
+      - POSTGRES_DB=fsp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    depends_on:
+      - postgres

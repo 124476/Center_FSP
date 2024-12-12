@@ -49,26 +49,14 @@ cp .env.example .env
 прописать значение `USE_DOCKER=True`***
 ***
 
-#### 1. Для билда Docker-образа используйте команду:
+#### 1. Для билда Docker-образа и запуска его используйте команду:
 ```commandline
-docker build . -t=py-server:local
+docker-compose up --build
 ```
 
-#### 2. Запустите контейнер при помощи Docker Compose:
+#### 2. Создайте супер юзера, если хотите пройти авторизацию:
 ```commandline
-docker compose up
-```
-
-#### 3. Пропишите миграцию базы данных и создайте супер юзера:
-***Их нужно прописать в отдельной консоли***
-```commandline
-docker exec -it django bash
-```
-```commandline
-python manage.py migrate
-```
-```commandline
-exit
+docker exec -it django python manage.py createsuperuser
 ```
 
 #### 4. Переходим на сайт
