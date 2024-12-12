@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}{% trans "Calendar" %}{% endblock %}
 
@@ -54,15 +55,21 @@
         </select>
       </div>
 
-      <div class="form-group w-100 mt-3">
-        <label>{% trans "Выберите период:" %}</label>
-        <div class="btn-group w-100" role="group">
-          <button type="submit" name="event_period" value="" class="btn btn-outline-primary {% if request.GET.event_period == '' %}active{% endif %}">{% trans "Все" %}</button>
-          <button type="submit" name="event_period" value="upcoming" class="btn btn-outline-primary {% if request.GET.event_period == 'upcoming' %}active{% endif %}">{% trans "Ближайшие мероприятия" %}</button>
-          <button type="submit" name="event_period" value="this_week" class="btn btn-outline-primary {% if request.GET.event_period == 'this_week' %}active{% endif %}">{% trans "Мероприятия текущей недели" %}</button>
-          <button type="submit" name="event_period" value="next_month" class="btn btn-outline-primary {% if request.GET.event_period == 'next_month' %}active{% endif %}">{% trans "Мероприятия следующего месяца" %}</button>
-          <button type="submit" name="event_period" value="next_quarter" class="btn btn-outline-primary {% if request.GET.event_period == 'next_quarter' %}active{% endif %}">{% trans "Мероприятия квартала" %}</button>
-          <button type="submit" name="event_period" value="next_half_year" class="btn btn-outline-primary {% if request.GET.event_period == 'next_half_year' %}active{% endif %}">{% trans "Мероприятия полугодия" %}</button>
+      <div class="form-group">
+        <label for="discipline">{% trans "Дисциплина" %}</label>
+        <select name="discipline" id="discipline" class="form-control" onchange="this.form.submit()">
+          <option value="">{% trans "Все" %}</option>
+          {% for option in disciplines %}
+            <option value="{{ option }}" {% if option == request.GET.discipline %}selected{% endif %}>{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group text-center">
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-primary mx-2" id="prev-month"><<</button>
+          <h4 id="month-year" class="m-0"></h4>
+          <button type="button" class="btn btn-primary mx-2" id="next-month">>></button>
         </div>
       </div>
     </form>
@@ -103,13 +110,15 @@
     </nav>
   {% endif %}
 
+  {{ page_obj.object_list }}
   <table class="table table-striped table-hover table-bordered align-middle text-center mt-4">
     <thead class="table-dark">
       <tr>
         <th>№</th>
         <th>{% trans "Состав" %}</th>
         <th>{% trans "Регион" %}</th>
-        <th>{% trans "Наименование спортивного мероприятия<br>(пол, возрастная группа)<br>(дисциплина, программа)" %}</th>
+        <th>{% trans "Наименование спортивного мероприятия<br>(пол, возрастная группа)" %}</th>
+        <th>{% trans "Дисциплина" %}</th>
         <th>{% trans "Сроки проведения" %}</th>
         <th>{% trans "Место проведения<br>(спортивная база, центр)" %}</th>
         <th>{% trans "Количество участников<br>(чел.)" %}</th>
@@ -126,6 +135,7 @@
           <strong>{{ item.name }}</strong><br>
           {{ item.text }}
         </td>
+        <td>{{ item.disciplines.all }}</td>
         <td>
           {{ item.date_start|date:"d.m.Y" }}<br>
           {{ item.date_end|date:"d.m.Y" }}
@@ -142,5 +152,48 @@
     </tbody>
   </table>
 </div>
+
+<link href="{% static 'css/flatpickr.min.css' %}" rel="stylesheet">
+<script src="{% static 'js/flatpickr.js' %}"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  let currentDate = new Date();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const dateParam = urlParams.get('date');
+  if (dateParam) {
+    currentDate = new Date(dateParam);
+  }
+
+  function updateMonthYearDisplay() {
+    const monthYearElement = document.getElementById("month-year");
+    const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    monthYearElement.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+  }
+
+  function updateDateParamInUrl() {
+    const newDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-01`;
+    const url = new URL(window.location.href);
+    url.searchParams.set('date', newDate);
+    window.location.href = url.toString();
+  }
+
+  document.getElementById("prev-month").addEventListener("click", function () {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateMonthYearDisplay();
+    updateDateParamInUrl();
+  });
+
+  document.getElementById("next-month").addEventListener("click", function () {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateMonthYearDisplay();
+    updateDateParamInUrl();
+  });
+
+  updateMonthYearDisplay();
+});
+
+</script>
 
 {% endblock %}

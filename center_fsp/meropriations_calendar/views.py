@@ -1,13 +1,12 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
+import calendar
 import numpy as np
+from collections import defaultdict
 
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
-from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
-from sklearn.linear_model import LinearRegression
 
 from meropriations.models import Meropriation, Result
 import meropriations.models
@@ -25,7 +24,9 @@ class Home(ListView):
         structure = self.request.GET.get("structure")
         gender = self.request.GET.get("gender")
         region = self.request.GET.get("region")
-        event_period = self.request.GET.get("event_period")
+        discipline = self.request.GET.get("discipline")
+        date = self.request.GET.get("date")
+
         try:
             rows_per_page = int(self.request.GET.get("rows_per_page"))
         except:
@@ -37,49 +38,12 @@ class Home(ListView):
 
         page_number = self.request.GET.get("page", 1)
 
-        now = timezone.now()
-        if event_period == "upcoming":
-            # Фильтрация ближайших мероприятий
-            end_date = now + timedelta(days=3)
-            queryset = queryset.filter(
-                date_start__gte=now, date_end__lte=end_date
-            )
-        elif event_period == "this_week":
-            # Фильтрация мероприятий текущей недели
-            start_of_week = now - timedelta(days=now.weekday())
-            end_of_week = start_of_week + timedelta(days=6)
-
-            queryset = queryset.filter(
-                date_start__gte=start_of_week, date_start__lte=end_of_week
-            )
-        elif event_period == "next_month":
-            # Фильтрация мероприятий следующего месяца
-            next_half_year_start = now
-            next_half_year_end = now + timedelta(weeks=26)
-
-            queryset = queryset.filter(
-                date_start__gte=next_half_year_start,
-                date_start__lte=next_half_year_end,
-            )
-        elif event_period == "next_quarter":
-            # Фильтрация мероприятий следующего квартала
-            next_quarter = timezone.now() + timedelta(weeks=13)
-            queryset = queryset.filter(
-                date_start__gte=timezone.now(), date_start__lte=next_quarter
-            )
-        elif event_period == "next_half_year":
-            # Фильтрация мероприятий полугодия
-            next_half_year_start = now
-            next_half_year_end = now + timedelta(weeks=26)
-            queryset = queryset.filter(
-                date_start__gte=next_half_year_start,
-                date_start__lte=next_half_year_end,
-            )
-        elif event_period == "none":
-            pass
+        if discipline:
+            queryset = queryset.filter(disciplines__name__icontains=discipline)
 
         if tip:
             queryset = queryset.filter(tip__name=tip)
+
         if gender:
             if gender == "Муж.":
                 queryset = (
@@ -108,7 +72,33 @@ class Home(ListView):
             except ValueError:
                 pass
 
-        paginator = Paginator(queryset, rows_per_page)
+        if date:
+            try:
+                input_date = datetime.strptime(date, "%Y-%m-%d").date()
+
+                last_day_of_month = input_date.replace(
+                    day=calendar.monthrange(input_date.year, input_date.month)[
+                        1]
+                )
+
+                queryset = queryset.filter(
+                    date_end__gte=input_date,
+                    date_start__lte=last_day_of_month
+                )
+            except ValueError:
+                pass
+
+        grouped_events = defaultdict(list)
+
+        for event in queryset:
+            start_date = event.date_start
+            end_date = event.date_end
+            current_date = start_date
+            while current_date <= end_date:
+                grouped_events[current_date.day].append(event)
+                current_date += timedelta(days=1)
+
+        paginator = Paginator(list(grouped_events.items()), rows_per_page)
         page_obj = paginator.get_page(page_number)
 
         return page_obj
@@ -125,6 +115,13 @@ class Home(ListView):
         context["rows_per_page_options"] = ["10", "25", "50", "100"]
         context["paginator"] = paginator
         context["page_obj"] = self.get_queryset
+        context["disciplines"] = (
+            meropriations.models.Discipline.objects.values_list(
+                "name", flat=True
+            )
+            .distinct()
+            .order_by("name")
+        )
         context["tips"] = (
             meropriations.models.Meropriation.objects.values_list(
                 "tip__name", flat=True
@@ -151,30 +148,25 @@ class Home(ListView):
 
 
 def event_results(request, event_id):
-    # Retrieve the event
     meropriation = get_object_or_404(Meropriation, id=event_id)
 
-    # Retrieve results
     results = Result.objects.filter(meropriation=meropriation)
     if not results.exists():
         raise Http404("Результаты для данного мероприятия не найдены.")
 
-    # Analyze data
     team_sizes = [team.participant_set.count() for team in [result.team for result in results]]
     avg_participants = np.mean(team_sizes) if team_sizes else 0
     max_participants = np.max(team_sizes) if team_sizes else 0
     min_participants = np.min(team_sizes) if team_sizes else 0
 
-    # Simple predictive model: Assume a linear trend based on historical data
     if len(team_sizes) > 1:
         x = np.arange(len(team_sizes))
         y = np.array(team_sizes)
-        coeffs = np.polyfit(x, y, 1)  # Fit a linear model
-        predicted_teams = max(0, int(np.polyval(coeffs, len(team_sizes))))  # Prediction for next event
+        coeffs = np.polyfit(x, y, 1)
+        predicted_teams = max(0, int(np.polyval(coeffs, len(team_sizes))))
     else:
-        predicted_teams = len(team_sizes)  # Default to current if insufficient data
+        predicted_teams = len(team_sizes)
 
-    # Prepare data for chart
     team_names = [result.team.name for result in results]
 
     context = {
