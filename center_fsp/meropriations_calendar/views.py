@@ -16,78 +16,42 @@ class Home(ListView):
     template_name = "meropriations_calendar/main.html"
 
     def get_queryset(self):
-        queryset = meropriations.models.Meropriation.objects.all()
+        queryset = Meropriation.objects.filter(is_published=True)
 
-        queryset = queryset.filter(is_published=True)
+        # Apply filters
+        filters = {
+            'tip': 'tip__name',
+            'structure': 'structure__name',
+            'gender': 'text__icontains',
+            'region': 'region__name',
+            'discipline': 'disciplines__name__icontains'
+        }
 
-        tip = self.request.GET.get("tip")
-        structure = self.request.GET.get("structure")
-        gender = self.request.GET.get("gender")
-        region = self.request.GET.get("region")
-        discipline = self.request.GET.get("discipline")
-        date = self.request.GET.get("date")
+        for key, field in filters.items():
+            value = self.request.GET.get(key)
+            if value:
+                queryset = queryset.filter(**{field: value})
 
-        try:
-            rows_per_page = int(self.request.GET.get("rows_per_page"))
-        except:
-            rows_per_page = 10
-        participants_count = self.request.GET.get("participants_count")
-
-        if rows_per_page not in [10, 25, 50, 100]:
-            rows_per_page = 10
-
-        page_number = self.request.GET.get("page", 1)
-
-        if discipline:
-            queryset = queryset.filter(disciplines__name__icontains=discipline)
-
-        if tip:
-            queryset = queryset.filter(tip__name=tip)
-
-        if gender:
-            if gender == "Муж.":
-                queryset = (
-                    queryset.filter(text__icontains="юниоры")
-                    | queryset.filter(text__icontains="мужчины")
-                    | queryset.filter(text__icontains="юноши")
-                    | queryset.filter(text__icontains="мальчики")
-                )
-            else:
-                queryset = (
-                    queryset.filter(text__icontains="женщины")
-                    | queryset.filter(text__icontains="юниорки")
-                    | queryset.filter(text__icontains="девушки")
-                    | queryset.filter(text__icontains="девочки")
-                )
-        if structure:
-            queryset = queryset.filter(structure__name=structure)
-
-        if region:
-            queryset = queryset.filter(region__name=region)
-
-        if participants_count:
+        # Filter by date range (if provided)
+        date_param = self.request.GET.get('date')
+        if date_param:
             try:
-                participants_count = int(participants_count)
-                queryset = queryset.filter(count=participants_count)
-            except ValueError:
-                pass
-
-        if date:
-            try:
-                input_date = datetime.strptime(date, "%Y-%m-%d").date()
-
+                input_date = datetime.strptime(date_param, "%Y-%m-%d").date()
                 last_day_of_month = input_date.replace(
                     day=calendar.monthrange(input_date.year, input_date.month)[
-                        1]
-                )
-
-                queryset = queryset.filter(
-                    date_end__gte=input_date,
-                    date_start__lte=last_day_of_month
-                )
+                        1])
+                queryset = queryset.filter(date_end__gte=input_date,
+                                           date_start__lte=last_day_of_month)
             except ValueError:
                 pass
 
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Prepare calendar data
+        queryset = self.get_queryset()
         grouped_events = defaultdict(list)
 
         for event in queryset:
@@ -98,52 +62,20 @@ class Home(ListView):
                 grouped_events[current_date.day].append(event)
                 current_date += timedelta(days=1)
 
-        paginator = Paginator(list(grouped_events.items()), rows_per_page)
-        page_obj = paginator.get_page(page_number)
+        weeks = []
+        current_week = []
+        for day in range(1, 32):
+            events_for_day = grouped_events.get(day, [])
+            current_week.append({'date': day, 'events': events_for_day})
 
-        return page_obj
+            if len(current_week) == 7:
+                weeks.append(current_week)
+                current_week = []
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        if current_week:
+            weeks.append(current_week)
 
-        try:
-            rows_per_page = int(self.request.GET.get("rows_per_page"))
-        except:
-            rows_per_page = 10
-        paginator = Paginator(self.get_queryset, rows_per_page)
-
-        context["rows_per_page_options"] = ["10", "25", "50", "100"]
-        context["paginator"] = paginator
-        context["page_obj"] = self.get_queryset
-        context["disciplines"] = (
-            meropriations.models.Discipline.objects.values_list(
-                "name", flat=True
-            )
-            .distinct()
-            .order_by("name")
-        )
-        context["tips"] = (
-            meropriations.models.Meropriation.objects.values_list(
-                "tip__name", flat=True
-            )
-            .distinct()
-            .order_by("tip__name")
-        )
-        context["structures"] = (
-            meropriations.models.Meropriation.objects.values_list(
-                "structure__name", flat=True
-            )
-            .distinct()
-            .order_by("structure__name")
-        )
-        context["regions"] = (
-            meropriations.models.Meropriation.objects.values_list(
-                "region__name", flat=True
-            )
-            .distinct()
-            .order_by("region__name")
-        )
-        context["request"] = self.request
+        context['calendar_weeks'] = weeks
         return context
 
 

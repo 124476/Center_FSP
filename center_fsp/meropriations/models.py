@@ -19,7 +19,7 @@ class Structure(django.db.models.Model):
         verbose_name_plural = "составы"
 
     def __str__(self):
-        return self.name[:15]
+        return self.name
 
 
 class Tip(django.db.models.Model):
@@ -36,7 +36,7 @@ class Tip(django.db.models.Model):
         verbose_name_plural = "типы соревнований"
 
     def __str__(self):
-        return self.name[:15]
+        return self.name
 
 
 class Discipline(django.db.models.Model):
@@ -53,7 +53,7 @@ class Discipline(django.db.models.Model):
         verbose_name_plural = "дисциплины"
 
     def __str__(self):
-        return self.name[:15]
+        return self.name
 
 
 class Meropriation(django.db.models.Model):
