@@ -50,7 +50,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "is_published",
-                    models.BooleanField(default=False, verbose_name="опубликовано"),
+                    models.BooleanField(
+                        default=False, verbose_name="опубликовано"
+                    ),
                 ),
                 (
                     "name",
@@ -60,7 +62,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "text",
-                    models.TextField(null=True, verbose_name="описание мероприятия"),
+                    models.TextField(
+                        null=True, verbose_name="описание мероприятия"
+                    ),
                 ),
                 (
                     "count",
@@ -68,13 +72,25 @@ class Migration(migrations.Migration):
                         null=True, verbose_name="количество участников"
                     ),
                 ),
-                ("place", models.TextField(null=True, verbose_name="место проведения")),
-                ("date_start", models.DateField(null=True, verbose_name="дата начала")),
-                ("date_end", models.DateField(null=True, verbose_name="дата конца")),
+                (
+                    "place",
+                    models.TextField(
+                        null=True, verbose_name="место проведения"
+                    ),
+                ),
+                (
+                    "date_start",
+                    models.DateField(null=True, verbose_name="дата начала"),
+                ),
+                (
+                    "date_end",
+                    models.DateField(null=True, verbose_name="дата конца"),
+                ),
                 (
                     "disciplines",
                     models.ManyToManyField(
-                        to="meropriations.discipline", verbose_name="дисциплины"
+                        to="meropriations.discipline",
+                        verbose_name="дисциплины",
                     ),
                 ),
             ],
@@ -224,7 +240,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "name",
-                    models.CharField(max_length=150, null=True, verbose_name="фио"),
+                    models.CharField(
+                        max_length=150, null=True, verbose_name="фио"
+                    ),
                 ),
                 (
                     "team",
@@ -257,7 +275,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "text",
-                    models.CharField(max_length=150, verbose_name="текст уведомления"),
+                    models.CharField(
+                        max_length=150, verbose_name="текст уведомления"
+                    ),
                 ),
                 (
                     "is_active",

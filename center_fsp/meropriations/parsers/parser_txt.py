@@ -1,4 +1,5 @@
-from meropriations.models import Team, Participant, Result
+__all__ = ()
+from meropriations.models import Participant, Result, Team
 
 
 def parse_txt_file(txt_file, meropriation_id):
@@ -9,6 +10,7 @@ def parse_txt_file(txt_file, meropriation_id):
         for line_number, line in enumerate(lines, start=1):
             if line_number == 1:
                 continue
+
             line = line.strip()
             if not line:
                 continue
@@ -35,8 +37,10 @@ def parse_txt_file(txt_file, meropriation_id):
                 team=team,
             )
 
-        return {"success": True,
-                "message": "Импорт данных из TXT завершен успешно."}
+        return {
+            "success": True,
+            "message": "Импорт данных из TXT завершен успешно.",
+        }
 
     except Exception as e:
         return {"success": False, "message": str(e)}

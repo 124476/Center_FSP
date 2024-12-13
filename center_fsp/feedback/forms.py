@@ -1,3 +1,4 @@
+__all__ = ()
 import django.forms
 
 from feedback.models import Feedback, FeedbackFile, UserProfile
@@ -50,9 +51,7 @@ class FeedbackForm(django.forms.ModelForm):
             Feedback.text.field.name: "Введите свой отзыв",
         }
 
-        exclude = (
-            Feedback.created_on.field.name,
-        )
+        exclude = (Feedback.created_on.field.name,)
 
         widgets = {
             Feedback.text.field.name: django.forms.Textarea(),
@@ -89,11 +88,12 @@ class FeedbackFileForm(django.forms.ModelForm):
 
     # Проверяем размер всех файлов
     def clean_file(self):
-        files = self.cleaned_data.get('file')
+        files = self.cleaned_data.get("file")
         if files:
-            for file in self.files.getlist('file'):
+            for file in self.files.getlist("file"):
                 if file.size > 20 * 1024 * 1024:  # 20 MB
                     raise django.forms.ValidationError(
-                        f"Размер файла {file.name} превышает лимит 20 МБ."
+                        f"Размер файла {file.name} превышает лимит 20 МБ.",
                     )
+
         return files

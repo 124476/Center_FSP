@@ -13,12 +13,15 @@ def get_today_meropriations(request):
     if user.is_authenticated:
         if user.profile.tip_request:
             objects = objects.filter(tip__name=user.profile.tip_request)
+
         if user.profile.group_request:
             objects = objects.filter(group__name=user.profile.group_request)
+
         if user.profile.structure_request:
             objects = objects.filter(
-                structure__name=user.profile.structure_request
+                structure__name=user.profile.structure_request,
             )
+
         if user.profile.gender_request:
             if user.profile.gender_request == "Муж.":
                 objects = (
@@ -36,7 +39,10 @@ def get_today_meropriations(request):
                 )
 
     meropriation_list = objects.filter(date_start=today_date).only(
-        "id", "name", "date_start", "date_end"
+        "id",
+        "name",
+        "date_start",
+        "date_end",
     )
 
     meropriations_list = [

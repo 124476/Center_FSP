@@ -1,3 +1,4 @@
+__all__ = ()
 import django.conf
 import django.contrib
 import django.core.mail

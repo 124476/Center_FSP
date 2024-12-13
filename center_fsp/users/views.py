@@ -1,16 +1,21 @@
+__all__ = ()
+from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import translation
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView
-from django.views.generic.edit import FormView, CreateView
 import django.views.generic
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView, FormView
 
-from users.forms import UserForm, UserRegionForm, RegionalRepresentativeSignupForm
+from users.forms import (
+    RegionalRepresentativeSignupForm,
+    UserForm,
+    UserRegionForm,
+)
 from users.models import User
 
 
@@ -113,7 +118,7 @@ def update_user_region(request, pk):
     # Проверяем, является ли текущий пользователь суперюзером
     if not request.user.is_superuser:
         messages.error(request, "У вас нет прав на выполнение этого действия.")
-        return redirect('users:user_detail', pk=pk)
+        return redirect("users:user_detail", pk=pk)
 
     if request.method == "POST":
         form = UserRegionForm(request.POST, instance=user)
@@ -122,7 +127,9 @@ def update_user_region(request, pk):
             messages.success(request, "Регион пользователя успешно обновлен.")
         else:
             messages.error(request, "Ошибка при обновлении региона.")
-    return redirect('users:user_detail', pk=pk)
+
+    return redirect("users:user_detail", pk=pk)
+
 
 # Обработка удаления региона
 def remove_user_region(request, pk):
@@ -131,9 +138,9 @@ def remove_user_region(request, pk):
     # Проверяем права суперюзера
     if not request.user.is_superuser:
         messages.error(request, "У вас нет прав на выполнение этого действия.")
-        return redirect('users:user_detail', pk=pk)
+        return redirect("users:user_detail", pk=pk)
 
     user.region = None
     user.save()
     messages.success(request, "Регион был успешно удален.")
-    return redirect('users:user_detail', pk=pk)
+    return redirect("users:user_detail", pk=pk)

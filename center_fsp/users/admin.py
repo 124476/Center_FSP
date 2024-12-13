@@ -1,3 +1,4 @@
+__all__ = ()
 import django.contrib.admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
@@ -6,6 +7,7 @@ from django.contrib.auth.models import Group
 import users.models
 
 django.contrib.admin.site.unregister(Group)
+
 
 @django.contrib.admin.register(get_user_model())
 class UserAdmin(UserAdmin):

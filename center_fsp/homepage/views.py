@@ -1,3 +1,4 @@
+__all__ = ()
 import django.views.generic
 
 

@@ -1,11 +1,18 @@
-from allauth.account.forms import AddEmailForm, LoginForm, SignupForm, \
-    ChangePasswordForm, ResetPasswordForm, ResetPasswordKeyForm
+__all__ = ()
+from allauth.account.forms import (
+    AddEmailForm,
+    ChangePasswordForm,
+    LoginForm,
+    ResetPasswordForm,
+    ResetPasswordKeyForm,
+    SignupForm,
+)
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import gettext_lazy as _
 
-from users.models import User, Region
+from users.models import Region, User
 
 
 class BootstrapFormMixin:
@@ -53,13 +60,13 @@ class UserForm(BootstrapFormMixin, UserChangeForm):
             User.avatar.field.name,
         ]
 
+
 class UserRegionForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["region"]
-        widgets = {
-            "region": forms.Select(attrs={"class": "form-control"})
-        }
+        widgets = {"region": forms.Select(attrs={"class": "form-control"})}
+
 
 class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
     def __init__(self, *args, **kwargs):
@@ -83,12 +90,22 @@ class RegionalRepresentativeSignupForm(BootstrapFormMixin, SignupForm):
     first_name = forms.CharField(
         required=True,
         label=_("First Name"),
-        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your first name")}),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": _("Enter your first name"),
+            },
+        ),
     )
     last_name = forms.CharField(
         required=True,
         label=_("Last Name"),
-        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": _("Enter your last name")}),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": _("Enter your last name"),
+            },
+        ),
     )
 
 

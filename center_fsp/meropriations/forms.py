@@ -1,8 +1,12 @@
+__all__ = ()
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from meropriations.models import Meropriation, Result, Structure, Tip, Discipline
-from users.models import Region
+from meropriations.models import (
+    Discipline,
+    Meropriation,
+    Result,
+)
 
 
 class BootstrapFormMixin:
@@ -36,23 +40,34 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Meropriation
         fields = [
-            "name", "text", "count", "place", "structure",
-            "tip", "disciplines", "date_start", "date_end"
+            "name",
+            "text",
+            "count",
+            "place",
+            "structure",
+            "tip",
+            "disciplines",
+            "date_start",
+            "date_end",
         ]
         widgets = {
             "text": forms.Textarea(attrs={"rows": 4, "cols": 40}),
             "place": forms.Textarea(attrs={"rows": 4, "cols": 40}),
             "date_start": forms.DateInput(
-                attrs={'class': 'form-control', 'type': 'date'}),
+                attrs={"class": "form-control", "type": "date"},
+            ),
             "date_end": forms.DateInput(
-                attrs={'class': 'form-control', 'type': 'date'}),
+                attrs={"class": "form-control", "type": "date"},
+            ),
         }
 
     disciplines = forms.ModelMultipleChoiceField(
         queryset=Discipline.objects.all(),
-        widget=forms.SelectMultiple(attrs={"class": "form-control select-multiple-discipline"}),
+        widget=forms.SelectMultiple(
+            attrs={"class": "form-control select-multiple-discipline"},
+        ),
         required=True,
-        label="Выбор дисциплин"
+        label="Выбор дисциплин",
     )
 
     def clean(self):
@@ -62,7 +77,7 @@ class MeropriationForm(BootstrapFormMixin, forms.ModelForm):
 
         if date_start and date_end and date_end < date_start:
             raise forms.ValidationError(
-                _("The end date must be after the start date.")
+                _("The end date must be after the start date."),
             )
 
         return cleaned_data
@@ -76,5 +91,4 @@ class ResultForm(forms.ModelForm):
 
     class Meta:
         model = Result
-        fields = ['meropriation', 'file']
-
+        fields = ["meropriation", "file"]

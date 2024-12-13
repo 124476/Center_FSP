@@ -26,15 +26,11 @@ urlpatterns = [
         views.ResultCreateView.as_view(),
         name="results_new",
     ),
+    path("add-team/", views.AddTeamView.as_view(), name="add_team"),
     path(
-        'add-team/',
-        views.AddTeamView.as_view(),
-        name="add_team"
-    ),
-    path(
-        'delete-participant/<int:participant_id>/',
+        "delete-participant/<int:participant_id>/",
         views.DeleteParticipantView.as_view(),
-        name="delete_participant"
+        name="delete_participant",
     ),
     path(
         "notifications/",
@@ -42,19 +38,20 @@ urlpatterns = [
         name="notifications",
     ),
     path(
-        'download-templates/',
+        "download-templates/",
         TemplateView.as_view(
-            template_name="meropriations/download_templates.html"),
-        name='download_templates'
+            template_name="meropriations/download_templates.html",
+        ),
+        name="download_templates",
     ),
     path(
-        'generate-result-report/<int:meropriation_id>/',
+        "generate-result-report/<int:meropriation_id>/",
         views.GenerateResultReportView.as_view(),
         name="generate_result_report",
     ),
     path(
-        'notifications/delete/<int:notification_id>/',
+        "notifications/delete/<int:notification_id>/",
         views.DeleteNotificationView.as_view(),
-        name='delete_notification',
+        name="delete_notification",
     ),
 ]

@@ -1,21 +1,27 @@
+__all__ = ()
 import csv
 
 from allauth.core.internal.httpkit import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-import django.shortcuts
+import django.forms
 from django.http import HttpResponse
+import django.shortcuts
 from django.urls import reverse_lazy
+import django.views.generic
 from django.views.generic import DetailView, View
 from django.views.generic.edit import CreateView
-import django.views.generic
-import django.forms
 
-from meropriations.models import Meropriation, Result, Notification, Team, \
-    Participant
-from meropriations.forms import MeropriationForm, ResultForm
-from meropriations.parsers.parser_xlsx import parse_excel_file
+from meropriations.forms import MeropriationForm
+from meropriations.models import (
+    Meropriation,
+    Notification,
+    Participant,
+    Result,
+    Team,
+)
 from meropriations.parsers.parser_txt import parse_txt_file
+from meropriations.parsers.parser_xlsx import parse_excel_file
 
 
 class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
@@ -25,9 +31,11 @@ class MeropriationList(LoginRequiredMixin, django.views.generic.ListView):
     def get_queryset(self):
         region = self.request.user.region
         if self.request.user.is_staff:
-            return Meropriation.objects.filter()
-        elif not region:
+            return Meropriation.objects.all()
+
+        if not region:
             return Meropriation.objects.none()
+
         return Meropriation.objects.filter(region=region)
 
 
@@ -53,25 +61,26 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         meropriation = self.get_object()
-
-        last_status = "Не опубликован"
-        if meropriation.is_published:
-            last_status = "Опубликован"
-
-        url = django.urls.reverse('meropriations:meropriation_detail',
-                                  kwargs={'pk': meropriation.pk})
+        url = reverse_lazy(
+            "meropriations:meropriation_detail",
+            kwargs={"pk": meropriation.pk},
+        )
 
         if not request.user.is_superuser:
-            messages.error(request,
-                           "Вы не имеете прав на выполнение этого действия")
-            return django.shortcuts.redirect(url)
+            messages.error(
+                request,
+                "Вы не загрузили файлы. "
+                "Убедитесь, что выбран хотя бы один файл.",
+            )
+            return redirect(url)
 
-        now_status = "Не опубликован"
-        if not meropriation.is_published:
-            now_status = "Опубликован"
-            meropriation.is_published = True
-        else:
-            meropriation.is_published = False
+        last_status = (
+            "Опубликован" if meropriation.is_published else "Не опубликован"
+        )
+        meropriation.is_published = not meropriation.is_published
+        now_status = (
+            "Опубликован" if meropriation.is_published else "Не опубликован"
+        )
 
         meropriation.save()
         Notification.objects.create(
@@ -79,7 +88,7 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
             text=f"Статус изменен с '{last_status}' на '{now_status}'",
         )
         messages.success(request, "Статус успешно обновлен!")
-        return django.shortcuts.redirect(url)
+        return redirect(url)
 
 
 class ResultCreateView(LoginRequiredMixin, CreateView):
@@ -88,96 +97,117 @@ class ResultCreateView(LoginRequiredMixin, CreateView):
     def get(self, request):
         user_region = self.request.user.region
         if not user_region:
-            return django.shortcuts.redirect('meropriations:meropriations')
+            return django.shortcuts.redirect("meropriations:meropriations")
 
-        meropriations = Meropriation.objects.filter(region=user_region, is_published=True)
+        meropriations = Meropriation.objects.filter(
+            region=user_region,
+            is_published=True,
+        )
 
-        return django.shortcuts.render(request,
-                                       "meropriations/new_results.html",
-                                       {
-                                           "meropriations": meropriations,
-                                           "title": "Загрузка",
-                                       })
+        return django.shortcuts.render(
+            request,
+            "meropriations/new_results.html",
+            {
+                "meropriations": meropriations,
+                "title": "Загрузка",
+            },
+        )
 
     def post(self, request):
         user_region = self.request.user.region
         if not user_region:
-            return django.shortcuts.redirect('meropriations:meropriations')
+            return django.shortcuts.redirect("meropriations:meropriations")
 
-        meropriations = Meropriation.objects.filter(region=user_region, is_published=True)
+        meropriations = Meropriation.objects.filter(
+            region=user_region,
+            is_published=True,
+        )
 
-        meropriation_id = request.POST.get('meropriation')
+        meropriation_id = request.POST.get("meropriation")
         try:
             meropriation = Meropriation.objects.get(id=meropriation_id)
         except Meropriation.DoesNotExist:
             messages.error(request, "Выбранное мероприятие некорректно.")
-            return django.shortcuts.redirect('meropriations:results_new')
+            return django.shortcuts.redirect("meropriations:results_new")
 
-        files = request.FILES.getlist('file')
+        files = request.FILES.getlist("file")
         if not files:
             messages.error(request, "Вы не загрузили файлы.")
-            return django.shortcuts.redirect('meropriations:results_new')
+            return django.shortcuts.redirect("meropriations:results_new")
 
         teams = Team.objects.filter(result__meropriation_id=meropriation_id)
         for team in teams:
             team.delete()
+
         Result.objects.filter(meropriation_id=meropriation_id).delete()
 
         for uploaded_file in files:
             if uploaded_file.name.endswith(
-                    '.xlsx') or uploaded_file.name.endswith('.xls'):
+                ".xlsx",
+            ) or uploaded_file.name.endswith(".xls"):
                 parse_excel_file(uploaded_file, meropriation.id)
             elif uploaded_file.name.endswith(
-                    '.txt') or uploaded_file.name.endswith('.csv'):
+                ".txt",
+            ) or uploaded_file.name.endswith(".csv"):
                 parse_txt_file(uploaded_file, meropriation.id)
             else:
-                messages.error(request,
-                               "Неподдерживаемый тип файла: {}".format(
-                                   uploaded_file.name))
-                return django.shortcuts.redirect('meropriations:results_new')
+                messages.error(
+                    request,
+                    "Неподдерживаемый тип файла: {}".format(
+                        uploaded_file.name,
+                    ),
+                )
+                return django.shortcuts.redirect("meropriations:results_new")
 
         results = Result.objects.filter(meropriation=meropriation).all()
 
         if not results:
             messages.error(request, "Нет результатов")
-            return django.shortcuts.redirect('meropriations:results_new')
+            return django.shortcuts.redirect("meropriations:results_new")
 
         teams = [result.team for result in results if result.team]
 
         participants = Participant.objects.filter(team__in=teams).distinct()
 
         messages.success(request, "Файлы успешно загружены и обработаны.")
-        return django.shortcuts.render(request,
-                                       "meropriations/new_results.html",
-                                       {
-                                           "uploaded": True,
-                                           "meropriations": meropriations,
-                                           "participants": participants,
-                                           "title": "Загрузка",
-                                       })
+        return django.shortcuts.render(
+            request,
+            "meropriations/new_results.html",
+            {
+                "uploaded": True,
+                "meropriations": meropriations,
+                "participants": participants,
+                "title": "Загрузка",
+            },
+        )
 
 
 class AddTeamView(View):
     def post(self, request):
-        meropriation_id = request.POST.get('meropriation')
-        team_name = request.POST.get('team_name')
+        meropriation_id = request.POST.get("meropriation")
+        team_name = request.POST.get("team_name")
 
         if not meropriation_id or not team_name:
-            messages.error(request,
-                           "Ошибка: все поля обязательны для заполнения.")
-            return django.shortcuts.redirect('meropriations:add_team')
+            messages.error(
+                request,
+                "Ошибка: все поля обязательны для заполнения.",
+            )
+            return django.shortcuts.redirect("meropriations:add_team")
 
         try:
             meropriation = Meropriation.objects.get(id=meropriation_id)
         except Meropriation.DoesNotExist:
             messages.error(request, "Выбранное мероприятие некорректно.")
-            return django.shortcuts.redirect('meropriations:add_team')
+            return django.shortcuts.redirect("meropriations:add_team")
 
         Team.objects.create(name=team_name)
 
-        messages.success(request,
-                         f"Команда '{team_name}' успешно добавлена на мероприятие '{meropriation.name}'")
-        return django.shortcuts.redirect('meropriations:results_new')
+        messages.success(
+            request,
+            f"Команда '{team_name}' успешно добавлена на мероприятие "
+            f"'{meropriation.name}'",
+        )
+        return django.shortcuts.redirect("meropriations:results_new")
 
 
 class DeleteParticipantView(View):
@@ -189,7 +219,7 @@ class DeleteParticipantView(View):
         except Participant.DoesNotExist:
             messages.error(request, "Участник не найден.")
 
-        return django.shortcuts.redirect('meropriations:results_new')
+        return django.shortcuts.redirect("meropriations:results_new")
 
 
 class GenerateResultReportView(DetailView):
@@ -202,15 +232,22 @@ class GenerateResultReportView(DetailView):
             return HttpResponse(status=404, content="Мероприятие не найдено.")
 
         all_teams = Team.objects.filter(
-            result__meropriation=meropriation).order_by("-status")
-        winners = Team.objects.filter(result__meropriation=meropriation,
-                                      status="WINNER").count()
-        prizers = Team.objects.filter(result__meropriation=meropriation,
-                                      status="PRIZER").count()
+            result__meropriation=meropriation,
+        ).order_by("-status")
+        winners = Team.objects.filter(
+            result__meropriation=meropriation,
+            status="WINNER",
+        ).count()
+        prizers = Team.objects.filter(
+            result__meropriation=meropriation,
+            status="PRIZER",
+        ).count()
         participants = all_teams.count() - winners - prizers
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = f'attachment; filename="result_report_{meropriation_id}.csv"'
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = (
+            f'attachment; filename="result_report_{meropriation_id}.csv"'
+        )
 
         writer = csv.writer(response)
 
@@ -229,6 +266,7 @@ class GenerateResultReportView(DetailView):
                 status = "призер"
             elif team.status == "WINNER":
                 status = "победитель"
+
             writer.writerow([team.name, status])
 
         return response
@@ -241,13 +279,17 @@ class Notifications(LoginRequiredMixin, django.views.generic.ListView):
     def get_queryset(self):
         region = self.request.user.region
         if not region:
-            return django.shortcuts.redirect('homepage:main')
+            return django.shortcuts.redirect("homepage:main")
+
         return Notification.objects.filter(meropriation__region=region)
 
 
 class DeleteNotificationView(LoginRequiredMixin, View):
     def post(self, request, notification_id):
-        notification = django.shortcuts.get_object_or_404(Notification, id=notification_id)
+        notification = django.shortcuts.get_object_or_404(
+            Notification,
+            id=notification_id,
+        )
         notification.delete()
 
-        return redirect('meropriations:notifications')
+        return redirect("meropriations:notifications")

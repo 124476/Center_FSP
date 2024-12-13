@@ -1,5 +1,5 @@
+__all__ = ()
 import django.db.models
-import django.conf
 from django.utils.translation import gettext_lazy as _
 
 import users.models

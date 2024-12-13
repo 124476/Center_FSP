@@ -1,9 +1,9 @@
+__all__ = ()
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -79,21 +79,21 @@ WSGI_APPLICATION = "center_fsp.wsgi.application"
 
 if os.getenv("USE_DOCKER") == "True":
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('POSTGRES_DB'),
-            'USER': os.getenv('POSTGRES_USER'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
-            'PORT': os.getenv('POSTGRES_PORT', 5432),
-        }
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB"),
+            "USER": os.getenv("POSTGRES_USER"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+            "HOST": os.getenv("POSTGRES_HOST", "postgres"),
+            "PORT": os.getenv("POSTGRES_PORT", 5432),
+        },
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / "db.sqlite3",
-        }
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
     }
 
 
@@ -103,15 +103,15 @@ AUTH_PASSWORD_VALIDATORS = [
         ".UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation" 
+        "NAME": "django.contrib.auth.password_validation"
         ".MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation" 
+        "NAME": "django.contrib.auth.password_validation"
         ".CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation" 
+        "NAME": "django.contrib.auth.password_validation"
         ".NumericPasswordValidator",
     },
 ]

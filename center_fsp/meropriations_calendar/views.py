@@ -1,14 +1,15 @@
-from datetime import datetime, timedelta
+__all__ = ()
 import calendar
-import numpy as np
 from collections import defaultdict
+from datetime import datetime, timedelta
 
 from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
-from django.shortcuts import render, get_object_or_404
+import numpy as np
 
-from meropriations.models import Meropriation, Result
 import meropriations.models
+from meropriations.models import Meropriation, Result
 
 
 class Home(ListView):
@@ -42,17 +43,19 @@ class Home(ListView):
                 input_date = datetime.strptime(date, "%Y-%m-%d").date()
                 input_date.replace(
                     day=calendar.monthrange(input_date.year, input_date.month)[
-                        1]
+                        1
+                    ],
                 )
 
                 last_day_of_month = input_date.replace(
                     day=calendar.monthrange(input_date.year, input_date.month)[
-                        1]
+                        1
+                    ],
                 )
 
                 queryset = queryset.filter(
                     date_end__gte=input_date,
-                    date_start__lte=last_day_of_month
+                    date_start__lte=last_day_of_month,
                 )
             except ValueError:
                 pass
@@ -60,18 +63,16 @@ class Home(ListView):
             input_dt = datetime.today()
             input_date = input_dt.replace(day=1)
             input_date.replace(
-                day=calendar.monthrange(input_date.year, input_date.month)[
-                    1]
+                day=calendar.monthrange(input_date.year, input_date.month)[1],
             )
 
             last_day_of_month = input_date.replace(
-                day=calendar.monthrange(input_date.year, input_date.month)[
-                    1]
+                day=calendar.monthrange(input_date.year, input_date.month)[1],
             )
 
             queryset = queryset.filter(
                 date_end__gte=input_date,
-                date_start__lte=last_day_of_month
+                date_start__lte=last_day_of_month,
             )
 
         return queryset
@@ -82,41 +83,45 @@ class Home(ListView):
         context["page_obj"] = self.get_queryset
         context["disciplines"] = (
             meropriations.models.Discipline.objects.values_list(
-                "name", flat=True
+                "name",
+                flat=True,
             )
             .distinct()
             .order_by("name")
         )
         context["tips"] = (
             meropriations.models.Meropriation.objects.values_list(
-                "tip__name", flat=True
+                "tip__name",
+                flat=True,
             )
             .distinct()
             .order_by("tip__name")
         )
         context["structures"] = (
             meropriations.models.Meropriation.objects.values_list(
-                "structure__name", flat=True
+                "structure__name",
+                flat=True,
             )
             .distinct()
             .order_by("structure__name")
         )
         context["regions"] = (
             meropriations.models.Meropriation.objects.values_list(
-                "region__name", flat=True
+                "region__name",
+                flat=True,
             )
             .distinct()
             .order_by("region__name")
         )
         context["request"] = self.request
         context["day_week_list"] = [
-            'Понедельник',
-            'Вторник',
-            'Среда',
-            'Четверг',
-            'Пятница',
-            'Суббота',
-            'Воскресенье'
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница",
+            "Суббота",
+            "Воскресенье",
         ]
 
         date = self.request.GET.get("date")
@@ -142,13 +147,15 @@ class Home(ListView):
                 grouped_events[current_date.day].append(event)
                 current_date += timedelta(days=1)
 
-        _, days_in_month = calendar.monthrange(input_date.year,
-                                               input_date.month)
+        _, days_in_month = calendar.monthrange(
+            input_date.year,
+            input_date.month,
+        )
         weeks = []
         current_week = [0] * date_delta
         for day in range(1, days_in_month + 1):
             events_for_day = grouped_events.get(day, [])
-            current_week.append({'date': day, 'events': events_for_day})
+            current_week.append({"date": day, "events": events_for_day})
 
             if len(current_week) == 7:
                 weeks.append(current_week)
@@ -157,7 +164,7 @@ class Home(ListView):
         if current_week:
             weeks.append(current_week)
 
-        context['calendar_weeks'] = weeks
+        context["calendar_weeks"] = weeks
         return context
 
 
@@ -168,7 +175,10 @@ def event_results(request, event_id):
     if not results.exists():
         raise Http404("Результаты для данного мероприятия не найдены.")
 
-    team_sizes = [team.participant_set.count() for team in [result.team for result in results]]
+    team_sizes = [
+        team.participant_set.count()
+        for team in [result.team for result in results]
+    ]
     avg_participants = np.mean(team_sizes) if team_sizes else 0
     max_participants = np.max(team_sizes) if team_sizes else 0
     min_participants = np.min(team_sizes) if team_sizes else 0
@@ -193,7 +203,11 @@ def event_results(request, event_id):
         "team_sizes": team_sizes,
     }
 
-    return render(request, "meropriations_calendar/event_results.html", context)
+    return render(
+        request,
+        "meropriations_calendar/event_results.html",
+        context,
+    )
 
 
 def event_detail(request, event_id):

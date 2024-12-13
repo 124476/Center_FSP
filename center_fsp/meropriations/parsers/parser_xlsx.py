@@ -1,5 +1,7 @@
+__all__ = ()
 import openpyxl
-from meropriations.models import Team, Participant, Result
+
+from meropriations.models import Participant, Result, Team
 
 
 def parse_excel_file(excel_file, meropriation_id):
@@ -7,7 +9,10 @@ def parse_excel_file(excel_file, meropriation_id):
         workbook = openpyxl.load_workbook(excel_file)
         sheet = workbook.active
 
-        for row_idx, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
+        for _row_idx, row in enumerate(
+            sheet.iter_rows(min_row=2, values_only=True),
+            start=2,
+        ):
             if not row or row[0] is None:
                 continue
 
@@ -34,5 +39,5 @@ def parse_excel_file(excel_file, meropriation_id):
         return {"success": True, "message": "Импорт данных завершен успешно."}
 
     except Exception as e:
-        print(f"Ошибка при парсинге файла на строке {row_idx}: {e}")
+        print(f"Ошибка при парсинге файла на строке {_row_idx}: {e}")
         return {"success": False, "message": str(e)}

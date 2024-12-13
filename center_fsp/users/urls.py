@@ -117,12 +117,14 @@ urlpatterns = [
         views.UserDetailView.as_view(),
         name="user_detail",
     ),
-    path('<int:pk>/update-region/',
-         views.update_user_region,
-         name="update_user_region",
-         ),
-    path('<int:pk>/remove-region/',
-         views.remove_user_region,
-         name="remove_user_region",
-         ),
+    path(
+        "<int:pk>/update-region/",
+        views.update_user_region,
+        name="update_user_region",
+    ),
+    path(
+        "<int:pk>/remove-region/",
+        views.remove_user_region,
+        name="remove_user_region",
+    ),
 ]

@@ -1,3 +1,4 @@
+__all__ = ()
 import django.contrib.admin
 
 import meropriations.models

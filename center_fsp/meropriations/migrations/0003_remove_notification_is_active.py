@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meropriations', '0002_initial'),
+        ("meropriations", "0002_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='notification',
-            name='is_active',
+            model_name="notification",
+            name="is_active",
         ),
     ]
