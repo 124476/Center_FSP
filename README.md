@@ -153,11 +153,33 @@ python3.8 -m venv venv
 
 | Регион  | Логин | Пароль |
 |---------|-------|--------|
-| донецкая народная республика | IGOR | донецкаянароднаяреспублика |
-| алтайский край | Svetlana | алтайская |
-| республика Адыгея | Marat | адыгеямарат |
-| курганская область | Michail | курганская |
-| камчатский край | Vladimir | камчатка |
+| Москва | Moskow | gorod_Moskva |
+| Белгородская область | Belgorod | Egor_lushi |
+| Брянская область | Bryansk |	Oleg_lushi |
+| Владимирская область | Vladimir | Anastasia_lushi |
+| Воронежская область | Voronezh | Ulianov_lushi |
+|  | Ivanovo | Sergei_lushi |
+|  | Kaluga | Alesha_lushi |
+|  | Kostroma | Dmitri_lushi |
+|  | Kursk | Zhuravl_lushi |
+|  | Lipetsk | Daniil_lushi |
+|  | Moscow-obl | Jenia_lushi |
+|  | Oryol | Aleksandr_lushi |
+|  | Ryazan | Evgenia_lushi |
+|  | Smolensk | Sergei_lushi |
+|  | Tambov | Maksim_lushi |
+|  | Tver | Petr_lushi |
+|  | Tula | Aleksei_lushi |
+|  | Yaroslavl | Dmitri_lushi |
+|  | Adygea | Marat_lushi |
+|  | Kalmykia | Arkadii_lushi |
+|  | Krasnodar | Sergei_lushi |
+|  | Astrakhan | Ulia_lushi |
+|  | Volgograd | Elena_lushi |
+|  | Rostov | Stanislav_lushi |
+|  | Sevastopol | Mishail_lushi |
+|  | Crimea | Sergei_lushi |
+
 
 ### Видеодемонстрация
 
