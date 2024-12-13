@@ -78,11 +78,3 @@ class ResultForm(forms.ModelForm):
         model = Result
         fields = ['meropriation', 'file']
 
-
-class MeropriationStatusForm(forms.ModelForm):
-    class Meta:
-        model = Meropriation
-        fields = ['is_published']
-        widgets = {
-            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }

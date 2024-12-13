@@ -13,8 +13,7 @@ import django.forms
 
 from meropriations.models import Meropriation, Result, Notification, Team, \
     Participant
-from meropriations.forms import MeropriationForm, ResultForm, \
-    MeropriationStatusForm
+from meropriations.forms import MeropriationForm, ResultForm
 from meropriations.parsers.parser_xlsx import parse_excel_file
 from meropriations.parsers.parser_txt import parse_txt_file
 
@@ -50,9 +49,6 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.is_superuser:
-            context['status_form'] = MeropriationStatusForm(
-                instance=self.object)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -71,20 +67,18 @@ class MeropriationDetailView(LoginRequiredMixin, DetailView):
             return django.shortcuts.redirect(url)
 
         now_status = "Не опубликован"
-        if meropriation.is_published:
+        if not meropriation.is_published:
             now_status = "Опубликован"
-
-        form = MeropriationStatusForm(request.POST, instance=meropriation)
-        if form.is_valid():
-            form.save()
-            Notification.objects.create(
-                meropriation=meropriation,
-                text=f"Статус изменен с '{last_status}' на '{now_status}'",
-            )
-            messages.success(request, "Статус успешно обновлен!")
-            return django.shortcuts.redirect(url)
+            meropriation.is_published = True
         else:
-            messages.error(request, "Ошибка при обновлении статуса.")
+            meropriation.is_published = False
+
+        meropriation.save()
+        Notification.objects.create(
+            meropriation=meropriation,
+            text=f"Статус изменен с '{last_status}' на '{now_status}'",
+        )
+        messages.success(request, "Статус успешно обновлен!")
         return django.shortcuts.redirect(url)
 
 
