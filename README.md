@@ -197,7 +197,7 @@ project_center_fsp/
 ```
 
 ### Er-диаграмма
-![QuickDBD-export](/images/ER.jpg')
+![QuickDBD-export](images/ER.jpg)
 
 ### Архитектура
-![QuickDBD-export](/images/Architecture.png')
+![QuickDBD-export](images/Architecture.png)
