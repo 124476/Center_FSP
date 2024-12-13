@@ -158,27 +158,27 @@ python3.8 -m venv venv
 | Брянская область | Bryansk |	Oleg_lushi |
 | Владимирская область | Vladimir | Anastasia_lushi |
 | Воронежская область | Voronezh | Ulianov_lushi |
-|  | Ivanovo | Sergei_lushi |
-|  | Kaluga | Alesha_lushi |
-|  | Kostroma | Dmitri_lushi |
-|  | Kursk | Zhuravl_lushi |
-|  | Lipetsk | Daniil_lushi |
-|  | Moscow-obl | Jenia_lushi |
-|  | Oryol | Aleksandr_lushi |
-|  | Ryazan | Evgenia_lushi |
-|  | Smolensk | Sergei_lushi |
-|  | Tambov | Maksim_lushi |
-|  | Tver | Petr_lushi |
-|  | Tula | Aleksei_lushi |
-|  | Yaroslavl | Dmitri_lushi |
-|  | Adygea | Marat_lushi |
-|  | Kalmykia | Arkadii_lushi |
-|  | Krasnodar | Sergei_lushi |
-|  | Astrakhan | Ulia_lushi |
-|  | Volgograd | Elena_lushi |
-|  | Rostov | Stanislav_lushi |
-|  | Sevastopol | Mishail_lushi |
-|  | Crimea | Sergei_lushi |
+| Ивановская область | Ivanovo | Sergei_lushi |
+| Калужская область | Kaluga | Alesha_lushi |
+| Костромская область | Kostroma | Dmitri_lushi |
+| Курская область | Kursk | Zhuravl_lushi |
+| Липецкая область | Lipetsk | Daniil_lushi |
+| Московская область | Moscow-obl | Jenia_lushi |
+| Орловская область | Oryol | Aleksandr_lushi |
+| Рязанская область | Ryazan | Evgenia_lushi |
+| Смоленская область | Smolensk | Sergei_lushi |
+| Тамбовская область | Tambov | Maksim_lushi |
+| Тверская область | Tver | Petr_lushi |
+| Тульская область | Tula | Aleksei_lushi |
+| Ярославская область | Yaroslavl | Dmitri_lushi |
+| Республика Адыгея | Adygea | Marat_lushi |
+| Республика Калмыкия | Kalmykia | Arkadii_lushi |
+| Краснодарский край | Krasnodar | Sergei_lushi |
+| Астраханская область | Astrakhan | Ulia_lushi |
+| Волгоградская область | Volgograd | Elena_lushi |
+| Ростовская область | Rostov | Stanislav_lushi |
+| город Севастополь | Sevastopol | Mishail_lushi |
+| Республика Крым | Crimea | Sergei_lushi |
 
 
 ### Видеодемонстрация
