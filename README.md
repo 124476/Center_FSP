@@ -212,14 +212,14 @@ project_center_fsp/
 │   ├── stats/                   # Приложение для статистики
 │   ├── locale/                  # Настройка языков
 │   ├── fixtures/                # Данные для базы данных
-├── .env                     	  # Конфигурации окружения
+├── .env                     	 # Конфигурации окружения
 ├── docker-compose.yml           # Docker Compose конфигурация
-├── Dockerfile               	  # Docker-образ проекта
-├── requirements.txt         	  # Зависимости Python
+├── Dockerfile               	 # Docker-образ проекта
+├── requirements.txt         	 # Зависимости Python
 ```
 
 ### Er-диаграмма
-![QuickDBD-export](/images/ER.jpg')
+![QuickDBD-export](images/ER.jpg)
 
 ### Архитектура
-![QuickDBD-export](/images/Architecture.png')
+![QuickDBD-export](images/Architecture.png)
