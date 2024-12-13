@@ -163,3 +163,41 @@ python3.8 -m venv venv
 
 <a href="https://disk.yandex.ru/i/QcpC5Ad38EOOsw">Видеодемонстрация на Yandex disk</a>
 
+### 📂 Структура проекта
+
+```
+project_center_fsp/
+├── center_fsp/
+│   ├── center_fsp/              # Основная конфигурация Django проекта
+│   │   ├── settings.py          # Основные настройки
+│   │   ├── urls.py              # URL маршруты проекта
+│   │   ├── wsgi.py              # Конфигурация для WSGI-сервера
+│   │   ├── asgi.py              # Конфигурация для ASGI-сервера
+│   ├── media/                   # Загружаемые пользователями файлы
+│   ├── static_dev/              # Статические файлы (CSS, JS, изображения)
+│   ├── templates/               # Глобальные HTML-шаблоны
+│   ├── manage.py                # Командная утилита Django
+│   ├── meropriations/           # Приложение для управления мероприятиями
+│   │   ├── models.py            # Модели данных
+│   │   ├── views.py             # Представления
+│   │   ├── urls.py              # URL маршруты
+│   │   ├── forms.py             # Формы
+│   │   ├── admim.py             # Админ-панель
+│   ├── users/                   # Приложение для управления пользователями
+│   ├── homepage/                # Приложение для главной страницы
+│   ├── meropriations_calendar/  # Приложение для календаря
+│   ├── feedback/                # Приложение для отзывов
+│   ├── stats/                   # Приложение для статистики
+│   ├── locale/                  # Настройка языков
+│   ├── fixtures/                # Данные для базы данных
+├── .env                     	  # Конфигурации окружения
+├── docker-compose.yml           # Docker Compose конфигурация
+├── Dockerfile               	  # Docker-образ проекта
+├── requirements.txt         	  # Зависимости Python
+```
+
+### Er-диаграмма
+![QuickDBD-export](/images/ER.jpg')
+
+### Архитектура
+![QuickDBD-export](/images/Architecture.png')
