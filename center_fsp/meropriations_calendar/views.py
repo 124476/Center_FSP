@@ -3,7 +3,6 @@ import calendar
 import numpy as np
 from collections import defaultdict
 
-from django.core.paginator import Paginator
 from django.http import Http404
 from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404

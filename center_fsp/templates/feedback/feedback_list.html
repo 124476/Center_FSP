@@ -6,29 +6,59 @@
 {% block content %}
 
 <div class="container my-5">
-  <h1 class="text-center mb-4">{% trans 'Список обратной связи' %}</h1>
+  <h1 class="text-center mb-4 display-4">{% trans 'Список обратной связи' %}</h1>
 
   <div class="row">
     {% for feedback in feedbacks %}
       <div class="col-md-4 col-sm-6 col-12 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-header bg-primary text-white text-center">
-            <h5 class="mb-0">№{{ feedback.id }}</h5>
+        <div class="card h-100 shadow border-0">
+          <!-- Card Header -->
+          <div class="card-header bg-primary text-white text-center d-flex align-items-center justify-content-between">
+            <h5 class="mb-0"><i class="bi bi-envelope-fill"></i> №{{ feedback.id }}</h5>
+            <span class="badge bg-light text-primary">{{ feedback.created_on|date:"d.m.Y" }}</span>
           </div>
+
+          <!-- Card Body -->
           <div class="card-body">
-            <p><strong>{% trans 'Дата создания:' %}</strong> {{ feedback.created_on|date:"Y-m-d H:i" }}</p>
-            <p class="text-truncate"><strong>{% trans 'Текст:' %}</strong> {{ feedback.text }}</p>
-            <p><strong>{% trans 'Имя пользователя:' %}</strong>
+            <p>
+              <i class="bi bi-calendar-check"></i>
+              <strong>{% trans 'Дата создания:' %}</strong>
+              {{ feedback.created_on|date:"Y-m-d H:i" }}
+            </p>
+            <p class="text-truncate">
+              <i class="bi bi-chat-left-dots-fill"></i>
+              <strong>{% trans 'Текст:' %}</strong>
+              {{ feedback.text }}
+            </p>
+            <p>
+              <i class="bi bi-person-fill"></i>
+              <strong>{% trans 'Имя пользователя:' %}</strong>
               {% if feedback.profile %}
-                {{ feedback.profile.name }} <br><small>({{ feedback.profile.mail }})</small>
+                {{ feedback.profile.name }}
+                <br><small>({{ feedback.profile.mail }})</small>
               {% else %}
                 <em>{% trans 'Нет профиля' %}</em>
               {% endif %}
             </p>
-            <p><strong>{% trans 'Файлы:' %}</strong>
-              {% for file in feedback.fields.all %}
-                <a href="{{ file.file.url }}" target="_blank" class="d-block small">{{ forloop.counter }}. <span class="text-primary">{% trans 'Файл' %}</span></a>
-              {% endfor %}
+
+            <!-- Attachments -->
+            <p>
+              <i class="bi bi-paperclip"></i>
+              <strong>{% trans 'Файлы:' %}</strong>
+              {% if feedback.fields.all %}
+                <ul class="list-unstyled">
+                  {% for file in feedback.fields.all %}
+                    <li>
+                      <a href="{{ file.file.url }}" target="_blank" class="text-primary small">
+                        <i class="bi bi-file-earmark-text"></i>
+                        {{ forloop.counter }}. {% trans 'Файл' %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <span class="text-muted">{% trans 'Файлы отсутствуют.' %}</span>
+              {% endif %}
             </p>
           </div>
         </div>

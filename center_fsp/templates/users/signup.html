@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Register Regional Representative" %}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/users/user-auth.css' %}">
@@ -11,7 +11,7 @@
 {% block content %}
 
 <div class="container">
-  {% include "includes/user_form.html" with title="Register Regional Representative" submit_text="Register" %}
+  {% include "includes/user_form.html" with title=title submit_text=submit_text %}
 </div>
 
 {% endblock %}

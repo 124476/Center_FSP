@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-13 02:12+0300\n"
+"POT-Creation-Date: 2024-12-13 17:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgid "Russian"
 msgstr "Русский"
 
 #: .\feedback\apps.py:8 .\templates\feedback\feedback.html:4
-#: .\templates\feedback\feedback_list.html:3
+#: .\templates\feedback\feedback_list.html:4
 #: .\templates\includes\header.html:15
 msgid "Обратная связь"
 msgstr "Обратная связь"
@@ -82,33 +82,37 @@ msgstr "Прикрепить файлы"
 msgid "Отправить сообщение"
 msgstr "Отправить сообщение"
 
-#: .\templates\feedback\feedback_list.html:8
+#: .\templates\feedback\feedback_list.html:9
 msgid "Список обратной связи"
 msgstr "Список обратной связи"
 
-#: .\templates\feedback\feedback_list.html:18
+#: .\templates\feedback\feedback_list.html:25
 msgid "Дата создания:"
 msgstr "Дата создания:"
 
-#: .\templates\feedback\feedback_list.html:19
+#: .\templates\feedback\feedback_list.html:30
 msgid "Текст:"
 msgstr "Текст:"
 
-#: .\templates\feedback\feedback_list.html:20
+#: .\templates\feedback\feedback_list.html:35
 msgid "Имя пользователя:"
 msgstr "Имя пользователя:"
 
-#: .\templates\feedback\feedback_list.html:24
+#: .\templates\feedback\feedback_list.html:40
 msgid "Нет профиля"
 msgstr "Нет профиля"
 
-#: .\templates\feedback\feedback_list.html:27
+#: .\templates\feedback\feedback_list.html:47
 msgid "Файлы:"
 msgstr "Файлы:"
 
-#: .\templates\feedback\feedback_list.html:29
+#: .\templates\feedback\feedback_list.html:54
 msgid "Файл"
 msgstr "Файл"
+
+#: .\templates\feedback\feedback_list.html:60
+msgid "Файлы отсутствуют."
+msgstr "Файлы отсутствуют."
 
 #: .\templates\homepage\main.html:5 .\templates\includes\header.html:12
 msgid "Главная"
@@ -462,7 +466,7 @@ msgid "Структура"
 msgstr "Структура"
 
 #: .\templates\meropriations_calendar\event_detail.html:27
-#: .\templates\meropriations_calendar\main.html:43
+#: .\templates\meropriations_calendar\main.html:44
 msgid "Регион"
 msgstr "Регион"
 
@@ -551,8 +555,8 @@ msgstr "Список спортивных мероприятий"
 
 #: .\templates\meropriations_calendar\main.html:17
 #: .\templates\meropriations_calendar\main.html:27
-#: .\templates\meropriations_calendar\main.html:45
-#: .\templates\meropriations_calendar\main.html:55
+#: .\templates\meropriations_calendar\main.html:46
+#: .\templates\meropriations_calendar\main.html:56
 msgid "Все"
 msgstr "Все"
 
@@ -560,7 +564,7 @@ msgstr "Все"
 msgid "Возрастная группа"
 msgstr "Возрастная группа"
 
-#: .\templates\meropriations_calendar\main.html:53
+#: .\templates\meropriations_calendar\main.html:54
 msgid "Дисциплина"
 msgstr "Дисциплина"
 
@@ -728,10 +732,6 @@ msgstr "Удалить аватар"
 msgid "save"
 msgstr "Сохранить"
 
-#: .\templates\users\signup.html:5
-msgid "Register Regional Representative"
-msgstr "Зарегистрируйте регионального представителя"
-
 #: .\templates\users\user_detail.html:13
 msgid "Подробная информация о пользователе"
 msgstr "Подробная информация о пользователе"
@@ -787,6 +787,14 @@ msgstr "Аватарка"
 #: .\users\views.py:39
 msgid "username_is_already_taken"
 msgstr "Такое имя пользователя уже использовано."
+
+#: .\users\views.py:65
+msgid "Register Regional Representative"
+msgstr "Регистрация Регионального представителя"
+
+#: .\users\views.py:66
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #~ msgid "consideration"
 #~ msgstr "На рассмотрение"
@@ -928,9 +936,6 @@ msgstr "Такое имя пользователя уже использован
 
 #~ msgid "greeting"
 #~ msgstr "Регистрация"
-
-#~ msgid "register"
-#~ msgstr "Зарегистрироваться"
 
 #~ msgid "already_have_account"
 #~ msgstr "Уже есть аккаунт?"

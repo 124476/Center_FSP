@@ -59,6 +59,13 @@ class RegionalRepresentativeSignupView(CreateView):
         translation.activate(request.LANGUAGE_CODE)
         return super().get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавляем переводы для заголовка и кнопки
+        context["title"] = _("Register Regional Representative")
+        context["submit_text"] = _("Register")
+        return context
+
     def form_valid(self, form):
         user = form.save(request=self.request)
         user.first_name = form.cleaned_data["first_name"]
