@@ -142,7 +142,7 @@ python3.8 -m venv venv
 
 ### Хостинг
 
-<a href="https://mario12508.pythonanywhere.com/">https://mario12508.pythonanywhere.com/</a>
+<a href="https://fspcenter.pythonanywhere.com/">https://fspcenter.pythonanywhere.com/</a>
 
 Представитель ФСП (суперюзер)
 ```
