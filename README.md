@@ -54,12 +54,7 @@ cp .env.example .env
 docker-compose up --build
 ```
 
-#### 2. Создайте супер юзера, если хотите пройти авторизацию:
-```commandline
-docker exec -it django python manage.py createsuperuser
-```
-
-#### 4. Переходим на сайт
+#### 2. Переходим на сайт
 
 #### <a href="http://localhost:8000/">http://localhost:8000/</a>
 
@@ -105,6 +100,12 @@ python manage.py migrate
 
 ```commandline
 python manage.py runserver
+```
+
+#### 7. Загрузите фикстуры для БД
+
+```commandline
+python manage.py loaddata fixtures/data.json
 ```
 
 #### 6. Переходим на сайт
